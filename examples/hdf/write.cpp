@@ -23,4 +23,8 @@ int main() {
   DataSet
     dataset=file.createDataSet("testDataset",PredType::NATIVE_DOUBLE,dataspace);
   dataset.write(data,PredType::NATIVE_DOUBLE);
+
+  dataspace.close();
+  dataset.close();
+  file.close();
 }

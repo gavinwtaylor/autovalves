@@ -17,5 +17,15 @@ int main() {
   DataSpace dataspace=dataset.getSpace();
 
   int rank=dataspace.getSimpleExtentNdims();
-  std::cout << rank << std::endl;
+
+  hsize_t* setSize = new hsize_t[rank];//datasetDimension
+  hsize_t* readSize = new hsize_t[rank];//chunk to be read size
+
+  dataspace.getSimpleExtentDims(setSize,NULL);
+  readSize[0]=1;
+  readSize[1]=setSize[1];
+
+  double* forReading=new double[readSize[1]];
+  dataset.read(
+  
 }
