@@ -26,7 +26,7 @@ int main() {
 
   dataspace.getSimpleExtentDims(setSize,NULL);
 
-  readSize[0]=1;
+  readSize[0]=2;
   readSize[1]=setSize[1];
 
   cerr << setSize[0] << ',' << setSize[1] << endl;
@@ -40,8 +40,6 @@ int main() {
   DataSpace memspace(rank,count,NULL);
 
   dataspace.selectHyperslab(H5S_SELECT_SET,count,offset);
-  dataspace.getSimpleExtentDims(setSize,NULL);
-  cerr << setSize[0] << ',' << setSize[1] << endl;
   
   dataset.read(forReading,PredType::NATIVE_DOUBLE,memspace,dataspace);
 
