@@ -22,10 +22,16 @@ int main() {
   hsize_t* readSize = new hsize_t[rank];//chunk to be read size
 
   dataspace.getSimpleExtentDims(setSize,NULL);
-  readSize[0]=1;
-  readSize[1]=setSize[1];
 
-  double* forReading=new double[readSize[1]];
-  dataset.read(
+  std::cout << setSize[0] << ',' << setSize[1] << std::endl;
+
+  double* forReading=new double[setSize[0]*setSize[1]]; //MUST BE 1D
   
+  dataset.read(forReading,PredType::NATIVE_DOUBLE);
+
+  for (int row = 0; row < setSize[0]; row++) {
+    for (int col = 0; col < setSize[1]; col++)
+      std::cout << forReading[row*setSize[1]+col] << ' ';
+  }
+  delete [] forReading;
 }

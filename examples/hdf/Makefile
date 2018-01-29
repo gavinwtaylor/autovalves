@@ -1,7 +1,7 @@
-all: write read
+all: writeAll readAll
 
-write: write.cpp
-	CC write.cpp -o write
+writeAll: writeAll.cpp
+	CC writeAll.cpp -o writeAll
 
-read: read.cpp
-	CC read.cpp -o read
+readAll: read.cpp
+	CC readAll.cpp -o readAll
