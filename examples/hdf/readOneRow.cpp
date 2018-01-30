@@ -1,6 +1,6 @@
 #include <iostream>
 using std::cout;
-using std::cerr;
+using std::cout;
 using std::endl;
 #include <string>
 #include "H5Cpp.h"
@@ -17,7 +17,7 @@ int main() {
 
   H5T_class_t type_class=dataset.getTypeClass();
   if (type_class != H5T_FLOAT)
-    std::cerr << "NOT A DOUBLE" << std::endl;
+    std::cout << "NOT A DOUBLE" << std::endl;
 
   int rank=dataspace.getSimpleExtentNdims();
 
@@ -29,8 +29,8 @@ int main() {
   readSize[0]=2;
   readSize[1]=setSize[1];
 
-  cerr << setSize[0] << ',' << setSize[1] << endl;
-  cerr << readSize[0] << ',' << readSize[1] << endl;
+  cout << setSize[0] << ',' << setSize[1] << endl;
+  cout << readSize[0] << ',' << readSize[1] << endl;
 
   double* forReading=new double[readSize[0]*readSize[1]]; //MUST BE 1D
 
@@ -45,10 +45,10 @@ int main() {
 
   for (int row = 0; row < readSize[0]; row++) {
     for (int col = 0; col < readSize[1]; col++){
-      cerr << '(' << row << ',' << col << ',' << (row*readSize[1]+col) << ')';
-      cerr << forReading[row*readSize[1]+col] << ' ';
+      cout << '(' << row << ',' << col << ',' << (row*readSize[1]+col) << ')';
+      cout << forReading[row*readSize[1]+col] << ' ';
     }
-    cerr << endl;
+    cout << endl;
   }
   delete [] forReading;
 }
