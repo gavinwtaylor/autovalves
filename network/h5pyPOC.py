@@ -36,7 +36,7 @@ for i in range(len(dataset)):
 
 #this does not work correctly: sample_batched is a list of tuples, where each
 #tuple is the strings 'action' and 'state' repeated batch_size times
-dataloader = DataLoader(dataset,batch_size=3)
+dataloader = DataLoader(dataset,batch_size=2)
 for i_batch, sample_batched in enumerate(dataloader):
   print i_batch, sample_batched
   #print(i_batch,sample_batched['state'].size(),sample_batched['action'].size())
