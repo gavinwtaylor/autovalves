@@ -1,4 +1,4 @@
-all: writeAll readAll readOneRow
+all: writeAll readAll readOneRow writeRowsSer
 
 writeAll: writeAll.cpp
 	CC writeAll.cpp -o writeAll
@@ -8,3 +8,6 @@ readAll: readAll.cpp
 
 readOneRow: readOneRow.cpp
 	CC readOneRow.cpp -o readOneRow
+
+writeRowsSer: writeRowsSer.cpp
+	CC writeRowsSer.cpp -o writeRowsSer

@@ -2,3 +2,4 @@ test.h5
 writeAll
 readAll
 readOneRow
+writeRowsSer
