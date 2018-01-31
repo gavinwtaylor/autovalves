@@ -23,15 +23,18 @@ using namespace H5;
   
   actionDim is the number of valves being set
 
-  filename is the path to the file to be written
+  file is a pointer to the HDF5 file object
 
   groupname is the group to be written to within that file
  */
 void writeData(double** states, double** actions, double* rewards,
                int N, int statesDim, int actionDim,
-               string filename, string groupname);
+               H5File* file, string groupname);
 
 int main() {
+  string filename="/mnt/lustre/scratch/autoValveData/test.h5";
+  H5File* file=new H5File(filename, H5F_ACC_EXCL);
+
   const int N=5, S_DIM=2, A_DIM=2;
   double** states=new double*[N];
   double** actions = new double*[N];
@@ -52,7 +55,7 @@ int main() {
     rVal+=.1;
   }
 
-  writeData(states, actions, rewards, N, S_DIM, A_DIM, "test2.h5", "testGroup");
+  writeData(states, actions, rewards, N, S_DIM, A_DIM, file, "testGroup");
 
   for (int i = 0; i < N; i++) {
     delete [] states[i];
@@ -61,13 +64,13 @@ int main() {
   delete [] states;
   delete [] actions;
   delete [] rewards;
+  delete file;
 }
 
 void writeData(double** states, double** actions, double* rewards,
                int N, int statesDim, int actionDim,
-               string filename, string groupname){
-  H5File file(filename, H5F_ACC_RDWR);
-  Group group=file.createGroup("/"+groupname);
+               H5File* file, string groupname){
+  Group group=file->createGroup("/"+groupname);
 
   //write states
   hsize_t S_DIMS[2]={N,statesDim};
