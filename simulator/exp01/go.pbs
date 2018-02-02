@@ -1,0 +1,4 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=1
+cd /mnt/lustre/scratch/tadams/autovalves/exp01/
+aprun -n 1 ./exp01
