@@ -1,0 +1,9 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=10
+#PBS -q gpu
+#PBS -j oe
+
+module load cray-hdf5-parallel
+source ~/mypy/bin/activate
+cd /mnt/lustre/scratch/taylor/autovalves/network
+aprun -d 10 python trainNetwork.py --numHid 10 --numLayers 3 --trainData /mnt/lustre/scratch/autoValveData/proto.h5 --epochs 100 --batchSize 200
