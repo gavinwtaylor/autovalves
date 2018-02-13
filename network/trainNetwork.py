@@ -6,11 +6,20 @@ from numpy import argmin
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 
-def trainNet(filename,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1):
+def saveResults(outfile,trainX,trainY,testX,testY,model):
+  import csv
+  with open(outfile+'.csv','wb') as out:
+    csvwriter=csv.writer(out,delimiter=' ')
+    csvwriter.writerow(trainX)
+    csvwriter.writerow(trainY)
+    csvwriter.writerow(testX)
+    csvwriter.writerow(testY)
+  torch.save(model,outfile+'.mod')
+
+def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,testname=None,outdir='.'):
   cuda=torch.cuda.is_available()
   
   dtype=torch.cuda.FloatTensor if cuda else torch.FloatTensor
-
   class ValveDataset(Dataset):
     def __init__(self, file, transform=None):
       f=h5py.File(file,'r')
@@ -54,24 +63,49 @@ def trainNet(filename,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1):
       model=nn.DataParallel(model)
 
   loss_fn=torch.nn.MSELoss()
-  lr = 1e-5
   optimizer = torch.optim.Adam(model.parameters(),lr=lr)
 
-  dataset=ValveDataset(filename,ToTensor())
+  dataset=ValveDataset(trainname,ToTensor())
 
   #num_workers>1 causes hdf5 errors
   dataloader = DataLoader(dataset,batch_size=batchSize,shuffle=True,num_workers=numLoaders)
+  if testname is not None:
+    testdataset=ValveDataset(testname,ToTensor())
+    testdataloader = DataLoader(testdataset,batch_size=batchSize,shuffle=False,num_workers=numLoaders)
+
+  trainX=[]
+  trainY=[]
+
+  testX=[]
+  testY=[]
 
   for epoch in range(epochs):
+    epochLoss=0
     for i_batch, sample_batched in enumerate(dataloader):
       x=Variable(sample_batched['state'],requires_grad=False).type(dtype)
       y=Variable(sample_batched['action'],requires_grad=False).type(dtype)
       y_pred=model(x)
       loss=loss_fn(y_pred,y)
-      print epoch,i_batch,loss.data[0]
+      epochLoss=epochLoss+loss.data[0]
       optimizer.zero_grad()
       loss.backward()
       optimizer.step()
+    trainX.append(epoch)
+    trainY.append(epochLoss)
+    if testname is not None and epoch>0 and (epoch%10==0 or epoch==epochs-1):
+      epochLoss=0
+      for i_batch, sample_batched in enumerate(testdataloader):
+        x=Variable(sample_batched['state'],requires_grad=False).type(dtype)
+        y=Variable(sample_batched['action'],requires_grad=False).type(dtype)
+        y_pred=model(x)
+        loss=loss_fn(y_pred,y)
+        epochLoss=epochLoss+loss.data[0]
+      testX.append(epoch)
+      testY.append(epochLoss)
+
+  savefn=outdir+'/nN'+str(numNodes)+'nL'+str(numLayers)+'e'+str(epochs)+'lr'+str(lr)+'bs'+str(batchSize)
+  saveResults(savefn,trainX,trainY,testX,testY,model)
+
 
 if __name__ == "__main__":
   import argparse
@@ -79,6 +113,7 @@ if __name__ == "__main__":
   parser.add_argument('--numHid',type=int,default=10,help='number of hidden nodes per layer')
   parser.add_argument('--numLayers',type=int,default=2,help='number of hidden layers')
   parser.add_argument('--trainData',default='/mnt/lustre/scratch/autoValveData/training.h5',help='filename of training data')
+  parser.add_argument('--testData',help='filename of testing data')
   parser.add_argument('--epochs',type=int,default=500,help='epochs of training')
   parser.add_argument('--noCuda',help='No GPU')
   parser.add_argument('--batchSize',type=int,default=500,help='training batch size')
@@ -86,4 +121,4 @@ if __name__ == "__main__":
 
   args=parser.parse_args()
   trainNet(args.trainData,args.numHid,args.numLayers,args.epochs,\
-      args.lr,args.batchSize)
+      args.lr,args.batchSize,testname=args.testData)

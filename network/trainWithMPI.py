@@ -17,6 +17,8 @@ parser.add_argument('--epochs',type=int,help='number of epochs to run each')
 parser.add_argument('--batchSize',type=int,action='append',\
     help='batch size')
 parser.add_argument('--trainFile',help='file path for training')
+parser.add_argument('--testFile',help='file path for testing')
+parser.add_argument('--outdir',help='directory for output')
 args=parser.parse_args()
 
 lrs=args.lr
@@ -48,6 +50,6 @@ else:
     fargs=comm.recv(source=0,tag=1)
     if fargs==0:
       break
-    trainNet(args.trainFile,fargs[0],fargs[1],numEpochs,fargs[2],fargs[3])
+    trainNet(args.trainFile,fargs[0],fargs[1],numEpochs,fargs[2],fargs[3],testname=args.testFile,outdir=args.outdir)
     comm.send(0,dest=0,tag=2)
 print str(rank)+' done!'

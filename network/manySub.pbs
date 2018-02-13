@@ -1,9 +1,30 @@
 #!/bin/bash
-#PBS -l select=1:ncpus=10
+#PBS -l select=8:ncpus=10
 #PBS -q gpu
 #PBS -j oe
+#PBS -N fromTesting300epochs
+
+numNodes=8
+
+lrs=(.001 .01 .1 1 10)
+hidNs=(10 50 100)
+hidLays=(2 3 4)
+batchSizes=(3000 30000 300000)
+epochs=300
+trainFile=/mnt/lustre/scratch/autoValveData/testing.h5
+testFile=/mnt/lustre/scratch/autoValveData/proto.h5
+outfile=`date +%j%H%M`
 
 module load cray-hdf5-parallel
 source ~/mypy/bin/activate
-cd /mnt/lustre/scratch/taylor/autovalves/network
-aprun -n 3 python trainWithMPI.py --lr .1 --lr .3 --hidN 3 --hidN 4 --hidLay 2 --epochs 5 --batchSize 40 --trainFile something
+cd /mnt/lustre/scratch/autoValveData
+mkdir $outfile
+cd ../taylor/autovalves/network
+
+printf -v lrargs " --lr %s " ${lrs[@]}
+printf -v hidNargs " --hidN %s " ${hidNs[@]}
+printf -v hidLayargs " --hidLay %s " ${hidLays[@]}
+printf -v bsargs " --batchSize %s " ${batchSizes[@]}
+
+aprun -n $numNodes -d 10 python trainWithMPI.py $lrargs $hidNargs $hidLayargs $bsargs --epochs $epochs --trainFile $trainFile --testFile $testFile --outdir ../../../autoValveData/$outfile
+chmod -R 777 /mnt/lustre/scratch/autoValveData/
