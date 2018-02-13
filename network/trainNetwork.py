@@ -23,8 +23,9 @@ def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,testn
   class ValveDataset(Dataset):
     def __init__(self, file, transform=None):
       f=h5py.File(file,'r')
-      self.groups=[ f[group] for group in f.keys() ]
-      sizes=[ g['states'].shape[0]-1 for g in self.groups]
+      self.groupStates=[ f[group]['states'][:,:] for group in f.keys() ]
+      self.groupActions=[ f[group]['actions'][:,:] for group in f.keys() ]
+      sizes=[ g.shape[0]-1 for g in self.groupStates]
       self.csum=cumsum(sizes)
       self.transform=transform
 
@@ -35,8 +36,8 @@ def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,testn
       groupIdx=argmin(self.csum<=idx)
       if groupIdx!=0:
         idx=idx-self.csum[groupIdx-1]
-      state=self.groups[groupIdx]['states'][idx,:]
-      action=self.groups[groupIdx]['actions'][idx,:]
+      state=self.groupStates[groupIdx][idx,:]
+      action=self.groupActions[groupIdx][idx,:]
       sample={'state':state,'action':action}
       if self.transform:
         sample=self.transform(sample)
@@ -78,8 +79,9 @@ def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,testn
 
   testX=[]
   testY=[]
-
+  
   for epoch in range(epochs):
+    print epoch
     epochLoss=0
     for i_batch, sample_batched in enumerate(dataloader):
       x=Variable(sample_batched['state'],requires_grad=False).type(dtype)
