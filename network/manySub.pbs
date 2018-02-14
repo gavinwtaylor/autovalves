@@ -19,6 +19,7 @@ module load cray-hdf5-parallel
 source ~/mypy/bin/activate
 cd /mnt/lustre/scratch/autoValveData
 mkdir $outfile
+cat ../taylor/autovalves/network/manySub.pbs > $outfile/aaManySub.pbs
 cd ../taylor/autovalves/network
 
 printf -v lrargs " --lr %s " ${lrs[@]}
