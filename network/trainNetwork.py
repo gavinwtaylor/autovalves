@@ -61,7 +61,7 @@ def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,testn
   if cuda:
     model=model.cuda()
     if torch.cuda.device_count()>1:
-      model=nn.DataParallel(model)
+      model=torch.nn.DataParallel(model)
 
   loss_fn=torch.nn.MSELoss()
   optimizer = torch.optim.Adam(model.parameters(),lr=lr)
