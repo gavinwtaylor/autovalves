@@ -1,16 +1,16 @@
 #!/bin/bash
-#PBS -l select=3:ncpus=2:mpiprocs=1
-#PBS -q debug
+#PBS -l select=15:ncpus=10:mpiprocs=1
+#PBS -q standard
 #PBS -A MHPCC38870258
 #PBS -j oe
 #PBS -N fromTesting300epochs
-#PBS -l walltime=00:10:00
+#PBS -l walltime=24:00:00
 
 module load openmpi/2.1.1/gnu/5.3.0
 
-numNodes=3
+numNodes=15
 
-lrs=(.001 .01 .1 1 10)
+lrs=(.001 .01)
 hidNs=(150 200)
 hidLays=(2 3 4)
 batchSizes=(3000 30000 300000)
