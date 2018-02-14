@@ -1,0 +1,35 @@
+#!/bin/bash
+#PBS -l select=3:ncpus=2:mpiprocs=2
+#PBS -q debug
+#PBS -A MHPCC38870258
+#PBS -j oe
+#PBS -N fromTesting300epochs
+#PBS -l walltime=00:10:00
+
+module load openmpi/2.1.1/gnu/5.3.0
+
+numNodes=3
+
+lrs=(.001 .01 .1 1 10)
+hidNs=(150 200)
+hidLays=(2 3 4)
+batchSizes=(3000 30000 300000)
+epochs=300
+trainFile=/mnt/lustre/scratch/autoValveData/testing.h5
+testFile=/mnt/lustre/scratch/autoValveData/proto.h5
+outfile=`date +%j%H%M`
+
+module purge
+module load pbs cudnn/6.0 cuda/8.0 anaconda2 lapack openmpi/2.1.1/gnu/5.3.0
+cd /mnt/lustre/scratch/autoValveData
+mkdir $outfile
+cat ../taylor/autovalves/network/manyHokulea.pbs > $outfile/aaManyHokulea.pbs
+cd ../taylor/autovalves/network
+
+printf -v lrargs " --lr %s " ${lrs[@]}
+printf -v hidNargs " --hidN %s " ${hidNs[@]}
+printf -v hidLayargs " --hidLay %s " ${hidLays[@]}
+printf -v bsargs " --batchSize %s " ${batchSizes[@]}
+
+aprun -n $numNodes -d 10 python trainWithMPI.py $lrargs $hidNargs $hidLayargs $bsargs --epochs $epochs --trainFile $trainFile --testFile $testFile --outdir ../../../autoValveData/$outfile
+chmod -R 777 /mnt/lustre/scratch/autoValveData/
