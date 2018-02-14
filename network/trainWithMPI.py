@@ -50,6 +50,6 @@ else:
     fargs=comm.recv(source=0,tag=1)
     if fargs==0:
       break
-    trainNet(args.trainFile,fargs[0],fargs[1],numEpochs,fargs[2],fargs[3],testname=args.testFile,outdir=args.outdir)
+    trainNet(args.trainFile,fargs[0],fargs[1],numEpochs,fargs[2],fargs[3],testname=args.testFile,outdir=args.outdir,numLoaders=10)
     comm.send(0,dest=0,tag=2)
 print str(rank)+' done!'
