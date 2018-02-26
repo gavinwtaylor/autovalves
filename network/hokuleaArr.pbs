@@ -1,0 +1,51 @@
+#!/bin/bash
+#PBS -l select=1:ncpus=20
+#PBS -q standard
+#PBS -A MHPCC38870258
+#PBS -j oe
+#PBS -N fromTesting600epochs
+#PBS -l walltime=8:00:00
+#PBS -J 0-35
+#PBS -r y
+
+lrs=(.00001)
+hidNs=(10 50 100 150)
+hidLays=(2 3 4)
+batchSizes=(1000 2000 3000)
+epochs=800
+trainFile=/gpfs/scratch/gvtaylor/autoValveData/testing.h5
+testFile=/gpfs/scratch/gvtaylor/autoValveData/proto.h5
+
+filearr=($(echo $PBS_JOBID | tr "\[" " "))
+outfile=/gpfs/scratch/gvtaylor/autoValveData/${filearr[0]}
+
+FRONT="python trainNetwork.py --trainData $trainFile --testData $testFile --epochs $epochs --numLoaders 20 --outfile $outfile"
+ndx=0
+for lr in "${lrs[@]}"
+do
+  for hidN in "${hidNs[@]}"
+  do
+    for hidLay in "${hidLays[@]}"
+    do
+      for batch in "${batchSizes[@]}"
+      do
+        CMDS[ndx]="$FRONT --lr $lr"
+        CMDS[ndx]+=" --numHid $hidN"
+        CMDS[ndx]+=" --numLayers $hidLay"
+        CMDS[ndx]+=" --batchSize $batch"
+        let ndx++
+      done
+    done
+  done
+done
+
+echo ${CMDS[$PBS_ARRAY_INDEX]}
+
+module purge
+module load pbs cudnn/6.0 cuda/8.0 anaconda2 lapack openmpi/2.1.1/gnu/5.3.0
+cd /gpfs/scratch/gvtaylor/autoValveData
+mkdir $outfile
+cat ../autovalves/network/hokuleaArr.pbs > $outfile/aaHokuleaArr.pbs
+cd ../autovalves/network
+
+eval ${CMDS[$PBS_ARRAY_INDEX]}

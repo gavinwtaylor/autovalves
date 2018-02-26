@@ -120,7 +120,10 @@ if __name__ == "__main__":
   parser.add_argument('--noCuda',help='No GPU')
   parser.add_argument('--batchSize',type=int,default=500,help='training batch size')
   parser.add_argument('--lr',type=float,default=.1,help='learning rate')
+  parser.add_argument('--numLoaders',type=int,default=1,help='data load threads')
+  parser.add_argument('--outfile',default='.',help='out data goes here')
 
   args=parser.parse_args()
   trainNet(args.trainData,args.numHid,args.numLayers,args.epochs,\
-      args.lr,args.batchSize,testname=args.testData)
+      args.lr,args.batchSize,testname=args.testData,numLoaders=args.numLoaders,\
+      outdir=args.outfile)
