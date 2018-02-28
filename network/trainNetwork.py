@@ -1,8 +1,7 @@
 import h5py
 import torch
 from torch.autograd import Variable
-from numpy import cumsum
-from numpy import argmin
+import numpy as np
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 
@@ -26,14 +25,14 @@ def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,testn
       self.groupStates=[ f[group]['states'][:,:] for group in f.keys() ]
       self.groupActions=[ f[group]['actions'][:,:] for group in f.keys() ]
       sizes=[ g.shape[0]-1 for g in self.groupStates]
-      self.csum=cumsum(sizes)
+      self.csum=np.cumsum(sizes)
       self.transform=transform
 
     def __len__(self):
       return self.csum[-1]
 
     def __getitem__(self,idx):
-      groupIdx=argmin(self.csum<=idx)
+      groupIdx=np.argmin(self.csum<=idx)
       if groupIdx!=0:
         idx=idx-self.csum[groupIdx-1]
       state=self.groupStates[groupIdx][idx,:]
@@ -46,6 +45,10 @@ def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,testn
   class ToTensor:
     def __call__(self,sample):
       s,a=sample['state'],sample['action']
+      s[0]=3*(s[0]-1)
+      s[1]=(s[1]-95)/21
+      a[0]=3*(a[0]-1)
+      a[1]=np.log(a[1])-4.5
       return {'state':torch.from_numpy(s),'action':torch.from_numpy(a)}
 
   layers=[]
