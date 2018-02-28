@@ -49,7 +49,6 @@ def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,testn
       s[1]=(s[1]-389)/21
       a[0]=3*(a[0]-1)
       a[1]=np.log(max(a[1],.0001))-4.5
-      print(s,a)
       return {'state':torch.from_numpy(s),'action':torch.from_numpy(a)}
 
   layers=[]
