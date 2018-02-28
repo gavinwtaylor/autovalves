@@ -47,8 +47,8 @@ def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,testn
       s,a=sample['state'],sample['action']
       s[0]=3*(s[0]-1)
       s[1]=(s[1]-95)/21
-      a[0]=3*(max(a[0],.001)-1)
-      a[1]=np.log(a[1])-4.5
+      a[0]=3*(a[0]-1)
+      a[1]=np.log(max(a[1],.0001))-4.5
       print(s,a)
       return {'state':torch.from_numpy(s),'action':torch.from_numpy(a)}
 
