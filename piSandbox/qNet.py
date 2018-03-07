@@ -126,6 +126,7 @@ def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,\
       optimizer.step()
     trainX.append(epoch)
     trainY.append(epochLoss)
+    print epoch,epochLoss
     if testname is not None and epoch>0 and (epoch%15==0 or epoch==epochs-1):
       epochLoss=0
       for i_batch, sample_batched in enumerate(testdataloader):
@@ -147,7 +148,6 @@ def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,\
         epochLoss=epochLoss+loss.data[0]
       testX.append(epoch)
       testY.append(epochLoss)
-    print epoch,epochLoss
   
   savefn=outdir+'/nN'+str(numNodes)+'nL'+str(numLayers)+'e'+str(epochs)+'lr'+str(lr)+'bs'+str(batchSize)
   saveResults(savefn,trainX,trainY,testX,testY,model)
