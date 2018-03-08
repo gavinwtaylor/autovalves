@@ -4,4 +4,4 @@ comm=MPI.COMM_WORLD
 rank=comm.Get_rank()
 size=comm.Get_size()
 
-print "python "+str(rank)
+print "python "+str(rank)+" of "+str(size)
