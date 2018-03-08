@@ -13,7 +13,7 @@ def saveResults(outfile,trainX,trainY,testX,testY,model):
     csvwriter.writerow(trainY)
     csvwriter.writerow(testX)
     csvwriter.writerow(testY)
-  torch.save(model,outfile+'.mod')
+  torch.save(model.state_dict(),outfile+'.mod')
 
 def trainNet(trainname,numNodes,numLayers,epochs,lr,batchSize,numLoaders=1,testname=None,outdir='.'):
   cuda=torch.cuda.is_available()
