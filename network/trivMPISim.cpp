@@ -19,11 +19,12 @@ int main(int argc, char* argv[]) {
     double state[2];
     state[0]=double(rand()); //instead of this, you would run your simulator
     state[1]=double(rand()); //to assign these values
-    cout << "Sending " << state[0] << ' ' << state[1] << endl;
+    cout << "Simulator sending state " << state[0] << ' ' << state[1] << endl;
 
     MPI_Send(state,2,MPI_DOUBLE,1,0,MPI_COMM_WORLD);
     double action[2];
     MPI_Recv(action,2,MPI_DOUBLE,1,1,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+    cout << "Simulator receiving action " << action[0] << ' ' << action[1] << endl;
   }
 
   MPI_Send(NULL,0,MPI_INT,1,2,MPI_COMM_WORLD);

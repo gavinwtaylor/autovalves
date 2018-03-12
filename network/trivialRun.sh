@@ -6,6 +6,6 @@
 #PBS -N trivValveInter
 
 source ~/mypy/bin/activate
-cd /mnt/lustre/scratch/taylor/autovalves/network/
+cd /mnt/lustre/scratch/$USER/autovalves/network/
 CC trivMPISim.cpp -o trivMPISim
 aprun ./trivMPISim : python trivMPIControl.py
