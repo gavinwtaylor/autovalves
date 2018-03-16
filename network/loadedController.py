@@ -36,8 +36,7 @@ while (status.Get_tag() != 2):
   state[0]=3*(state[0]-.75)
   state[1]=(state[1]-389)/21
   x=Variable(torch.from_numpy(state),requires_grad=False).type(dtype)
-  action=model(x)
-  action=action.data.cpu().numpy()
+  action=model(x).data.cpu().numpy()
   action[0]=min(max((action[0]/3)+1,0),2)
   action[1]=min(max(np.exp(action[1]+4.5),0),20000)
 
