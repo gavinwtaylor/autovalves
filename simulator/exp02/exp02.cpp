@@ -36,6 +36,9 @@ using namespace std;
 #include "H5Cpp.h"
 using namespace H5;
 
+// needed for usleep tests
+#include <unistd.h>
+
 // prototype for the function we have
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data);
 
@@ -81,7 +84,7 @@ int main(void) {
 	
 	// file settings
 	string experimentnum = "02";
-	string runnumber = "01";
+	string runnumber = "07";
 	string groupname = "Run-";
 	char buffer[40];
 	string filename="/mnt/lustre/scratch/autoValveData/exp" + experimentnum + "-run" + runnumber + ".h5";
@@ -216,13 +219,32 @@ int main(void) {
       
       // controller(t, x, xsp, &cdata, &u0);
       
+      // sleep 5 seconds
+      usleep(5000000);
+      
       // wait for the AI to give us an action to take.
-      MPI_Recv(action,2,MPI_DOUBLE,1,1,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
-      cout << "Simulator receiving action " << action[0] << ' ' << action[1] << endl;
+
+      int err = MPI_Recv(action,2,MPI_DOUBLE,1,1,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+      
+      cout << "Simulator receiving action " << action[0] << ' ' << action[1] << " err code was " << err << endl;
+      
+      if (MPI_SUCCESS == err) cout << "Error code was MPI_SUCCESS\n";
+      if (MPI_ERR_COMM == err) cout << "Error code was MPI_ERR_COMM\n";
+      if (MPI_ERR_TYPE == err) cout << "Error code was MPI_ERR_TYPE\n";
+      if (MPI_ERR_COUNT == err) cout << "Error code was MPI_ERR_COUNT\n";
+      if (MPI_ERR_TAG == err) cout << "Error code was MPI_ERR_TAG\n";
+      if (MPI_ERR_RANK == err) cout << "Error code was MPI_ERR_RANK\n";
+      
 	    
       // copy this action stored as double[] into our vector<double> we have set up already
       u0[0] = action[0];
       u0[1] = action[1];
+      
+      // double check for valve saturation in case external controller gave us crap
+      if (u0[0] < 0) {u0[0] = 0;} 
+    	if (u0[0] > 2) {u0[0] = 2;}
+	    if (u0[1] < 0) {u0[1] = 0;}  
+	    if (u0[1] > 20000) {u0[1] = 20000;}
       
       udat.push_back(u0); // this is the state at the beginning of the integration step 
       
