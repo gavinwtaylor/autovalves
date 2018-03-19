@@ -1,0 +1,4 @@
+make sure to:
+
+module load cray-tpsl-64
+module load cray-hdf5
