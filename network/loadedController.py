@@ -37,8 +37,9 @@ while (status.Get_tag() != 2):
   state[1]=(state[1]-389)/21
   x=Variable(torch.from_numpy(state),requires_grad=False).type(dtype)
   action=model(x).data.cpu().numpy()
-  action[0]=min(max((action[0]/3)+1,0),2)
-  action[1]=min(max(np.exp(action[1]+4.5),0),20000)
+  action[0]=min(max((action[0]/3.0)+1.0,0.0),2.0)
+  action[1]=min(max(np.exp(action[1]+4.5),0.0),20000.0)
+  action=action.astype(float)
 
   #feed state into NN, get back an action, for now, do this:
   print "controller sending action ",action
