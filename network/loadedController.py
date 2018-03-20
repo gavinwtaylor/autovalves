@@ -29,7 +29,7 @@ model=model.cpu().cuda()
 
 status=MPI.Status()
 state=np.zeros((2,))
-comm.Recv(state,source=0,status=status)
+comm.Recv(state,status=status)
 
 while (status.Get_tag() != 2):
   print "controller received state ",state
@@ -43,7 +43,7 @@ while (status.Get_tag() != 2):
 
   #feed state into NN, get back an action, for now, do this:
   print "controller sending action ",action
-  comm.Send(action,dest=0,tag=1)
-  comm.Recv(state,source=0,status=status)
+  comm.Send(action,dest=status.Get_source(),tag=1)
+  comm.Recv(state,status=status)
 
 print "Python closing"
