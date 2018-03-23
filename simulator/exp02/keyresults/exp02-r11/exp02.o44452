@@ -1,0 +1,237 @@
+make: Nothing to be done for `all'.
+C++ 0 of 2
+python 1 of 2
+controller received state  [  1. 375.]
+controller sending action  [   0.         5492.48193359]
+controller received state  [  0.98810614 376.06481107]
+controller sending action  [1.81126595e-03 1.97327344e+04]
+controller received state  [  0.97620693 377.10026674]
+controller sending action  [1.68379152e-03 2.00000000e+04]
+controller received state  [  0.96380101 383.49686111]
+controller sending action  [    0. 20000.]
+controller received state  [  0.95002523 390.25275323]
+controller sending action  [1.64453185e-03 1.67081738e+04]
+controller received state  [  0.93453487 395.45957801]
+controller sending action  [   0.         5119.07763672]
+controller received state  [  0.91800878 396.27262239]
+controller sending action  [1.65621444e-04 3.18482397e+03]
+controller received state  [  0.90183895 396.08759347]
+controller sending action  [5.57104759e-05 3.57948462e+03]
+controller received state  [  0.88603495 395.58688571]
+controller sending action  [   0.         4560.27636719]
+controller received state  [  0.87073683 395.13176934]
+controller sending action  [1.89582503e-03 5.50636719e+03]
+controller received state  [  0.85578774 395.01472355]
+controller sending action  [1.38831139e-03 5.71394434e+03]
+controller received state  [  0.8410585  395.23002406]
+controller sending action  [1.50918961e-03 5.19325635e+03]
+controller received state  [  0.82649822 395.39965791]
+controller sending action  [1.28269196e-03 4.71429736e+03]
+controller received state  [  0.81216941 395.43620995]
+controller sending action  [1.31328905e-03 4.60921240e+03]
+controller received state  [  0.79810763 395.34907458]
+controller sending action  [7.50462234e-04 4.77141504e+03]
+controller received state  [  0.78431822 395.29175063]
+controller sending action  [   0.         4855.05908203]
+controller received state  [  0.77077417 395.27676576]
+controller sending action  [   0.         4837.44091797]
+controller received state  [  0.7574639  395.29632693]
+controller sending action  [8.35974992e-04 4.73072949e+03]
+controller received state  [  0.74437398 395.33637352]
+controller sending action  [1.13924348e-03 4.59915479e+03]
+controller received state  [  0.7314927  395.36817562]
+controller sending action  [2.78234482e-04 4.48098975e+03]
+controller received state  [  0.71883071 395.37938222]
+controller sending action  [   0.         4400.47265625]
+controller received state  [  0.70638968 395.37038482]
+controller sending action  [2.94049587e-05 4.35955713e+03]
+controller received state  [  0.69417018 395.34316056]
+controller sending action  [4.48067993e-04 4.39521094e+03]
+controller received state  [  0.68216354 395.31979269]
+controller sending action  [6.97771728e-04 4.41771143e+03]
+controller received state  [  0.67036255 395.3151266 ]
+controller sending action  [5.69025688e-05 4.38995996e+03]
+controller received state  [  0.65876789 395.32012144]
+controller sending action  [1.01327896e-03 4.31766797e+03]
+controller received state  [  0.6473648  395.33664051]
+controller sending action  [7.94251740e-04 4.25535986e+03]
+controller received state  [  0.63616007 395.36382635]
+controller sending action  [2.44617462e-04 4.16151953e+03]
+controller received state  [  0.62514791 395.36276676]
+controller sending action  [1.25726059e-04 4.11904004e+03]
+controller received state  [  0.6143305  395.34814775]
+controller sending action  [2.37226486e-04 4.09674707e+03]
+controller received state  [  0.6037034  395.33618219]
+controller sending action  [6.32524490e-04 4.09045605e+03]
+controller received state  [  0.59326576 395.32990758]
+controller sending action  [   0.         4059.67382812]
+controller received state  [  0.58301035 395.3275685 ]
+controller sending action  [5.78324019e-04 4.04485425e+03]
+controller received state  [  0.57292513 395.33262527]
+controller sending action  [7.07045376e-01 3.98804688e+03]
+controller received state  [  0.56397292 395.33870607]
+controller sending action  [1.58687389e+00 3.94240991e+03]
+controller received state  [  0.56911263 395.29858643]
+controller sending action  [1.08029234e+00 4.06050244e+03]
+controller received state  [  0.57496582 395.2490588 ]
+controller sending action  [5.03909886e-01 4.18878320e+03]
+controller received state  [  0.58076091 395.19601344]
+controller sending action  [1.53279305e-03 4.29871191e+03]
+controller received state  [  0.57523083 395.25676309]
+controller sending action  [4.78005558e-01 4.17444092e+03]
+controller received state  [  0.56552356 395.36691024]
+controller sending action  [1.43558550e+00 3.88372583e+03]
+controller received state  [  0.5692045  395.30827237]
+controller sending action  [1.07157314e+00 4.03859839e+03]
+controller received state  [  0.57069301 395.28762703]
+controller sending action  [9.24969077e-01 4.08778369e+03]
+controller received state  [  0.57005629 395.29949985]
+controller sending action  [9.87758577e-01 4.05969897e+03]
+controller received state  [  0.56938158 395.31226717]
+controller sending action  [1.05429721e+00 4.02972388e+03]
+controller received state  [  0.56871235 395.32515051]
+controller sending action  [1.11967516e+00 3.99518335e+03]
+controller received state  [  0.56825962 395.33403534]
+controller sending action  [1.16627312e+00 3.97251782e+03]
+controller received state  [  0.56989934 395.30154911]
+controller sending action  [1.00321221e+00 4.05481104e+03]
+controller received state  [  0.57013219 395.29719629]
+controller sending action  [9.80250180e-01 4.06507153e+03]
+controller received state  [  0.57022869 395.29554398]
+controller sending action  [9.70737755e-01 4.06898413e+03]
+controller received state  [  0.57032437 395.29386735]
+controller sending action  [9.61304963e-01 4.07295386e+03]
+CA (X-axis) v T (y-axis)
+     420 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+ 414.375 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+  408.75 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+ 403.125 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+   397.5 +                                                                      
+         |                                                                      
+         |                             *X** * ** * * ** * * * * * * * * * *  * *
+         |                                                                      
+         |                                                                      
+ 391.875 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+  386.25 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+ 380.625 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         +----+----+----+----+----+----+----+----+----+----+----+----+----+----
+           0.3   0.44285   0.50571   0.56857   0.63142   0.69428   0.75714
+
+t (X-axis) v u0 (CAin) (y-axis)
+       2 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+ 1.71875 +                                                                      
+         |                                                                      
+         |                                                 *                    
+         |                                                                      
+         |                                                                      
+  1.4375 +                                                        *             
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+ 1.15625 +                                                                *     
+         |                                                  *            *      
+         |                                                         *   *        
+         |                                                            *     ** *
+         |                                                           *          
+   0.875 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                               *                      
+         |                                                                      
+ 0.59375 +                                                                      
+         |                                                                      
+         |                                                   *  *               
+         |                                                                      
+         |                                                                      
+  0.3125 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+ 0.03125 +                                                                      
+         |O* ** ** *** ** ** *** ** ** *** ** ** *** ** *      *                
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         +----+----+----+----+----+----+----+----+----+----+----+----+----+----
+                     0.0       0.1       0.2       0.2       0.3       0.4
+
+t (X-axis) v u1 (Q) (y-axis)
+   11000 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+  9562.5 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+    8125 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+  6687.5 +                                                                      
+         |                                                                      
+         |                                                                      
+         |              *                                                       
+         |             *                                                        
+    5250 +                *                                                     
+         |O      *             * *                                              
+         |           *     * **   * *                                           
+         |                           * *** ** **               *                
+         |                                       *** ** **  **  *  * *** ** ** *
+  3812.5 +                                                 *      *             
+         |          *                                                           
+         |         *                                                            
+         |                                                                      
+         |                                                                      
+    2375 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+   937.5 +                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         |                                                                      
+         +----+----+----+----+----+----+----+----+----+----+----+----+----+----
+                     0.0       0.1       0.2       0.2       0.3       0.4
+1 runs completed (0 with errors). Program execution time: 4.96 seconds.
+Python closing
+Application 96798 resources: utime ~7s, stime ~2s, Rss ~1140608, inblocks ~12747, outblocks ~261
