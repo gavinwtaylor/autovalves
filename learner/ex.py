@@ -11,7 +11,7 @@ class SoccerEnv(gym.Env, utils.EzPickle):
     def __init__(self):
       #1st dimension --> 0.1-1.0 and 2nd dimension 310 - 440
       self.observation_space = spaces.Box(np.array([0.1,310]), np.array([1, 440]))     
-      self.action_space = spaces.Box(np.array([0.1,310]), np.array([1, 440])) 
+      self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
       self.state = None
 
     def step(self, action):
