@@ -10,14 +10,14 @@ from baselines import bench, logger
 class SoccerEnv(gym.Env, utils.EzPickle):    
     def __init__(self):
       #1st dimension --> 0.1-1.0 and 2nd dimension 310 - 440
-      self.observation_space = spaces.Box(np.array([0.1,310]), np.array([1, 440]))     
-      self.action_space = spaces.Box(np.array([0.1,310]), np.array([1, 440])) 
-      self.state = [0.5, 350]
+      self.observation_space = spaces.Box(np.array([0.1,310]), np.array([1, 440]))      
+      self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
+      self.state = np.array([0.5, 350])
 
     def step(self, action):
-      assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
+      #assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
       state = self.state
-      return np.array(self.state), 1, "false", {} 
+      return np.array(self.state), 1, False, {} 
 
     def __del__(self):
       pass
