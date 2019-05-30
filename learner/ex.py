@@ -15,8 +15,16 @@ class SoccerEnv(gym.Env, utils.EzPickle):
       self.state = np.array([0.5, 350])
 
     def step(self, action):
-      #print(action)
-      #assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
+      low=self.action_space.low
+      high=self.action_space.high
+      action=action*.5*(high-low)+.5*(high-low)
+      for i in range(len(action)):
+        if action[i]<low[i]:
+          action[i]=low[i]
+        if action[i]>high[i]:
+          action[i]=high[i]
+      print(action)
+      assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
       state = self.state
       return np.array(self.state), 1, False, {} 
 
