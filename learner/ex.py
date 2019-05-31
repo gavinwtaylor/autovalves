@@ -1,3 +1,4 @@
+from mpi4py import MPI
 import os
 import gym
 from gym import error, spaces
@@ -7,12 +8,24 @@ from gym.utils import seeding
 import numpy as np
 from baselines import bench, logger
 
-class SoccerEnv(gym.Env, utils.EzPickle):    
+class ChemicalEnv(gym.Env, utils.EzPickle):    
     def __init__(self):
       #1st dimension --> 0.1-1.0 and 2nd dimension 310 - 440
       self.observation_space = spaces.Box(np.array([0.1,310]), np.array([1, 440]))      
       self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
       self.state = np.array([0.5, 350])
+      
+      comm=MPI.COMM_WORLD
+      rank=comm.Get_rank()
+      size=comm.Get_size();
+      
+      state=np.empty(2);
+      reward=np.empty(1);
+
+      comm.Recv(state, source=0, tag=0)
+      comm.Recv(reward, source=0, tag=0)
+      
+      print("We received a state of",state,"and a reward of",reward)
 
     def step(self, action):
       low=self.action_space.low
@@ -67,7 +80,7 @@ def train():
                             inter_op_parallelism_threads=ncpu)
     tf.Session(config=config).__enter__()
 
-    env = DummyVecEnv([lambda:SoccerEnv()])
+    env = DummyVecEnv([lambda:ChemicalEnv()])
 
     env = VecNormalize(env)
    # set_global_seeds(seed)
