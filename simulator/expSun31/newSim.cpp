@@ -46,11 +46,11 @@ struct controller_data{
 // prototype for the control action
 //static int controller(realtype t, N_Vector x, N_Vector xsp, controller_data* cdata, vector<double>* u);
 
-static void exit(N_Vector* x, N_Vector* abstol, void *cvode_mem);
+static void exit(N_Vector& x, N_Vector& abstol, void *cvode_mem);
 
-static void reset(vector<double>* u, N_Vector* x, N_Vector* xsp, controller_data* cdata, vector<vector<double> >* xdat, vector<double>* rdat, vector<vector<double >>* udat, int* i, double* rad, double* x0scale, double* x1scale, void* cvode_mem);
+static void reset(vector<double>* u, vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<vector<double> >* xdat, vector<double>* rdat, vector<vector<double> >* udat, int* i, double* rad, double* x0scale, double* x1scale, void* cvode_mem);
 
-static bool action(void* cvode_mem, realtype t, realtype tstep, N_Vector* x, int* runswitherrors, controller_data* cdata, vector<double>* tdat, vector<vector<double> >* xdat, vector<double>* rdat, vector<double>* x0, vector<vector<double> >* udat, vector<double> u0, N_Vector* xsp, double x0scaleinverse, double x1scaleinverse, int rewardcheck, double* rewardsum, double rewardtol);
+static bool action(void* cvode_mem, realtype t, realtype tstep, N_Vector& x, int* runswitherrors, vector<double>* tdat, vector<vector<double> >* xdat, vector<double>* rdat, vector<double>* x0, vector<vector<double> >* udat, vector<double> u0, N_Vector& xsp, double x0scaleinverse, double x1scaleinverse, int rewardcheck, double* rewardsum, double rewardtol);
  
 int main(void) {
   //**MY VERSION**
@@ -66,8 +66,6 @@ int main(void) {
   vector<double> rdat; // reward data
   vector<double> u0(2, 0); // the current control action.
   vector<double> clearvec(2,0); // something convenient
-  controller_data cdata;
-  cdata.uprev = u0;
   double rad; //place on oval
 
 
@@ -75,7 +73,7 @@ int main(void) {
   // steady state checkers
   int j, k;  // storage for temporary sums used later
 
-  //stay in simulator
+ //stay in simulator
   double rewardsum;
   int rewardcheck = 10; // how many timesteps to check?
   double rewardtol = 0.0001; // the reward tolerance for when we've reached our goal. 
@@ -107,7 +105,7 @@ int main(void) {
   realtype t;
   realtype maxit = tfin / tstep + RCONST(100);
 
-  double rad = rand() *(2.0 * M_PI);
+   rad = rand() *(2.0 * M_PI);
 
   double x0scale = 0.45;
   double x1scale = 65;
@@ -116,38 +114,31 @@ int main(void) {
 
   int runswitherrors = 0;
      
-  send(x); //send initial state
-  bool proceed;
+  //send(x); //send initial state
+  bool stop;
 
   while(true){
-     u = receive();  
-     if(u == exit){
-        break;
-     }
-     else if(u == reset){
-        send(x);
-     }
-     else{
-       stop = action(cvode_mem,t,tstep,&x,&runswitherrors,cdata,&tdat,&xdat,&rdat,&x0,&udat, u0,&xsp,x0scaleinverse,x1scaleinverse,rewardcheck,&rewardsum,rewardtol);
-       if(stop){
-        break;
-      }
+    // u = receive();  
+    // if(u == exit){
+      //  break;
+   //  }
+    // else if(u == reset){
+       // send(x);
+    // }
+    // else{
+       stop = action(cvode_mem,t,tstep,x,&runswitherrors,&tdat,&xdat,&rdat,&x0,&udat, u0,xsp,x0scaleinverse,x1scaleinverse,rewardcheck,&rewardsum,rewardtol);
+      // if(stop){
+      //  break;
+     // }
     }
       
      //END OF MY VERSION
 
-  // casual variables
-   while (t < tfin && i < maxit) { // a little safety check on max iterations.
-      // execute the control action for this step
-      // **step**
-       
   }
 
-static void reset(vector<double>* u, N_Vector* x, N_Vector* xsp, controller_data* cdata, vector<vector<double>>* xdat, vector<double>* rdat, vector<vector<double>>* udat, int* i, double* rad, double* x0scale, double* x1scale, void* cvode_mem){
+static void reset(vector<double>* u, vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<vector<double> >* xdat, vector<double>* rdat, vector<vector<double> >* udat, int* i, double* rad, double* x0scale, double* x1scale, void* cvode_mem){
   (*u0)[0] = 0; 
-  (*u0)[1] = 0; 
-  (*cdata).Integral[0] = 0;
-  (*cdata).Integral[1] = 0;  
+  (*u0)[1] = 0;   
   *i = 0; 
   (*xdat).clear();  
   (*rdat).clear(); 
@@ -155,22 +146,22 @@ static void reset(vector<double>* u, N_Vector* x, N_Vector* xsp, controller_data
 
   // initialize x in a circle surroudning the region of interestit** 
   // set rad to random number between 0 and 2 pi...would happen in initial set up and when you reset
-  *rad = rand() %(2.0 * M_PI);
-  NV_Ith_S(*x, 0)   = 0.55 + *x0scale * cos(*rad); // mol/m3
-  NV_Ith_S(*x, 1)   = 375 + *x1scale * sin(*rad); // deg K
+  *rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
+  NV_Ith_S(x, 0)   = 0.55 + *x0scale * cos(*rad); // mol/m3
+  NV_Ith_S(x, 1)   = 375 + *x1scale * sin(*rad); // deg K
 
   // new setpoint
   // STANDARD SETPOINT
-  NV_Ith_S(*xsp, 0)   = 0.57; // mol/m3
-  NV_Ith_S(*xsp, 1)   = 395.3; // deg K
+  NV_Ith_S(xsp, 0)   = 0.57; // mol/m3
+  NV_Ith_S(xsp, 1)   = 395.3; // deg K
 
    // reinitialize the integrator --> **reset**
-  CVodeReInit(cvode_mem, RCONST(0.0),*x);
+  CVodeReInit(cvode_mem, RCONST(0.0),x);
 }
-static void exit(N_Vector* x, N_Vector* abstol, void *cvode_mem){
+static void exit(N_Vector& x, N_Vector& abstol, void *cvode_mem){
   // Free state space and abstol vectors 
-  N_VDestroy_Serial(*x);
-  N_VDestroy_Serial(*abstol);
+  N_VDestroy_Serial(x);
+  N_VDestroy_Serial(abstol);
 
   // Free integrator memory 
   CVodeFree(&cvode_mem);
@@ -179,31 +170,32 @@ static void exit(N_Vector* x, N_Vector* abstol, void *cvode_mem){
 
 }
 
-static bool action(void* cvode_mem, realtype t, realtype tstep, N_Vector* x, int* runswitherrors, controller_data* cdata, vector<double>* tdat, vector<vector<double>>* xdat, vector<double>* rdat, vector<double>* x0, vector<vector<double>>* udat, vector<double> u0, N_Vector* xsp, double x0scaleinverse, double x1scaleinverse, int rewardcheck, double* rewardsum, double rewardtol)
-  bool done = false; 
-  flag = CVode(cvode_mem, t + tstep,*x, &t, CV_NORMAL);
+static bool action(void* cvode_mem, realtype t, int* i, realtype tstep, N_Vector& x, int* runswitherrors, vector<double>* tdat, vector<vector<double> >* xdat, vector<double>* rdat, vector<double>* x0, vector<vector<double> >* udat, vector<double> u0, N_Vector& xsp, double x0scaleinverse, double x1scaleinverse, int rewardcheck, double* rewardsum, double rewardtol){
+  bool done;
+  int flag, j;
+  done = false; 
+  flag = CVode(cvode_mem, t + tstep,x, &t, CV_NORMAL);
   if (flag < 0) {
      cout << "CVode error " << flag;
      *runswitherrors++;
-     done ==  true;
+     done =  true;
   }
  
- *i++;
- cdata.uprev = u0;
- *tdat.push_back(t); // store the t at the beginning of the integratino step`
+(*i)++;
+(*tdat).push_back(t); // store the t at the beginning of the integratino step`
  (*x0)[0] = NV_Ith_S(x, 0);
  (*x0)[1] = NV_Ith_S(x, 1);
  (*xdat).push_back(*x0); // this is the state at the current t before integration.
 
  // compute the current reward function, the reward at the current state before integration --> **keep in simulator**
- rwd = 
+ double rwd = 
         -(
           ((NV_Ith_S(x, 0) - NV_Ith_S(xsp, 0))*x0scaleinverse)*((NV_Ith_S(x, 0) - NV_Ith_S(xsp, 0))*x0scaleinverse) + 
           ((NV_Ith_S(x, 1) - NV_Ith_S(xsp, 1))*x1scaleinverse)*((NV_Ith_S(x, 1) - NV_Ith_S(xsp, 1))*x1scaleinverse)
          );
            
  (*rdat).push_back(rwd);
- (*udat).push_back(*u0); // this is the state at the beginning of the integration step 
+ (*udat).push_back(u0); // this is the state at the beginning of the integration step 
 
  // check for steady state. Basically, if it hasn't deviated from its previous state by very much then it stops.
  // currently the reward is a deviation from the steady state so can just check the sum of the past few deviations
@@ -219,9 +211,9 @@ static bool action(void* cvode_mem, realtype t, realtype tstep, N_Vector* x, int
     }
  }
 
- send(*x);
- send(rwd);
- send(done);
+ //send(*x);
+ //send(rwd);
+ //send(done);
 
 }
 // define model constants 
@@ -263,8 +255,7 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) { //**
 
 
 //static int controller(realtype t, N_Vector x, N_Vector xsp, controller_data* cdata, vector<double>* u) {
-
-  //double h; 
+////double h; 
   //int N;
   /*
 
@@ -332,11 +323,13 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) { //**
   // TOM ADDITION
   // The new vector standard guarantees that the memory stored in the vector is contiguous just like ** arrays.
   // so I should be able to recast the memory address of each row as a double* and that should work...
+ 
+  /*
   double* StatesRowPtr;
   double* ActionRowPtr;
   double* RewardsRowPtr;          
 
-  Group group=file->createGroup("/"+groupname);
+  
 
   //write states
   hsize_t S_DIMS[2]={N,statesDim};
@@ -378,3 +371,4 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) { //**
   dataset.write(RewardsRowPtr,PredType::NATIVE_DOUBLE);
 
 }
+*/
