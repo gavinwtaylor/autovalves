@@ -100,7 +100,8 @@ int main(void) {
 	cvode_mem =CVodeCreate(CV_BDF,CV_NEWTON);             // specify using backwards difference methods (stiff)
 	CVodeInit(cvode_mem, cstrfun2, RCONST(0.0), x);  // initialize at time zero
 	CVodeSVtolerances(cvode_mem, reltol, abstol);    // specify the tolerances
-	SUNDenseMatrix(2, 2);                           // specify the dense linear solver
+	SUNLinearSolver LS=SUNDenseLinearSolver(x, SUNDenseMatrix(2, 2));
+        CVDlsSetLinearSolver(cvode_mem, reltol, abstol);                               // specify the dense linear solver
 	CVodeSetMaxNumSteps(cvode_mem, 5000);             // sets the maximum number of steps
 	CVodeSetUserData(cvode_mem, &u0);                // sets the user data pointer
 
