@@ -126,7 +126,9 @@ int main(void) {
 		//controller(t, x, xsp, &cdata, &u0); TODO get action
 		// execute the ODE for one control step
                 MPI_Status status;
+                std::cout << "Before receive" <<std::endl;
                 MPI_Recv(&u0, 2, MPI_DOUBLE, 1, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
+        std::cout << "After receive" <<std::endl;
 	std::cout << "Received a message from sender "<<status.MPI_SOURCE<<" with tag " <<status.MPI_TAG<<std::endl; 
         return 1;	
 	int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
