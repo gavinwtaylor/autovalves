@@ -33,10 +33,6 @@ using namespace std;
 #include <sunmatrix/sunmatrix_dense.h> /* access to dense SUNMatrix            */
 #include <sunlinsol/sunlinsol_dense.h> /* access to dense SUNLinearSolver      */
 
-// Header files for HD5
-#include "H5Cpp.h"
-using namespace H5;
-
 // prototype for the function we have
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data);
 void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem);
@@ -45,22 +41,11 @@ double calcReward(N_Vector x, N_Vector xsp, double x0scaleinverse,double
     x1scaleinverse);
 bool steadyCheck(vector<double> rdat, int rewardcheck, double rewardtol,int i);
 
-// prototype for its jacobian (DID NOT USE)
-
-// prototype for HD5 storage function
-void writeData(vector< vector<double> >& states, 
-		vector< vector<double> >& actions,
-		vector<double>& rewards,
-		int N, int statesDim, int actionDim,
-		H5File* file, string groupname);
-
-// prototype for the control action
-
 int main(void) {
-        int rank, numprocs, k;
-        MPI_Init(NULL,NULL);
-        MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-        MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
+  int rank, numprocs, k;
+  MPI_Init(NULL,NULL);
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
 
 	// casual variables
 	int i, p;
@@ -76,7 +61,7 @@ int main(void) {
 	vector<double> clearvec(2,0); // something convenient
 
 	// steady state checkers
-	int j, k;  // storage for temporary sums used later
+	int j;  // storage for temporary sums used later
 	double rewardsum;
 	int rewardcheck = 10; // how many timesteps to check?
   double reward=0.0;
@@ -133,7 +118,7 @@ int main(void) {
   reset(&u0, x, xsp, &rdat, &i, &rad, x0scale, x1scale, cvode_mem, &reward);
   rdat.push_back(reward);
   MPI_Send(x, 2, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
-  MPI_Send(reward, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+  MPI_Send(&reward, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
 	
 	while (t < tfin && i < maxit) { // a little safety check on max iterations.
     //get msg - if exit, call exit and break, if reset, call reset, else:
@@ -243,65 +228,4 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
 	NV_Ith_S(xp,1) = (F/V) * (TIN - NV_Ith_S(x,1)) + ( DH/(cp * rho) ) * intermed + (*u)[1] / (cp * rho * V);
 
 	return(0);
-}
-
-
-
-
-// Modified version of Gavin's example
-// should use vectors now (hopefully it works, cross your fingers)
-
-void writeData(vector< vector<double> >& states, 
-		vector< vector<double> >& actions,
-		vector<double>& rewards,
-		int N, int statesDim, int actionDim,
-		H5File* file, string groupname){
-
-	// TOM ADDITION
-	// The new vector standard guarantees that the memory stored in the vector is contiguous just like ** arrays.
-	// so I should be able to recast the memory address of each row as a double* and that should work...
-	double* StatesRowPtr;
-	double* ActionRowPtr;
-	double* RewardsRowPtr;          
-
-	Group group=file->createGroup("/"+groupname);
-
-	//write states
-	hsize_t S_DIMS[2]={N,statesDim};
-	DataSpace stateDataspace(2,S_DIMS);
-	DataSet dataset = group.createDataSet("states",PredType::NATIVE_DOUBLE,stateDataspace);
-	hsize_t M_DIMS[2]={1,statesDim};
-	DataSpace memspace(2, M_DIMS);
-
-	for (int row = 0; row < N; row++) {
-		hsize_t offset[2]={row,0};
-		stateDataspace.selectHyperslab(H5S_SELECT_SET,M_DIMS,offset);
-		//dataset.write(states[row],PredType::NATIVE_DOUBLE,memspace,stateDataspace,NULL);
-		StatesRowPtr = &states[row][0];
-		dataset.write(StatesRowPtr,PredType::NATIVE_DOUBLE,memspace,stateDataspace,0);
-	}
-
-	//writeactions
-	hsize_t A_DIMS[2]={N,actionDim};
-	DataSpace actionDataspace(2,A_DIMS);
-	dataset = group.createDataSet("actions",PredType::NATIVE_DOUBLE,actionDataspace);
-	M_DIMS[1]=actionDim;
-	DataSpace actionmemspace(2, M_DIMS);
-
-	for (int row = 0; row < N; row++) {
-		hsize_t offset[2]={row,0};
-		actionDataspace.selectHyperslab(H5S_SELECT_SET,M_DIMS,offset);
-		//dataset.write(actions[row],PredType::NATIVE_DOUBLE,actionmemspace,actionDataspace,NULL);
-		ActionRowPtr = &actions[row][0];
-		dataset.write(ActionRowPtr,PredType::NATIVE_DOUBLE,actionmemspace,actionDataspace,0);
-	}
-
-	//writeRewards
-	hsize_t R_DIMS=N;
-	DataSpace rewardDataspace(1,&R_DIMS);
-	dataset=
-		group.createDataSet("rewards",PredType::NATIVE_DOUBLE,rewardDataspace);
-	//dataset.write(rewards,PredType::NATIVE_DOUBLE);
-	RewardsRowPtr = &rewards[0];
-	dataset.write(RewardsRowPtr,PredType::NATIVE_DOUBLE);
 }
