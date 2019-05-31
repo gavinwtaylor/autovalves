@@ -12,7 +12,7 @@
    Be sure to module load cray-tpsl-64
    module load cray-hdf5
    ========================================================================== */
-
+#include <unistd.h>
 #include <iostream>                                  
 #include <vector>
 #include <math.h>
@@ -21,6 +21,7 @@
 #include <string>
 #include <sstream>
 #include <stdio.h>
+#include "mpi.h"
 using namespace std;
 
 // Header files for CVODE
@@ -39,7 +40,7 @@ using namespace H5;
 // prototype for the function we have
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data);
 void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem);
-static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>* rdat, int* i, double* rad, double x0scale, double x1scale, void* cvode_mem);
+static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>* rdat, int* i, double* rad, double x0scale, double x1scale, void* cvode_mem, double* reward);
 double calcReward(N_Vector x, N_Vector xsp, double x0scaleinverse,double
     x1scaleinverse);
 bool steadyCheck(vector<double> rdat, int rewardcheck, double rewardtol,int i);
@@ -56,6 +57,10 @@ void writeData(vector< vector<double> >& states,
 // prototype for the control action
 
 int main(void) {
+        int rank, numprocs, k;
+        MPI_Init(NULL,NULL);
+        MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+        MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
 
 	// casual variables
 	int i, p;
@@ -124,9 +129,10 @@ int main(void) {
 	rdat.clear();
 	udat.clear();
 
-  reset(&u0, x, xsp, &rdat, &i, &rad, x0scale, x1scale, cvode_mem);
-  reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);
+  reset(&u0, x, xsp, &rdat, &i, &rad, x0scale, x1scale, cvode_mem, &reward);
   rdat.push_back(reward);
+  MPI_Send(x, 2, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+  MPI_Send(reward, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
 	
 	while (t < tfin && i < maxit) { // a little safety check on max iterations.
     //get msg - if exit, call exit and break, if reset, call reset, else:
@@ -169,7 +175,7 @@ double calcReward(N_Vector x, N_Vector xsp,
   return r;
 }
 
-static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>* rdat, int* i, double* rad, double x0scale, double x1scale, void* cvode_mem){
+static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>* rdat, int* i, double* rad, double x0scale, double x1scale, void* cvode_mem, double* reward){
   (*u0)[0] = 0; 
   (*u0)[1] = 0;   
   *i = 0; 
@@ -188,6 +194,10 @@ static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>
 
    // reinitialize the integrator --> **reset**
   CVodeReInit(cvode_mem, RCONST(0.0),x);
+  double x0inv = 1/x0scale;
+  double x1inv = 1/x1scale;
+
+  *reward=calcReward(x,xsp,x0inv,x1inv);
 }
 
 void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
