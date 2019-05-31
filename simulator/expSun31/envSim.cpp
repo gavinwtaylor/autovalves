@@ -120,14 +120,16 @@ int main(void) {
   MPI_Send(x, 2, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
   MPI_Send(&reward, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
 
-  return 1;	
+  	
 	while (t < tfin && i < maxit) { // a little safety check on max iterations.
     //get msg - if exit, call exit and break, if reset, call reset, else:
 		//controller(t, x, xsp, &cdata, &u0); TODO get action
 		// execute the ODE for one control step
-
-                MPI_Recv(&u, 2, MPI_DOUBLE, 1, MPI_ANY_TAG, MPI_COMM_WORLD, 
-		int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
+                MPI_Status status;
+                MPI_Recv(&u0, 2, MPI_DOUBLE, 1, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
+	std::cout << "Received a message from sender "<<status.MPI_SOURCE<<" with tag " <<status.MPI_TAG<<std::endl; 
+        return 1;	
+	int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
     reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);
 		rdat.push_back(reward);
 		// check for steady state. Basically, if it hasn't deviated from its previous state by very much then it stops.
