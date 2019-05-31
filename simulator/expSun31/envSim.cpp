@@ -86,7 +86,7 @@ int main(void) {
 	CVodeInit(cvode_mem, cstrfun2, RCONST(0.0), x);  // initialize at time zero
 	CVodeSVtolerances(cvode_mem, reltol, abstol);    // specify the tolerances
 	SUNLinearSolver LS=SUNDenseLinearSolver(x, SUNDenseMatrix(2, 2));
-        CVDlsSetLinearSolver(cvode_mem, reltol, abstol);                               // specify the dense linear solver
+        CVDlsSetLinearSolver(cvode_mem, LS, SUNDenseMatrix(2,2));                               // specify the dense linear solver
 	CVodeSetMaxNumSteps(cvode_mem, 5000);             // sets the maximum number of steps
 	CVodeSetUserData(cvode_mem, &u0);                // sets the user data pointer
 
@@ -119,11 +119,14 @@ int main(void) {
   rdat.push_back(reward);
   MPI_Send(x, 2, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
   MPI_Send(&reward, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
-	
+
+  return 1;	
 	while (t < tfin && i < maxit) { // a little safety check on max iterations.
     //get msg - if exit, call exit and break, if reset, call reset, else:
 		//controller(t, x, xsp, &cdata, &u0); TODO get action
 		// execute the ODE for one control step
+
+                MPI_Recv(&u, 2, MPI_DOUBLE, 1, MPI_ANY_TAG, MPI_COMM_WORLD, 
 		int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
     reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);
 		rdat.push_back(reward);
