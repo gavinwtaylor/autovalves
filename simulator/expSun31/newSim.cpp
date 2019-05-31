@@ -50,12 +50,12 @@ static void exit(N_Vector& x, N_Vector& abstol, void *cvode_mem);
 
 static void reset(vector<double>* u, vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<vector<double> >* xdat, vector<double>* rdat, vector<vector<double> >* udat, int* i, double* rad, double* x0scale, double* x1scale, void* cvode_mem);
 
-static bool action(void* cvode_mem, realtype t, realtype tstep, N_Vector& x, int* runswitherrors, vector<double>* tdat, vector<vector<double> >* xdat, vector<double>* rdat, vector<double>* x0, vector<vector<double> >* udat, vector<double> u0, N_Vector& xsp, double x0scaleinverse, double x1scaleinverse, int rewardcheck, double* rewardsum, double rewardtol);
+static bool action(void* cvode_mem, realtype t, int* i, realtype tstep, N_Vector& x, int* runswitherrors, vector<double>* tdat, vector<vector<double> >* xdat, vector<double>* rdat, vector<double>* x0, vector<vector<double> >* udat, vector<double> u0, N_Vector& xsp, double x0scaleinverse, double x1scaleinverse, int rewardcheck, double* rewardsum, double rewardtol);
  
 int main(void) {
   //**MY VERSION**
   //
-  int flag, i, p;
+  
   clock_t clockin, clockout;
   
   // allocate memory for results storage and provide initial variables --> **init**
@@ -116,7 +116,7 @@ int main(void) {
      
   //send(x); //send initial state
   bool stop;
-
+  int i = 0;
   while(true){
     // u = receive();  
     // if(u == exit){
@@ -126,7 +126,7 @@ int main(void) {
        // send(x);
     // }
     // else{
-       stop = action(cvode_mem,t,tstep,x,&runswitherrors,&tdat,&xdat,&rdat,&x0,&udat, u0,xsp,x0scaleinverse,x1scaleinverse,rewardcheck,&rewardsum,rewardtol);
+       stop = action(cvode_mem,t,&i,tstep,x,&runswitherrors,&tdat,&xdat,&rdat,&x0,&udat, u0,xsp,x0scaleinverse,x1scaleinverse,rewardcheck,&rewardsum,rewardtol);
       // if(stop){
       //  break;
      // }
