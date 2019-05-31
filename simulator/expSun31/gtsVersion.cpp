@@ -39,7 +39,7 @@ using namespace H5;
 // prototype for the function we have
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data);
 void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem);
-void reset(N_Vector& x,N_Vector& xsp,void* cvode_mem,double x0scale,double x1scale, vector<double> rdat);
+static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>* rdat, int* i, double* rad, double x0scale, double x1scale, void* cvode_mem);
 double calcReward(N_Vector x, N_Vector xsp, double x0scaleinverse,double
     x1scaleinverse);
 bool steadyCheck(vector<double> rdat, int rewardcheck, double rewardtol,int i);
@@ -118,16 +118,13 @@ int main(void) {
 	int runswitherrors = 0;
 
 	// reset variables to beginning 
-	u0[0] = 0;
-	u0[1] = 0;
 	t = RCONST(0.000);
-	i = 0;
 	xdat.clear();
 	tdat.clear();
 	rdat.clear();
 	udat.clear();
 
-  reset(x, xsp, cvode_mem, x0scale, x1scale, rdat);
+  reset(&u0, x, xsp, &rdat, &i, &rad, x0scale, x1scale, cvode_mem);
   reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);
   rdat.push_back(reward);
 	
@@ -172,21 +169,25 @@ double calcReward(N_Vector x, N_Vector xsp,
   return r;
 }
 
-void reset(N_Vector& x, N_Vector& xsp, void* cvode_mem,
-           double x0scale, double x1scale, vector<double> rdat) {
-	// initialize x in a circle surroudning the region of interest; 
-  double rad=.2; //TODO RANDOM
-	NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(rad); // mol/m3
-	NV_Ith_S(x, 1)   = 375 + x1scale * sin(rad); // deg K
+static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>* rdat, int* i, double* rad, double x0scale, double x1scale, void* cvode_mem){
+  (*u0)[0] = 0; 
+  (*u0)[1] = 0;   
+  *i = 0; 
+  (*rdat).clear(); 
 
-	// new setpoint
-	// STANDARD SETPOINT
-	NV_Ith_S(xsp, 0)   = 0.57; // mol/m3
-	NV_Ith_S(xsp, 1)   = 395.3; // deg K
-	
-	// reinitialize the integrator
-  CVodeReInit(cvode_mem, RCONST(0.0), x); //INIT/RESET
-  rdat.clear();
+  // initialize x in a circle surroudning the region of interestit** 
+  // set rad to random number between 0 and 2 pi...would happen in initial set up and when you reset
+  *rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
+  NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(*rad); // mol/m3
+  NV_Ith_S(x, 1)   = 375 + x1scale * sin(*rad); // deg K
+
+  // new setpoint
+  // STANDARD SETPOINT
+  NV_Ith_S(xsp, 0)   = 0.57; // mol/m3
+  NV_Ith_S(xsp, 1)   = 395.3; // deg K
+
+   // reinitialize the integrator --> **reset**
+  CVodeReInit(cvode_mem, RCONST(0.0),x);
 }
 
 void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
