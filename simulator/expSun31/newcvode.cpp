@@ -73,7 +73,8 @@ int main(void) {
   string groupname = "Run-";
   char buffer[40];
   string filename="/mnt/lustre/scratch/autoValveData/exp" + experimentnum + "-run" + runnumber + ".h5";
-  H5File* file=new H5File(filename, H5F_ACC_EXCL);
+  H5File* file=NULL;
+  //new H5File(filename, H5F_ACC_EXCL);
 
   // casual variables
   int flag, i, p;
@@ -125,6 +126,8 @@ int main(void) {
   cvode_mem =CVodeCreate(CV_BDF,CV_NEWTON);             // specify using backwards difference methods (stiff)
   CVodeInit(cvode_mem, cstrfun2, RCONST(0.0), x);  // initialize at time zero
   CVodeSVtolerances(cvode_mem, reltol, abstol);    // specify the tolerances
+  SUNLinearSolver LS=SUNDenseLinearSolver(x, SUNDenseMatrix(2, 2));                           // specify the dense linear solver
+  CVDlsSetLinearSolver(cvode_mem,LS,SUNDenseMatrix(2, 2));
   CVodeSetMaxNumSteps(cvode_mem, 5000);             // sets the maximum number of steps
   CVodeSetUserData(cvode_mem, &u0);                // sets the user data pointer
 
