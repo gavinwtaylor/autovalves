@@ -1,7 +1,7 @@
 all: hello status pt2pt collective
 
 hello: hello.c
-	CC hello.c -o hello
+	gcc -I/gpfs/pkgs/ibm/spectrum_mpi/10.1.0.3/include -L/gpfs/pkgs/ibm/spectrum_mpi/10.1.0.3/lib -lmpi_ibm hello.c -o hello
 
 status: status.c
 	CC status.c -o status

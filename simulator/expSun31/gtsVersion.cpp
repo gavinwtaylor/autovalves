@@ -39,7 +39,7 @@ using namespace H5;
 // prototype for the function we have
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data);
 void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem);
-void reset(N_Vector& x,N_Vector& xsp,void* cvode_mem,double x0scale,double x1scale);
+void reset(N_Vector& x,N_Vector& xsp,void* cvode_mem,double x0scale,double x1scale, vector<double> rdat);
 double calcReward(N_Vector x, N_Vector xsp, double x0scaleinverse,double
     x1scaleinverse);
 bool steadyCheck(vector<double> rdat, int rewardcheck, double rewardtol,int i);
@@ -127,7 +127,7 @@ int main(void) {
 	rdat.clear();
 	udat.clear();
 
-  reset(x, xsp, cvode_mem, x0scale, x1scale);
+  reset(x, xsp, cvode_mem, x0scale, x1scale, rdat);
   reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);
   rdat.push_back(reward);
 	
@@ -173,7 +173,7 @@ double calcReward(N_Vector x, N_Vector xsp,
 }
 
 void reset(N_Vector& x, N_Vector& xsp, void* cvode_mem,
-           double x0scale, double x1scale) {
+           double x0scale, double x1scale, vector<double> rdat) {
 	// initialize x in a circle surroudning the region of interest; 
   double rad=.2; //TODO RANDOM
 	NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(rad); // mol/m3
@@ -186,6 +186,7 @@ void reset(N_Vector& x, N_Vector& xsp, void* cvode_mem,
 	
 	// reinitialize the integrator
   CVodeReInit(cvode_mem, RCONST(0.0), x); //INIT/RESET
+  rdat.clear();
 }
 
 void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
