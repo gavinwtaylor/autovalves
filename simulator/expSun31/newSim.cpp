@@ -48,9 +48,9 @@ struct controller_data{
 
 static void exit(N_Vector* x, N_Vector* abstol, void *cvode_mem);
 
-static void reset(vector<double>* u, N_Vector* x, N_Vector* xsp, controller_data* cdata, vector<vector<double>>* xdat, vector<double>* rdat, vector<vector<double>>* udat, int* i, double* rad, double* x0scale, double* x1scale, void* cvode_mem);
+static void reset(vector<double>* u, N_Vector* x, N_Vector* xsp, controller_data* cdata, vector<vector<double> >* xdat, vector<double>* rdat, vector<vector<double >>* udat, int* i, double* rad, double* x0scale, double* x1scale, void* cvode_mem);
 
-static bool action(void* cvode_mem, realtype t, realtype tstep, N_Vector* x, int* runswitherrors, controller_data* cdata, vector<double>* tdat, vector<vector<double>>* xdat, vector<double>* rdat, vector<double>* x0, vector<vector<double>>* udat, vector<double> u0, N_Vector* xsp, double x0scaleinverse, double x1scaleinverse, int rewardcheck, double* rewardsum, double rewardtol);
+static bool action(void* cvode_mem, realtype t, realtype tstep, N_Vector* x, int* runswitherrors, controller_data* cdata, vector<double>* tdat, vector<vector<double> >* xdat, vector<double>* rdat, vector<double>* x0, vector<vector<double> >* udat, vector<double> u0, N_Vector* xsp, double x0scaleinverse, double x1scaleinverse, int rewardcheck, double* rewardsum, double rewardtol);
  
 int main(void) {
   //**MY VERSION**
