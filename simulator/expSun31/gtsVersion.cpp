@@ -53,19 +53,7 @@ void writeData(vector< vector<double> >& states,
 		int N, int statesDim, int actionDim,
 		H5File* file, string groupname);
 
-// user_data passed through cv_ode that contains the persistant information for the controller
-struct controller_data
-{
-	vector<double> uprev; 
-	vector<double> Kps; 
-	vector<double> Kis; 
-	vector<double>* tdat;
-	vector< vector<double> >* xdat;
-	vector<double> Integral; 
-};
-
 // prototype for the control action
-static int controller(realtype t, N_Vector x, N_Vector xsp, controller_data* cdata, vector<double>* u);
 
 int main(void) {
 
@@ -81,19 +69,6 @@ int main(void) {
 	vector<double> rdat; // reward data
 	vector<double> u0(2, 0); // the current control action.
 	vector<double> clearvec(2,0); // something convenient
-	controller_data cdata;
-	cdata.uprev = u0;
-
-	// PID settings... used for first run even in linear MPC
-	cdata.Kps = clearvec;
-	cdata.Kps[0] = 5;
-	cdata.Kps[1] = 250;
-	cdata.Kis = clearvec;
-	cdata.Kis[0] = 20;
-	cdata.Kis[1] = 2000;
-	cdata.tdat = &tdat;
-	cdata.xdat = &xdat;
-	cdata.Integral = clearvec;
 
 	// steady state checkers
 	int j, k;  // storage for temporary sums used later
@@ -145,8 +120,6 @@ int main(void) {
 	// reset variables to beginning 
 	u0[0] = 0;
 	u0[1] = 0;
-	cdata.Integral[0] = 0;
-	cdata.Integral[1] = 0;
 	t = RCONST(0.000);
 	i = 0;
 	xdat.clear();
@@ -156,11 +129,11 @@ int main(void) {
 
   reset(x, xsp, cvode_mem, x0scale, x1scale);
   reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);
+  rdat.push_back(reward);
 	
 	while (t < tfin && i < maxit) { // a little safety check on max iterations.
     //get msg - if exit, call exit and break, if reset, call reset, else:
-		controller(t, x, xsp, &cdata, &u0);
-		//receive action
+		//controller(t, x, xsp, &cdata, &u0); TODO get action
 		// execute the ODE for one control step
 		int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
     reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);
@@ -260,63 +233,6 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
 }
 
 
-
-
-static int controller(realtype t, N_Vector x, N_Vector xsp, controller_data* cdata, vector<double>* u) {
-
-	double h; 
-	int N;
-	/*
-
-	// classic PI control , 
-	// this works really well with Kp= [5, 250] and Ki=[20, 2000]
-	// perform integrals
-	if ((*(*cdata).tdat).size() > 1) {
-	N = (*(*cdata).tdat).size() - 1;
-	// trapezoids
-	h = ((*(*cdata).tdat)[N] - (*(*cdata).tdat)[N-1]);
-	cdata->Integral[0] = cdata->Integral[0] + (NV_Ith_S(xsp,0) - 0.5*((*(*cdata).xdat)[N][0] + (*(*cdata).xdat)[N-1][0]) )*h;
-	cdata->Integral[1] = cdata->Integral[1] + (NV_Ith_S(xsp,1) - 0.5*((*(*cdata).xdat)[N][1] + (*(*cdata).xdat)[N-1][1]) )*h;
-	}
-
-	(*u)[0] = cdata->Kps[0]*(NV_Ith_S(xsp,0) - NV_Ith_S(x,0)) + cdata->Kis[0] * cdata->Integral[0];
-	(*u)[1] = cdata->Kps[1]*(NV_Ith_S(xsp,1) - NV_Ith_S(x,1)) + cdata->Kis[1] * cdata->Integral[1];
-	*/
-
-	// crappy linear MPC
-	// if we have sufficient prior data
-	if ((*(*cdata).tdat).size() > 1) {
-		N = (*(*cdata).tdat).size() - 1;
-		h = ((*(*cdata).tdat)[N] - (*(*cdata).tdat)[N-1]);
-		// Precalculate some common terms.
-		realtype intermed = k0 * NV_Ith_S(x,0) * exp( -E / (R * NV_Ith_S(x,1)) );
-
-		//THIS WAS VERY EFFECTIVE...
-		(*u)[0] = (
-				(NV_Ith_S(xsp,0) - NV_Ith_S(x,0))/h -    // xp approx
-				((F/V)*(-NV_Ith_S(x,0)) - intermed)     // f(x)
-			  ) / (F/V);                                 // inv(C) portion
-
-		(*u)[1] = (
-				(NV_Ith_S(xsp,1) - NV_Ith_S(x,1))/h -                              // xp approx
-				((F/V) * (TIN - NV_Ith_S(x,1)) + ( DH/(cp * rho) ) * intermed)     // f(x)
-			  ) * (cp * rho * V);                     // inv(C) portion
-
-
-
-	} else { // use the PI controller as backup
-		(*u)[0] = cdata->Kps[0]*(NV_Ith_S(xsp,0) - NV_Ith_S(x,0)) + cdata->Kis[0] * cdata->Integral[0];
-		(*u)[1] = cdata->Kps[1]*(NV_Ith_S(xsp,1) - NV_Ith_S(x,1)) + cdata->Kis[1] * cdata->Integral[1];
-	}
-
-	// check valve saturation
-	if ((*u)[0] < 0) {(*u)[0] = 0;} 
-	if ((*u)[0] > 2) {(*u)[0] = 2;}
-	if ((*u)[1] < 0) {(*u)[1] = 0;}  
-	if ((*u)[1] > 20000) {(*u)[1] = 20000;}
-
-	return (0);
-}
 
 
 // Modified version of Gavin's example
