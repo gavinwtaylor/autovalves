@@ -26,6 +26,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       comm.Recv(reward, source=0, tag=0)
       
       print("We received a state of",state,"and a reward of",reward)
+      
 
     def step(self, action):
       low=self.action_space.low
@@ -39,6 +40,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       print(action)
       assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
       state = self.state
+      comm.Send(action, dest=0, tag=0) #zero is the action tag
       return np.array(self.state), 1, False, {} 
 
     def __del__(self):
@@ -57,6 +59,8 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       pass
        
     def reset(self):
+      comm.Send(None, dest=0, tag=1) #one is the reset tag
+      exit()
       return np.array(self.state)
        
     def _render(self, mode='human'):
