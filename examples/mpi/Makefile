@@ -12,5 +12,8 @@ pt2pt: pt2pt.c
 collective: collective.c
 	CC collective.c -o collective
 
+cppAndPy: cppAndPy.cpp
+	g++ -I/gpfs/pkgs/ibm/spectrum_mpi/10.1.0.3/include -L/gpfs/pkgs/ibm/spectrum_mpi/10.1.0.3/lib -lmpi_ibm cppAndPy.cpp -o cppAndPy
+
 clean:
 	rm hello status pt2pt collective
