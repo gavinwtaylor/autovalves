@@ -17,7 +17,7 @@ class SoccerEnv(gym.Env, utils.EzPickle):
     def step(self, action):
       #assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
       state = self.state
-      return np.array(self.state), 1, "false", {} 
+      return np.array(self.state), 1,False, {} 
 
     def __del__(self):
       pass
