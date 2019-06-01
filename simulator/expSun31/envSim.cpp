@@ -46,7 +46,8 @@ int main(void) {
   MPI_Init(NULL,NULL);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
-
+  std::cout<<"rank: "<< rank <<std::endl;
+  
 	// casual variables
 	int i, p;
 	clock_t clockin, clockout;
@@ -117,32 +118,55 @@ int main(void) {
 
   reset(&u0, x, xsp, &rdat, &i, &rad, x0scale, x1scale, cvode_mem, &reward);
   rdat.push_back(reward);
-  MPI_Send(x, 2, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+  	
+  double foo [2] = {NV_Ith_S(x, 0), NV_Ith_S(x,1)};
+  MPI_Send(foo, 2, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
   MPI_Send(&reward, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
 
   	
-	while (t < tfin && i < maxit) { // a little safety check on max iterations.
+	while (true) { // a little safety check on max iterations.
     //get msg - if exit, call exit and break, if reset, call reset, else:
 		//controller(t, x, xsp, &cdata, &u0); TODO get action
 		// execute the ODE for one control step
-                MPI_Status status;
-                std::cout << "Before receive" <<std::endl;
-                MPI_Recv(&u0, 2, MPI_DOUBLE, 1, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
-        std::cout << "After receive" <<std::endl;
-	std::cout << "Received a message from sender "<<status.MPI_SOURCE<<" with tag " <<status.MPI_TAG<<std::endl; 
-        return 1;	
-	int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
-    reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);
-		rdat.push_back(reward);
-		// check for steady state. Basically, if it hasn't deviated from its previous state by very much then it stops.
-    bool done = steadyCheck(rdat,rewardcheck,rewardtol,i);
-		// currently the reward is a deviation from the steady state so can just check the sum of the past few deviations
-		if (flag < 0) {
-			cout << "CVode error " << flag << " in loop " << p << ". Breaking." << endl;
-      done=true;
-		}
-		i++;
-	}
+          bool done;
+          MPI_Status status;
+          std::cout << "Before receive" <<std::endl;
+          double hi[2];
+          MPI_Recv(hi, 2, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
+          std::cout << "Contents of hi  " << hi[0] << " and " << hi[1] <<std::endl;
+          std::cout << "After receive" <<std::endl;
+	  std::cout << "Received a message from sender "<<status.MPI_SOURCE<<" with tag " <<status.MPI_TAG<<std::endl;
+          u0[0] = hi[0];
+          u0[1] = hi[1]; 
+         if(status.MPI_TAG == 1){
+            reset(&u0, x, xsp,&rdat,&i,&rad,x0scale,x1scale,cvode_mem,&reward);
+         }
+         else if(status.MPI_TAG == 2){
+           break;
+         }
+         else{	
+	   int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
+           reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);
+	   rdat.push_back(reward);	
+           done = steadyCheck(rdat,rewardcheck,rewardtol,i);
+	   if (flag < 0) {
+  	     cout << "CVode error "  << endl;
+             done=true;
+	   }
+
+	    i++;
+        }
+
+       if(done == true){
+         MPI_Send(hi, 2, MPI_DOUBLE, 1, 1, MPI_COMM_WORLD);
+       }
+       else{
+         hi[0] = u0[0];
+         hi[1] = u0[1];
+         MPI_Send(hi, 2, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+       }
+            
+}
   cleanUp(x,abstol,cvode_mem);
 	return(0);
 }
