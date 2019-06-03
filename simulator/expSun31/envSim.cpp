@@ -130,9 +130,9 @@ int main(void) {
           MPI_Status status;
           double action[2];
           double state[4];
-          cout<<"Before receive in simulator"<<endl;
+          //cout<<"Before receive in simulator"<<endl;
           MPI_Recv(action, 2, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
-          cout<<"The simulator just received the action"<<endl;
+         // cout<<"The simulator just received the action"<<endl;
           u0[0] = action[0];
           u0[1] = action[1]; 
          if(status.MPI_TAG == 1){

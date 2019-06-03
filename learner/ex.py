@@ -22,7 +22,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       exp=np.empty(4)
       
       comm.Recv(exp, source=0, tag=0)    
-      print("Learner received the initial state")
+     # print("Learner received the initial state")
       self.state = exp[:2] 
       self.reward = exp[2]
       self.done = exp[3]     
@@ -41,12 +41,12 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       print("Action array after: " , action[0], " ", action[1])
       assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
       comm.Send(action, dest=0, tag=0) #zero is the action tag
-      print("Before receive in learner step")
+      #print("Before receive in learner step")
       comm.Recv(temp, source=0, tag=0)
       self.state = temp[:2]
       self.reward=temp[2]
       self.done=temp[3]
-      print("After receive in learner step")
+      #print("After receive in learner step")
       
       return np.array(self.state), self.reward, self.done, {} 
 
@@ -67,15 +67,15 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
        
     def reset(self):
       a = np.empty(2)
-      a[0] = 0.0
+      a[0] = 1.0
       a[1] = 1.0
       
       s= np.empty(4)
            
        
-      print("Sending reset in Learner reset")
+     # print("Sending reset in Learner reset")
       comm.Send(a, dest=0, tag=1) #one is the reset tag
-      print("Just sent in the learner reset")
+     # print("Just sent in the learner reset")
       comm.Recv(s, source=0, tag=0)
       self.state = s[0:1]
       self.reward = s[2]
@@ -111,7 +111,7 @@ def train():
     policy = "mlp"
     model = ppo2.learn(network=policy, 
                        env=env, 
-                       total_timesteps=int(1e12))
+                       total_timesteps=int(1e12), lr=3e-15)
     return model, env
 
 def main():
