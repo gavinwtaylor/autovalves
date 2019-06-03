@@ -19,13 +19,17 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
       self.state = np.array([0.5, 350])
       
-      state=np.empty(4)
+      exp=np.empty(4)
       
-      comm.Recv(state, source=0, tag=0)    
-      print("Learner received the initial state")      
+      comm.Recv(exp, source=0, tag=0)    
+      print("Learner received the initial state")
+      self.state = exp[:2] 
+      self.reward = exp[2]
+      self.done = exp[3]     
 
     def step(self, action):
-      state = np.empty(4)
+      temp=np.empty(4)
+      print("Action array before: ", action[0]," ", action[1])
       low=self.action_space.low
       high=self.action_space.high
       action=action*.5*(high-low)+.5*(high-low)
@@ -34,13 +38,17 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
           action[i]=low[i]
         if action[i]>high[i]:
           action[i]=high[i]
+      print("Action array after: " , action[0], " ", action[1])
       assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
       comm.Send(action, dest=0, tag=0) #zero is the action tag
       print("Before receive in learner step")
-      comm.Recv(state, source=0, tag=0)
+      comm.Recv(temp, source=0, tag=0)
+      self.state = temp[:2]
+      self.reward=temp[2]
+      self.done=temp[3]
       print("After receive in learner step")
       
-      return np.array(state[0:1]), state[2], state[3], {} 
+      return np.array(self.state), self.reward, self.done, {} 
 
     def __del__(self):
       pass
@@ -58,15 +66,21 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       pass
        
     def reset(self):
-      a = np.empty(4)
-      a[0] = 0
-      a[1] = 1
-      a[2] = 0
-      a[3] = 0    
+      a = np.empty(2)
+      a[0] = 0.0
+      a[1] = 1.0
+      
+      s= np.empty(4)
+           
+       
       print("Sending reset in Learner reset")
       comm.Send(a, dest=0, tag=1) #one is the reset tag
-      comm.Recv(a, source=0, tag=0)
-      return np.array(a[0:1])
+      print("Just sent in the learner reset")
+      comm.Recv(s, source=0, tag=0)
+      self.state = s[0:1]
+      self.reward = s[2]
+      self.done = s[3]
+      return np.array(self.state)
        
     def _render(self, mode='human'):
       pass

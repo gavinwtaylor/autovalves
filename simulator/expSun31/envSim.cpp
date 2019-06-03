@@ -122,17 +122,19 @@ int main(void) {
   MPI_Send(foo, 4, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
   
   	
-     while (i < maxit) { // a little safety check on max iterations.
+     while (true) { // a little safety check on max iterations.
     //get msg - if exit, call exit and break, if reset, call reset, else:
 		//controller(t, x, xsp, &cdata, &u0); TODO get action
 		// execute the ODE for one control step
           double done = 0;
           MPI_Status status;
+          double action[2];
           double state[4];
-          MPI_Recv(state, 4, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
+          cout<<"Before receive in simulator"<<endl;
+          MPI_Recv(action, 2, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
           cout<<"The simulator just received the action"<<endl;
-          u0[0] = state[0];
-          u0[1] = state[1]; 
+          u0[0] = action[0];
+          u0[1] = action[1]; 
          if(status.MPI_TAG == 1){
             reset(&u0, x, xsp,&rdat,&i,&rad,x0scale,x1scale,cvode_mem,&reward);
          }
@@ -156,11 +158,11 @@ int main(void) {
           }
         }
 
-         state[0] = u0[0];
-         state[1] = u0[1];
+         state[0] = NV_Ith_S(x,0);
+         state[1] = NV_Ith_S(x,1);
          state[2] = reward;
          state[3] = done;
-         cout<<"About to send new state from simulator"<<endl;
+         cout<<"About to send new state from simulator "<< state[0]<< " "<<state[1]<<endl;
          MPI_Send(state, 4, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
        
             
