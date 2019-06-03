@@ -46,7 +46,6 @@ int main(void) {
   MPI_Init(NULL,NULL);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
-  std::cout<<"rank: "<< rank <<std::endl;
   
 	// casual variables
 	int i, p;
@@ -119,25 +118,21 @@ int main(void) {
   reset(&u0, x, xsp, &rdat, &i, &rad, x0scale, x1scale, cvode_mem, &reward);
   rdat.push_back(reward);
   	
-  double foo [2] = {NV_Ith_S(x, 0), NV_Ith_S(x,1)};
-  MPI_Send(foo, 2, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
-  MPI_Send(&reward, 1, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
-
+  double foo[4] = {NV_Ith_S(x, 0), NV_Ith_S(x,1), reward, 0};
+  MPI_Send(foo, 4, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+  
   	
-	while (true) { // a little safety check on max iterations.
+     while (i < maxit) { // a little safety check on max iterations.
     //get msg - if exit, call exit and break, if reset, call reset, else:
 		//controller(t, x, xsp, &cdata, &u0); TODO get action
 		// execute the ODE for one control step
-          bool done;
+          double done = 0;
           MPI_Status status;
-          std::cout << "Before receive" <<std::endl;
-          double hi[2];
-          MPI_Recv(hi, 2, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
-          std::cout << "Contents of hi  " << hi[0] << " and " << hi[1] <<std::endl;
-          std::cout << "After receive" <<std::endl;
-	  std::cout << "Received a message from sender "<<status.MPI_SOURCE<<" with tag " <<status.MPI_TAG<<std::endl;
-          u0[0] = hi[0];
-          u0[1] = hi[1]; 
+          double state[4];
+          MPI_Recv(state, 4, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
+          cout<<"The simulator just received the action"<<endl;
+          u0[0] = state[0];
+          u0[1] = state[1]; 
          if(status.MPI_TAG == 1){
             reset(&u0, x, xsp,&rdat,&i,&rad,x0scale,x1scale,cvode_mem,&reward);
          }
@@ -151,20 +146,23 @@ int main(void) {
            done = steadyCheck(rdat,rewardcheck,rewardtol,i);
 	   if (flag < 0) {
   	     cout << "CVode error "  << endl;
-             done=true;
+             done=1;
 	   }
 
 	    i++;
+   
+          if(i >= maxit){
+            done = 1;
+          }
         }
 
-       if(done == true){
-         MPI_Send(hi, 2, MPI_DOUBLE, 1, 1, MPI_COMM_WORLD);
-       }
-       else{
-         hi[0] = u0[0];
-         hi[1] = u0[1];
-         MPI_Send(hi, 2, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
-       }
+         state[0] = u0[0];
+         state[1] = u0[1];
+         state[2] = reward;
+         state[3] = done;
+         cout<<"About to send new state from simulator"<<endl;
+         MPI_Send(state, 4, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+       
             
 }
   cleanUp(x,abstol,cvode_mem);

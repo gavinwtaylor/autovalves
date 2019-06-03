@@ -7,6 +7,10 @@ from gym.utils import seeding
 
 import numpy as np
 from baselines import bench, logger
+comm=MPI.COMM_WORLD
+rank=comm.Get_rank()
+size=comm.Get_size();
+      
 
 class ChemicalEnv(gym.Env, utils.EzPickle):    
     def __init__(self):
@@ -15,21 +19,13 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
       self.state = np.array([0.5, 350])
       
-      comm=MPI.COMM_WORLD
-      rank=comm.Get_rank()
-      size=comm.Get_size();
+      state=np.empty(4)
       
-      state=np.empty(2);
-      reward=np.empty(1);
-
-      comm.Recv(state, source=0, tag=0)
-      comm.Recv(reward, source=0, tag=0)
-      
-      print("We received a state of",state,"and a reward of",reward)
-      
+      comm.Recv(state, source=0, tag=0)    
+      print("Learner received the initial state")      
 
     def step(self, action):
-      print("we are stepping!")
+      state = np.empty(4)
       low=self.action_space.low
       high=self.action_space.high
       action=action*.5*(high-low)+.5*(high-low)
@@ -38,13 +34,13 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
           action[i]=low[i]
         if action[i]>high[i]:
           action[i]=high[i]
-      print(action)
       assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
-      state = self.state
-      print("before step send")
       comm.Send(action, dest=0, tag=0) #zero is the action tag
-      print("after step send")
-      return np.array(self.state), 1, False, {} 
+      print("Before receive in learner step")
+      comm.Recv(state, source=0, tag=0)
+      print("After receive in learner step")
+      
+      return np.array(state[0:1]), state[2], state[3], {} 
 
     def __del__(self):
       pass
@@ -62,11 +58,15 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       pass
        
     def reset(self):
-      print("before reset send")
-      comm.Send(None, dest=0, tag=1) #one is the reset tag
-      print("after reset send")
-      exit()
-      return np.array(self.state)
+      a = np.empty(4)
+      a[0] = 0
+      a[1] = 1
+      a[2] = 0
+      a[3] = 0    
+      print("Sending reset in Learner reset")
+      comm.Send(a, dest=0, tag=1) #one is the reset tag
+      comm.Recv(a, source=0, tag=0)
+      return np.array(a[0:1])
        
     def _render(self, mode='human'):
       pass
@@ -82,7 +82,8 @@ def train():
     import tensorflow as tf
     from baselines.common.vec_env.dummy_vec_env import DummyVecEnv
     import multiprocessing
-    
+   
+ 
     ncpu = 1
     config = tf.ConfigProto(allow_soft_placement=True,
                             intra_op_parallelism_threads=ncpu,

@@ -1,0 +1,28 @@
+2019-05-31 15:32:30.221420: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0002:01:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2019-05-31 15:32:30.343233: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 1 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0003:01:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2019-05-31 15:32:30.426928: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 2 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0006:01:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2019-05-31 15:32:30.507970: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 3 with properties: 
+name: Tesla P100-SXM2-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0007:01:00.0
+totalMemory: 15.90GiB freeMemory: 15.61GiB
+2019-05-31 15:32:30.508384: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0, 1, 2, 3
+2019-05-31 15:32:36.011064: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-05-31 15:32:36.011093: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 1 2 3 
+2019-05-31 15:32:36.011103: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N Y N N 
+2019-05-31 15:32:36.011111: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 1:   Y N N N 
+2019-05-31 15:32:36.011117: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 2:   N N N Y 
+2019-05-31 15:32:36.011125: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 3:   N N Y N 
+2019-05-31 15:32:36.013039: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15135 MB memory) -> physical GPU (device: 0, name: Tesla P100-SXM2-16GB, pci bus id: 0002:01:00.0, compute capability: 6.0)
+2019-05-31 15:32:36.124373: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 15135 MB memory) -> physical GPU (device: 1, name: Tesla P100-SXM2-16GB, pci bus id: 0003:01:00.0, compute capability: 6.0)
+2019-05-31 15:32:36.235828: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:2 with 15135 MB memory) -> physical GPU (device: 2, name: Tesla P100-SXM2-16GB, pci bus id: 0006:01:00.0, compute capability: 6.0)
+2019-05-31 15:32:36.347019: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:3 with 15135 MB memory) -> physical GPU (device: 3, name: Tesla P100-SXM2-16GB, pci bus id: 0007:01:00.0, compute capability: 6.0)
+=>> PBS: job killed: walltime 14449 exceeded limit 14400
