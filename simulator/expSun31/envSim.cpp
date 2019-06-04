@@ -201,6 +201,7 @@ static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>
   // initialize x in a circle surroudning the region of interestit** 
   // set rad to random number between 0 and 2 pi...would happen in initial set up and when you reset
   *rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
+  cout<<"Oval location: "<<*rad<<endl;
   NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(*rad); // mol/m3
   NV_Ith_S(x, 1)   = 375 + x1scale * sin(*rad); // deg K
 
