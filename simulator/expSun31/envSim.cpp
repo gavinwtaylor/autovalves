@@ -261,13 +261,16 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
   vector<double>* u = static_cast< vector<double>* >(user_data); 
 
   // Precalculate some common terms.
+  std::cout <<k0<<' '<<NV_Ith_S(x,0)<<' '<<-E<<' '<<R << ' '<<NV_Ith_S(x,1)<<std::endl;
   realtype intermed = k0 * NV_Ith_S(x,0) * exp( -E / (R * NV_Ith_S(x,1)) );
+  std::cout <<"intermed within: "<<intermed<<std::endl;
 
   // CA' ==> since #defines are used, repeated calculations of F/V and cp*rho are done once during compiling so this takes no extra flops
   NV_Ith_S(xp,0) = (F/V) * ( (*u)[0] - NV_Ith_S(x,0)) - intermed; 
 
   // T'
   NV_Ith_S(xp,1) = (F/V) * (TIN - NV_Ith_S(x,1)) + ( DH/(cp * rho) ) * intermed + (*u)[1] / (cp * rho * V);
+  std::cout << F << ' ' << V << ' ' << TIN << ' ' <<(*u)[0] << ' ' << (*u)[1] << std::endl;
       std::cout << "State within: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<std::endl;
       std::cout << "xp within: "<<NV_Ith_S(xp,0)<<" "<<NV_Ith_S(xp,1)<<std::endl;
 
