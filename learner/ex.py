@@ -47,7 +47,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       self.reward=temp[2]
       self.done=temp[3]
       #print("After receive in learner step")
-      
+      self.state[1]=(self.state[1]-310)/100
       return np.array(self.state), self.reward, self.done, {} 
 
     def __del__(self):
@@ -111,7 +111,7 @@ def train():
     policy = "mlp"
     model = ppo2.learn(network=policy, 
                        env=env, 
-                       total_timesteps=int(1e12), lr=3e-15)
+                       total_timesteps=int(1e12), lr=3e-25)
     return model, env
 
 def main():
