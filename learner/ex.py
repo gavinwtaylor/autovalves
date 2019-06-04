@@ -32,7 +32,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
     def step(self, action):
       print("Size of action: ", action.shape)
       temp=np.empty(4)
-      print("Action array before: ", action[0]," ", action[1])
+      #print("Action array before: ", action[0]," ", action[1])
       low=self.action_space.low
       high=self.action_space.high
       action=action*.5*(high-low)+.5*(high-low)
@@ -41,7 +41,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
           action[i]=low[i]
         if action[i]>high[i]:
           action[i]=high[i]
-      print("Action array after: " , action[0], " ", action[1])
+      action=action.astype(float)
       assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
       comm.Send(action, dest=0, tag=0) #zero is the action tag
       #print("Before receive in learner step")
@@ -50,7 +50,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       self.reward=temp[2]
       self.done=temp[3]
 
-      print("Learner received state of ", temp[0], " " , temp[1])
+      #print("Learner received state of ", temp[0], " " , temp[1])
       self.state[1]=(self.state[1]-310)/100
       return np.array(self.state), self.reward, self.done, {} 
 
