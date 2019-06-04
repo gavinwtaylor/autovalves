@@ -142,11 +142,20 @@ int main(void) {
       break;
     }
     else{	
-      std::cout << "State before: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<" "
-        << "Within the oval: "<<withinOval(x,x0scale,x1scale)<<std::endl;
+     // std::cout << "State before: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<" "
+       // << "Within the oval: "<<withinOval(x,x0scale,x1scale)<<std::endl;
       int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
-      std::cout << "State after: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<std::endl;
-      reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);
+     // std::cout << "State after: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<std::endl;
+       
+      reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);      
+      if(!withinOval(x, x0scale, x1scale)){
+         std::cout << "NOT WITHIN OVAL" <<std::endl;
+         reward=reward*100;
+         done = 1;
+         NV_Ith_S(x,0) = 0.55;
+         NV_Ith_S(x,1) = 375;
+     }
+         
       rdat.push_back(reward);	
       done = steadyCheck(rdat,rewardcheck,rewardtol,i);
       if (flag < 0) {
@@ -203,6 +212,7 @@ bool withinOval(N_Vector x,double x0scale,double x1scale){
 }
 
 static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>* rdat, int* i, double* rad, double x0scale, double x1scale, void* cvode_mem, double* reward){
+  std:cout<<"We are reseting in the simulator"<<std::endl;
   (*u0)[0] = 0; 
   (*u0)[1] = 0;   
   *i = 0; 

@@ -14,6 +14,7 @@ size=comm.Get_size();
 
 class ChemicalEnv(gym.Env, utils.EzPickle):    
     def __init__(self):
+      print("Rebuilding the env")
       #1st dimension --> 0.1-1.0 and 2nd dimension 310 - 440
       self.observation_space = spaces.Box(np.array([0.1,310]), np.array([1, 440]))      
       self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
@@ -26,7 +27,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       self.state = exp[:2] 
       self.reward = exp[2]
       self.done = exp[3]     
-
+     
     def step(self, action):
       temp=np.empty(4)
       print("Action array before: ", action[0]," ", action[1])
@@ -46,7 +47,8 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       self.state = temp[:2]
       self.reward=temp[2]
       self.done=temp[3]
-      #print("After receive in learner step")
+
+      print("Learner received state of ", temp[0], " " , temp[1])
       self.state[1]=(self.state[1]-310)/100
       return np.array(self.state), self.reward, self.done, {} 
 
