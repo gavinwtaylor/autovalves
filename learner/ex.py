@@ -1,3 +1,4 @@
+import sys, traceback
 from mpi4py import MPI
 import os
 import gym
@@ -29,6 +30,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       self.done = exp[3]     
      
     def step(self, action):
+      print("Size of action: ", action.shape)
       temp=np.empty(4)
       print("Action array before: ", action[0]," ", action[1])
       low=self.action_space.low
@@ -68,6 +70,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       pass
        
     def reset(self):
+      traceback.print_stack(f=None, limit=None, file=None)
       a = np.empty(2)
       a[0] = 1.0
       a[1] = 1.0
