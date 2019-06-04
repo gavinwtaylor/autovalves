@@ -269,7 +269,7 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
 
   // recast the user data pointer
   vector<double>* u = static_cast< vector<double>* >(user_data); 
-
+ 
   // Precalculate some common terms.
   std::cout <<k0<<' '<<NV_Ith_S(x,0)<<' '<<-E<<' '<<R << ' '<<NV_Ith_S(x,1)<<std::endl;
   realtype intermed = k0 * NV_Ith_S(x,0) * exp( -E / (R * NV_Ith_S(x,1)) );
