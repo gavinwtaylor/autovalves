@@ -90,6 +90,7 @@ int main(void) {
   CVDlsSetLinearSolver(cvode_mem, LS, SUNDenseMatrix(2,2)); // specify the dense linear solver
   CVodeSetMaxNumSteps(cvode_mem, 5000);             // sets the maximum number of steps
   CVodeSetUserData(cvode_mem, &u0);                // sets the user data pointer
+  cout << "our memory " << &u0 << endl;
 
   // TEMP
   // execute for 1 minute
@@ -133,6 +134,7 @@ int main(void) {
     //cout<<"Before receive in simulator"<<endl;
     MPI_Recv(action, 2, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
     // cout<<"The simulator just received the action"<<endl;
+    cout << "Action HERE: " << action[0] << ' ' << action[1] << endl;
     u0[0] = action[0];
     u0[1] = action[1]; 
     if(status.MPI_TAG == 1){
@@ -142,10 +144,11 @@ int main(void) {
       break;
     }
     else{	
-      // std::cout << "State before: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<" "
-      // << "Within the oval: "<<withinOval(x,x0scale,x1scale)<<std::endl;
+      std::cout << "action before: "<<u0[0] << ' ' << u0[1] << endl;
+      std::cout << "State before: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<" "
+      << "Within the oval: "<<withinOval(x,x0scale,x1scale)<<std::endl;
       int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
-      // std::cout << "State after: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<std::endl;
+      std::cout << "State after: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<std::endl;
 
       reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);      
       if(!withinOval(x, x0scale, x1scale)){
@@ -266,6 +269,7 @@ void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
 // u[1] = Q in kJ/min
 
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
+  cout << "Memory: " << user_data<< endl;
 
   // recast the user data pointer
   vector<double>* u = static_cast< vector<double>* >(user_data); 
