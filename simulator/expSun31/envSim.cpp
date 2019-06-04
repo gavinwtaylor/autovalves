@@ -90,7 +90,7 @@ int main(void) {
   CVDlsSetLinearSolver(cvode_mem, LS, SUNDenseMatrix(2,2)); // specify the dense linear solver
   CVodeSetMaxNumSteps(cvode_mem, 5000);             // sets the maximum number of steps
   CVodeSetUserData(cvode_mem, &u0);                // sets the user data pointer
-  cout << "our memory " << &u0 << endl;
+  //cout << "our memory " << &u0 << endl;
 
   // TEMP
   // execute for 1 minute
@@ -134,7 +134,6 @@ int main(void) {
     //cout<<"Before receive in simulator"<<endl;
     MPI_Recv(action, 2, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
     // cout<<"The simulator just received the action"<<endl;
-    cout << "Action HERE: " << action[0] << ' ' << action[1] << endl;
     u0[0] = action[0];
     u0[1] = action[1]; 
     if(status.MPI_TAG == 1){
@@ -144,19 +143,19 @@ int main(void) {
       break;
     }
     else{	
-      std::cout << "action before: "<<u0[0] << ' ' << u0[1] << endl;
-      std::cout << "State before: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<" "
-      << "Within the oval: "<<withinOval(x,x0scale,x1scale)<<std::endl;
+      //std::cout << "action before: "<<u0[0] << ' ' << u0[1] << endl;
+      //std::cout << "State before: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<" "
+      //<< "Within the oval: "<<withinOval(x,x0scale,x1scale)<<std::endl;
       int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
-      std::cout << "State after: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<std::endl;
+      //std::cout << "State after: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<std::endl;
 
       reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);      
       if(!withinOval(x, x0scale, x1scale)){
-        std::cout << "NOT WITHIN OVAL" <<std::endl;
+        //std::cout << "NOT WITHIN OVAL" <<std::endl;
         reward=reward*100;
         done = 1;
-        NV_Ith_S(x,0) = 0.55;
-        NV_Ith_S(x,1) = 375;
+        //NV_Ith_S(x,0) = 0.55;
+        //NV_Ith_S(x,1) = 375;
       }
 
       rdat.push_back(reward);	
@@ -177,7 +176,7 @@ int main(void) {
     state[1] = NV_Ith_S(x,1);
     state[2] = reward;
     state[3] = done;
-    cout<<"About to send new state from simulator "<< state[0]<< " "<<state[1]<<endl;
+    //cout<<"About to send new state from simulator "<< state[0]<< " "<<state[1]<<endl;
     MPI_Send(state, 4, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
 
 
@@ -192,8 +191,10 @@ bool steadyCheck(vector<double> rdat, int rewardcheck, double rewardtol,int i) {
     for (int j=rdat.size() - 1; j >= rdat.size() - rewardcheck; j--)
       rewardsum = rewardsum + fabs(rdat[j]);
     // stop if our reward is smaller than our cumulative tolerance over three iterations
-    if (rewardtol > rewardsum)
+    if (rewardtol > rewardsum){
+      cout << "YES! STEADY STATE"<<endl;
       return true;
+    }
   }
   return false;
 }
@@ -215,7 +216,7 @@ bool withinOval(N_Vector x,double x0scale,double x1scale){
 }
 
 static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>* rdat, int* i, double* rad, double x0scale, double x1scale, void* cvode_mem, double* reward){
-std:cout<<"We are reseting in the simulator"<<std::endl;
+//std:cout<<"We are reseting in the simulator"<<std::endl;
     (*u0)[0] = 0; 
     (*u0)[1] = 0;   
     *i = 0; 
@@ -224,7 +225,8 @@ std:cout<<"We are reseting in the simulator"<<std::endl;
     // initialize x in a circle surroudning the region of interestit** 
     // set rad to random number between 0 and 2 pi...would happen in initial set up and when you reset
     *rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
-    cout<<"Oval location: "<<*rad<<endl;
+    *rad = 2;
+    //cout<<"Oval location: "<<*rad<<endl;
     NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(*rad); // mol/m3
     NV_Ith_S(x, 1)   = 375 + x1scale * sin(*rad); // deg K
 
@@ -269,24 +271,22 @@ void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
 // u[1] = Q in kJ/min
 
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
-  cout << "Memory: " << user_data<< endl;
-
   // recast the user data pointer
   vector<double>* u = static_cast< vector<double>* >(user_data); 
 
   // Precalculate some common terms.
-  std::cout <<k0<<' '<<NV_Ith_S(x,0)<<' '<<-E<<' '<<R << ' '<<NV_Ith_S(x,1)<<std::endl;
+  //std::cout <<k0<<' '<<NV_Ith_S(x,0)<<' '<<-E<<' '<<R << ' '<<NV_Ith_S(x,1)<<std::endl;
   realtype intermed = k0 * NV_Ith_S(x,0) * exp( -E / (R * NV_Ith_S(x,1)) );
-  std::cout <<"intermed within: "<<intermed<<std::endl;
+  //std::cout <<"intermed within: "<<intermed<<std::endl;
 
   // CA' ==> since #defines are used, repeated calculations of F/V and cp*rho are done once during compiling so this takes no extra flops
   NV_Ith_S(xp,0) = (F/V) * ( (*u)[0] - NV_Ith_S(x,0)) - intermed; 
 
   // T'
   NV_Ith_S(xp,1) = (F/V) * (TIN - NV_Ith_S(x,1)) + ( DH/(cp * rho) ) * intermed + (*u)[1] / (cp * rho * V);
-  std::cout << F << ' ' << V << ' ' << TIN << ' ' <<(*u)[0] << ' ' << (*u)[1] << std::endl;
-  std::cout << "State within: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<std::endl;
-  std::cout << "xp within: "<<NV_Ith_S(xp,0)<<" "<<NV_Ith_S(xp,1)<<std::endl;
+  //std::cout << F << ' ' << V << ' ' << TIN << ' ' <<(*u)[0] << ' ' << (*u)[1] << std::endl;
+  //std::cout << "State within: "<<NV_Ith_S(x,0)<<" "<<NV_Ith_S(x,1)<<std::endl;
+  //std::cout << "xp within: "<<NV_Ith_S(xp,0)<<" "<<NV_Ith_S(xp,1)<<std::endl;
 
   return(0);
 }
