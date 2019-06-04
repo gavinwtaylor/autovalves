@@ -75,9 +75,9 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       s= np.empty(4)
            
        
-     # print("Sending reset in Learner reset")
+      # print("Sending reset in Learner reset")
       comm.Send(a, dest=0, tag=1) #one is the reset tag
-     # print("Just sent in the learner reset")
+      # print("Just sent in the learner reset")
       comm.Recv(s, source=0, tag=0)
       self.state = s[0:1]
       self.reward = s[2]
