@@ -121,7 +121,7 @@ def train():
 
 def main():
     logger.setLevel(info)
-    logger.configure(dir="autovalues/learner/logs", format_strs=['log'])
+    logger.configure(dir="autovalues/learner/logs", format_strs=['stdout','log','csv'])
     train()
 if __name__ == '__main__':
     main()
