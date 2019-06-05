@@ -129,4 +129,8 @@ if __name__ == '__main__':
     jobnumber=os.getenv("PBS_JOBID").split('.')[0]
     logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber+'_'+str(rank))
     train()
-
+    temp = np.array([0,1])
+    temp = temp.astype(float)
+    print("About to send exit signal") 
+    comm.Send(temp, dest=partner, tag=2) #two is the exit tag
+      
