@@ -1,0 +1,17 @@
+Logging to /gpfs/scratch/m203330/autovalves/learner/logs
+Learning Rate:  1e-06
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 364       |
+| loss/approxkl           | 2.44e-10  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.84      |
+| loss/policy_loss        | -5.53e-07 |
+| loss/value_loss         | 0.849     |
+| misc/explained_variance | -0.0273   |
+| misc/nupdates           | 1         |
+| misc/serial_timesteps   | 2.05e+03  |
+| misc/time_elapsed       | 5.61      |
+| misc/total_timesteps    | 2.05e+03  |
+---------------------------------------

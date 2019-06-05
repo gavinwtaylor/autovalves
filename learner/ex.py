@@ -87,7 +87,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
     def _render(self, mode='human'):
       pass
         
-def train(lrnrt):
+def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize):
     from baselines.common.vec_env.vec_normalize import VecNormalize
     from baselines.common import set_global_seeds
     #from baselines.ppo2.policies import MlpPolicy
@@ -111,18 +111,36 @@ def train(lrnrt):
     env = VecNormalize(env)
    # set_global_seeds(seed)
     policy = "mlp"
-    model = ppo2.learn(network=policy, env=env,total_timesteps=int(10000),lr=lrnrt,log_interval=1)
+    model = ppo2.learn(network=policy, env=env,total_timesteps=timest,ent_coef=entr,lr=lrnrt,vf_coef=valcoef,log_interval=500, num_layers=numlyrs, num_hidden=lyrsize)
     return model, env
 
 if __name__ == '__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('lrs',help='comma-separated list of learning rates')
+    parser.add_argument('tss', help='comma-separated list of timesteps')
+    parser.add_argument('entps',help='comma-separated list of entropies')
+    parser.add_argument('vcfs',help='comma-separated list of value coefficents')
+    parser.add_argument('nlyrs', help='comma-separated list of layer numbers')
+    parser.add_argument('slyrs', help='comma-separated list of layer sizes')
     args=parser.parse_args()
     lrs=[float(lr) for lr in args.lrs.split(',')]
+    tss=[int(ts) for ts in args.tss.split(',')]
+    entps=[float(ent) for ent in args.entps.split(',')]
+    vcfs=[float(vcf) for vcf in args.vcfs.split(',')]
+    nlyrs=[int(lyr) for lyr in args.nlyrs.split(',')]
+    slyrs=[int(sz) for sz in args.slyrs.split(',')]
     workdir=os.getenv("WORKDIR")
     jobnumber=os.getenv("PBS_JOBID").split('.')[0]
-    logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber+'_'+str(lrs[partner]))
-    train(lrs[partner])
+    logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber)
+    logger.log("Job Number: ",jobnumber)
+    logger.log("Rank: ",rank)
+    logger.log("Learning Rate: ", lrs[partner])
+    logger.log("Timestep: ", tss[partner])
+    logger.log("Entropy: ", entps[partner])
+    logger.log("Value Coefficent: ",vcfs[partner])
+    logger.log("Number of Layers: ", nlyrs[partner])
+    logger.log("Width of Layers: ", slyrs[partner])
+    train(lrs[partner], tss[partner], entps[partner], vcfs[partner], nlyrs[partner], slyrs[partner])
     temp = np.array([0,1])
     temp = temp.astype(float)
     comm.Send(temp, dest=partner, tag=2) #two is the exit tag
