@@ -121,7 +121,7 @@ def train():
 
 def main():
     workdir=os.getenv("WORKDIR")
-    logger.configure(dir=workdir+"autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=str(rank))
+    logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=str(rank))
     train()
 if __name__ == '__main__':
     main()
