@@ -119,11 +119,8 @@ def train():
     model = ppo2.learn(network=policy, env=env,total_timesteps=int(100000),log_interval=1)
     return model, env
 
-def main():
+if __name__ == '__main__':
     workdir=os.getenv("WORKDIR")
     jobnumber=os.getenv("PBS_JOBID").split('.')[0]
     logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber+'_'+str(rank))
     train()
-if __name__ == '__main__':
-    main()
-
