@@ -5,6 +5,7 @@ import gym
 from gym import error, spaces
 from gym import utils
 from gym.utils import seeding
+import argparse
 
 import numpy as np
 from baselines import bench, logger
@@ -120,7 +121,12 @@ def train():
     return model, env
 
 if __name__ == '__main__':
+    parser=argparse.ArgumentParser()
+    parser.add_argument('lrs',help='comma-separated list of learning rates')
+    args=parser.parse_args()
+    lrs=[float(lr) for lr in args.lrs.split(',')]
     workdir=os.getenv("WORKDIR")
     jobnumber=os.getenv("PBS_JOBID").split('.')[0]
     logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber+'_'+str(rank))
     train()
+
