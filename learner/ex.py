@@ -121,7 +121,8 @@ def train():
 
 def main():
     workdir=os.getenv("WORKDIR")
-    logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=str(rank))
+    jobnumber=os.getenv("PBS_JOBID").split('.')[0]
+    logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber+'_'+str(rank))
     train()
 if __name__ == '__main__':
     main()
