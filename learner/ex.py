@@ -112,6 +112,8 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize):
    # set_global_seeds(seed)
     policy = "mlp"
     model = ppo2.learn(network=policy, env=env,total_timesteps=timest,ent_coef=entr,lr=lrnrt,vf_coef=valcoef,log_interval=500, num_layers=numlyrs, num_hidden=lyrsize)
+    model.save(workdir+"/autovalves/learner/models/"+jobnumber)
+  
     return model, env
 
 if __name__ == '__main__':
