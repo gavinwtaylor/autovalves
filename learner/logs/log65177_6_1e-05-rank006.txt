@@ -1,0 +1,69 @@
+Logging to /gpfs/scratch/m203330/autovalves/learner/logs
+Stepping environment...
+Done.
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 439       |
+| loss/approxkl           | 2.45e-07  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.84      |
+| loss/policy_loss        | -2.73e-05 |
+| loss/value_loss         | 0.395     |
+| misc/explained_variance | -0.0538   |
+| misc/nupdates           | 1         |
+| misc/serial_timesteps   | 2.05e+03  |
+| misc/time_elapsed       | 4.66      |
+| misc/total_timesteps    | 2.05e+03  |
+---------------------------------------
+Stepping environment...
+Done.
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 521       |
+| loss/approxkl           | 4.32e-07  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.84      |
+| loss/policy_loss        | -3.96e-05 |
+| loss/value_loss         | 0.439     |
+| misc/explained_variance | 0.0382    |
+| misc/nupdates           | 2         |
+| misc/serial_timesteps   | 4.1e+03   |
+| misc/time_elapsed       | 8.59      |
+| misc/total_timesteps    | 4.1e+03   |
+---------------------------------------
+Stepping environment...
+Done.
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 556       |
+| loss/approxkl           | 1.53e-07  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.84      |
+| loss/policy_loss        | -1.99e-05 |
+| loss/value_loss         | 0.0216    |
+| misc/explained_variance | -0.419    |
+| misc/nupdates           | 3         |
+| misc/serial_timesteps   | 6.14e+03  |
+| misc/time_elapsed       | 12.3      |
+| misc/total_timesteps    | 6.14e+03  |
+---------------------------------------
+Stepping environment...
+Done.
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 543       |
+| loss/approxkl           | 6.21e-07  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.84      |
+| loss/policy_loss        | -2.58e-05 |
+| loss/value_loss         | 0.00583   |
+| misc/explained_variance | 0.455     |
+| misc/nupdates           | 4         |
+| misc/serial_timesteps   | 8.19e+03  |
+| misc/time_elapsed       | 16        |
+| misc/total_timesteps    | 8.19e+03  |
+---------------------------------------

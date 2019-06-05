@@ -13,6 +13,7 @@ comm=MPI.COMM_WORLD
 rank=comm.Get_rank()
 size=comm.Get_size()
 partner = rank - (size/2)
+partner=int(partner)
       
 os.environ["CUDA_VISIBLE_DEVICES"] =str(partner)
 
@@ -110,7 +111,7 @@ def train(lrnrt):
     env = VecNormalize(env)
    # set_global_seeds(seed)
     policy = "mlp"
-    model = ppo2.learn(network=policy, env=env,total_timesteps=int(100000),lr=lrnrt,log_interval=1)
+    model = ppo2.learn(network=policy, env=env,total_timesteps=int(10000),lr=lrnrt,log_interval=1)
     return model, env
 
 if __name__ == '__main__':
@@ -120,8 +121,8 @@ if __name__ == '__main__':
     lrs=[float(lr) for lr in args.lrs.split(',')]
     workdir=os.getenv("WORKDIR")
     jobnumber=os.getenv("PBS_JOBID").split('.')[0]
-    logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber+'_'+str(rank))
-    train(lrs[rank])
+    logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber+'_'+str(lrs[partner]))
+    train(lrs[partner])
     temp = np.array([0,1])
     temp = temp.astype(float)
     comm.Send(temp, dest=partner, tag=2) #two is the exit tag
