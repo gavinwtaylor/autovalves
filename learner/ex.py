@@ -116,12 +116,12 @@ def train():
     env = VecNormalize(env)
    # set_global_seeds(seed)
     policy = "mlp"
-    model = ppo2.learn(network=policy, env=env,total_timesteps=int(10000),log_interval=1)
+    model = ppo2.learn(network=policy, env=env,total_timesteps=int(100000),log_interval=1)
     return model, env
 
 def main():
     workdir=os.getenv("WORKDIR")
-    logger.configure(dir=workdir+"autovalues/learner/logs", format_strs=['stdout','log'], log_suffix=str(rank))
+    logger.configure(dir=workdir+"autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=str(rank))
     train()
 if __name__ == '__main__':
     main()
