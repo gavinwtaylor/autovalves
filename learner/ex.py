@@ -10,8 +10,10 @@ import numpy as np
 from baselines import bench, logger
 comm=MPI.COMM_WORLD
 rank=comm.Get_rank()
-size=comm.Get_size();
+size=comm.Get_size()
+partner = rank - (size/2)
       
+os.environ["CUDA_VISIBLE_DEVICES"] =str(partner)
 
 class ChemicalEnv(gym.Env, utils.EzPickle):    
     def __init__(self):
@@ -23,14 +25,13 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       
       exp=np.empty(4)
       
-      comm.Recv(exp, source=0, tag=0)    
+      comm.Recv(exp, source=partner, tag=0)    
      # print("Learner received the initial state")
       self.state = exp[:2] 
       self.reward = exp[2]
       self.done = exp[3]     
      
     def step(self, action):
-      print("Size of action: ", action.shape)
       temp=np.empty(4)
       #print("Action array before: ", action[0]," ", action[1])
       low=self.action_space.low
@@ -43,9 +44,9 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
           action[i]=high[i]
       action=action.astype(float)
       assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
-      comm.Send(action, dest=0, tag=0) #zero is the action tag
+      comm.Send(action, dest=partner, tag=0) #zero is the action tag
       #print("Before receive in learner step")
-      comm.Recv(temp, source=0, tag=0)
+      comm.Recv(temp, source=partner, tag=0)
       self.state = temp[:2]
       self.reward=temp[2]
       self.done=temp[3]
@@ -70,7 +71,6 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       pass
        
     def reset(self):
-      traceback.print_stack(f=None, limit=None, file=None)
       a = np.empty(2)
       a[0] = 1.0
       a[1] = 1.0
@@ -79,9 +79,9 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
            
        
      # print("Sending reset in Learner reset")
-      comm.Send(a, dest=0, tag=1) #one is the reset tag
+      comm.Send(a, dest=partner, tag=1) #one is the reset tag
      # print("Just sent in the learner reset")
-      comm.Recv(s, source=0, tag=0)
+      comm.Recv(s, source=partner, tag=0)
       self.state = s[0:1]
       self.reward = s[2]
       self.done = s[3]
@@ -114,13 +114,11 @@ def train():
     env = VecNormalize(env)
    # set_global_seeds(seed)
     policy = "mlp"
-    model = ppo2.learn(network=policy, 
-                       env=env, 
-                       total_timesteps=int(1e12), lr=3e-25)
+    model = ppo2.learn(network=policy, env=env,total_timesteps=int(10000),log_interval=1)
     return model, env
 
 def main():
-    logger._configure_default_logger()
+    logger.configure(dir="autovalues/learner/logs", format_strs=['stdout','log','csv'])
     train()
 if __name__ == '__main__':
     main()

@@ -48,6 +48,8 @@ int main(void) {
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
 
+  int partner  = rank +(numprocs/2);
+
   // casual variables
   int i, p;
   clock_t clockin, clockout;
@@ -121,7 +123,7 @@ int main(void) {
   rdat.push_back(reward);
 
   double foo[4] = {NV_Ith_S(x, 0), NV_Ith_S(x,1), reward, 0};
-  MPI_Send(foo, 4, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+  MPI_Send(foo, 4, MPI_DOUBLE, partner, 0, MPI_COMM_WORLD);
 
 
   while (true) { // a little safety check on max iterations.
@@ -132,7 +134,7 @@ int main(void) {
     double action[2];
     double state[4];
     //cout<<"Before receive in simulator"<<endl;
-    MPI_Recv(action, 2, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
+    MPI_Recv(action, 2, MPI_DOUBLE, partner, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
     // cout<<"The simulator just received the action"<<endl;
     u0[0] = action[0];
     u0[1] = action[1]; 
@@ -177,7 +179,7 @@ int main(void) {
     state[2] = reward;
     state[3] = done;
     //cout<<"About to send new state from simulator "<< state[0]<< " "<<state[1]<<endl;
-    MPI_Send(state, 4, MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+    MPI_Send(state, 4, MPI_DOUBLE, partner, 0, MPI_COMM_WORLD);
 
 
   }
