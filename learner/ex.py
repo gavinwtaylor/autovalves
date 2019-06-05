@@ -18,7 +18,6 @@ os.environ["CUDA_VISIBLE_DEVICES"] =str(partner)
 
 class ChemicalEnv(gym.Env, utils.EzPickle):    
     def __init__(self):
-      print("Rebuilding the env")
       #1st dimension --> 0.1-1.0 and 2nd dimension 310 - 440
       self.observation_space = spaces.Box(np.array([0.1,310]), np.array([1, 440]))      
       self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
@@ -27,14 +26,12 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       exp=np.empty(4)
       
       comm.Recv(exp, source=partner, tag=0)    
-     # print("Learner received the initial state")
       self.state = exp[:2] 
       self.reward = exp[2]
       self.done = exp[3]     
      
     def step(self, action):
       temp=np.empty(4)
-      #print("Action array before: ", action[0]," ", action[1])
       low=self.action_space.low
       high=self.action_space.high
       action=action*.5*(high-low)+.5*(high-low)
@@ -46,13 +43,11 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       action=action.astype(float)
       assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
       comm.Send(action, dest=partner, tag=0) #zero is the action tag
-      #print("Before receive in learner step")
       comm.Recv(temp, source=partner, tag=0)
       self.state = temp[:2]
       self.reward=temp[2]
       self.done=temp[3]
 
-      #print("Learner received state of ", temp[0], " " , temp[1])
       self.state[1]=(self.state[1]-310)/100
       return np.array(self.state), self.reward, self.done, {} 
 
@@ -80,9 +75,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
            
        
 
-     # print("Sending reset in Learner reset")
       comm.Send(a, dest=partner, tag=1) #one is the reset tag
-     # print("Just sent in the learner reset")
       comm.Recv(s, source=partner, tag=0)
 
       self.state = s[0:1]
@@ -93,7 +86,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
     def _render(self, mode='human'):
       pass
         
-def train():
+def train(lrnrt):
     from baselines.common.vec_env.vec_normalize import VecNormalize
     from baselines.common import set_global_seeds
     #from baselines.ppo2.policies import MlpPolicy
@@ -117,7 +110,7 @@ def train():
     env = VecNormalize(env)
    # set_global_seeds(seed)
     policy = "mlp"
-    model = ppo2.learn(network=policy, env=env,total_timesteps=int(100000),log_interval=1)
+    model = ppo2.learn(network=policy, env=env,total_timesteps=int(100000),lr=lrnrt,log_interval=1)
     return model, env
 
 if __name__ == '__main__':
@@ -128,9 +121,8 @@ if __name__ == '__main__':
     workdir=os.getenv("WORKDIR")
     jobnumber=os.getenv("PBS_JOBID").split('.')[0]
     logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber+'_'+str(rank))
-    train()
+    train(lrs[rank])
     temp = np.array([0,1])
     temp = temp.astype(float)
-    print("About to send exit signal") 
     comm.Send(temp, dest=partner, tag=2) #two is the exit tag
       
