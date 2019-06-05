@@ -138,11 +138,13 @@ int main(void) {
     // cout<<"The simulator just received the action"<<endl;
     u0[0] = action[0];
     u0[1] = action[1]; 
-    if(status.MPI_TAG == 1){
-      reset(&u0, x, xsp,&rdat,&i,&rad,x0scale,x1scale,cvode_mem,&reward);
-    }
-    else if(status.MPI_TAG == 2){
+    if(status.MPI_TAG == 2){
+      std:cout<<"EXITING"<<std::endl;
+      cleanUp(x, abstol, cvode_mem);
       break;
+    }
+    else if(status.MPI_TAG == 1){
+      reset(&u0, x, xsp,&rdat,&i,&rad,x0scale,x1scale,cvode_mem,&reward);
     }
     else{	
       //std::cout << "action before: "<<u0[0] << ' ' << u0[1] << endl;
