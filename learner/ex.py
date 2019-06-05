@@ -120,8 +120,8 @@ def train():
     return model, env
 
 def main():
-    logger.setLevel(info)
-    logger.configure(dir="autovalues/learner/logs", format_strs=['stdout','log','csv'])
+    workdir=os.getenv("WORKDIR")
+    logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=str(rank))
     train()
 if __name__ == '__main__':
     main()
