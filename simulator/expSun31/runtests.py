@@ -1,12 +1,12 @@
 import itertools
 import subprocess
 
-lrs = [1e-2]
-numiters = [100000]
-entropy = [0]
-value = [0.25]
+lrs = [1e-2, 1e-4, 1e-6]
+numiters = [1000000]
+entropy = [0]   
+value = [0.5]
 layers = [2]
-perc = [64]
+perc = [64,128,256]
 
 def createScript(combos):
     cmd = 'mpiexec -np ' + str(len(combos)) 
@@ -34,8 +34,8 @@ def createScript(combos):
 
     #PBS -l select=1:ncpus=30
     #PBS -A MHPCC38870258
-    #PBS -q debug
-    #PBS -l walltime=00:30:00
+    #PBS -q standard
+    #PBS -l walltime=4:00:00
 
     cd $WORKDIR/autovalves
     """ + cmd
