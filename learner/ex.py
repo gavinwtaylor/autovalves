@@ -6,27 +6,31 @@ from gym import error, spaces
 from gym import utils
 from gym.utils import seeding
 import argparse
-
+#from chem_env import 
 import numpy as np
+from chem_env import ChemicalEnv
 from baselines import bench, logger
 comm=MPI.COMM_WORLD
 rank=comm.Get_rank()
 size=comm.Get_size()
 partner = rank - (size/2)
 partner=int(partner)
-      
+'''
 os.environ["CUDA_VISIBLE_DEVICES"] =str(partner)
-
 class ChemicalEnv(gym.Env, utils.EzPickle):    
-    def __init__(self):
-      #1st dimension --> 0.1-1.0 and 2nd dimension 310 - 440
+    def __init__(self, comm):
+      #1st dimension --> 0.1-1.0 and 2nd dimension 310 - 440i
+      self.comm=comm
+      self.rank=comm.Get_rank()
+      self.size=comm.Get_size()
+      self.partner= rank-(size/2)
       self.observation_space = spaces.Box(np.array([0.1,310]), np.array([1, 440]))      
       self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
       self.state = np.array([0.5, 350])
       
       exp=np.empty(4)
       
-      comm.Recv(exp, source=partner, tag=0)    
+      self.comm.Recv(exp, source=self.partner, tag=0)    
       self.state = exp[:2] 
       self.reward = exp[2]
       self.done = exp[3]     
@@ -43,8 +47,8 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
           action[i]=high[i]
       action=action.astype(float)
       assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
-      comm.Send(action, dest=partner, tag=0) #zero is the action tag
-      comm.Recv(temp, source=partner, tag=0)
+      self.comm.Send(action, dest=self.partner, tag=0) #zero is the action tag
+      self.comm.Recv(temp, source=self.partner, tag=0)
       self.state = temp[:2]
       self.reward=temp[2]
       self.done=temp[3]
@@ -76,8 +80,8 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
            
        
 
-      comm.Send(a, dest=partner, tag=1) #one is the reset tag
-      comm.Recv(s, source=partner, tag=0)
+      self.comm.Send(a, dest=self.partner, tag=1) #one is the reset tag
+      self.comm.Recv(s, source=self.partner, tag=0)
 
       self.state = s[0:1]
       self.reward = s[2]
@@ -86,8 +90,8 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
        
     def _render(self, mode='human'):
       pass
-        
-def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize):
+'''        
+def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber):
     from baselines.common.vec_env.vec_normalize import VecNormalize
     from baselines.common import set_global_seeds
     #from baselines.ppo2.policies import MlpPolicy
@@ -106,13 +110,13 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize):
                             inter_op_parallelism_threads=ncpu)
     tf.Session(config=config).__enter__()
 
-    env = DummyVecEnv([lambda:ChemicalEnv()])
+    env = DummyVecEnv([lambda:ChemicalEnv(comm)])
 
     env = VecNormalize(env)
    # set_global_seeds(seed)
     policy = "mlp"
     model = ppo2.learn(network=policy, env=env,total_timesteps=timest,ent_coef=entr,lr=lrnrt,vf_coef=valcoef,log_interval=500, num_layers=numlyrs, num_hidden=lyrsize)
-    model.save(workdir+"/autovalves/learner/models/"+jobnumber)
+    model.save(workdir+"/autovalves/learner/models/"+str(jobnumber)+"-rank"+str(rank))
   
     return model, env
 
@@ -142,7 +146,7 @@ if __name__ == '__main__':
     logger.log("Value Coefficent: ",vcfs[partner])
     logger.log("Number of Layers: ", nlyrs[partner])
     logger.log("Width of Layers: ", slyrs[partner])
-    train(lrs[partner], tss[partner], entps[partner], vcfs[partner], nlyrs[partner], slyrs[partner])
+    train(lrs[partner], tss[partner], entps[partner], vcfs[partner], nlyrs[partner], slyrs[partner],jobnumber)
     temp = np.array([0,1])
     temp = temp.astype(float)
     comm.Send(temp, dest=partner, tag=2) #two is the exit tag
