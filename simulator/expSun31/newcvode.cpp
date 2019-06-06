@@ -72,9 +72,9 @@ int main(void) {
   string runnumber = "03";
   string groupname = "Run-";
   char buffer[40];
-  string filename="/mnt/lustre/scratch/autoValveData/exp" + experimentnum + "-run" + runnumber + ".h5";
-  H5File* file=NULL;
-  //new H5File(filename, H5F_ACC_EXCL);
+  string filename="/gpfs/scratch/gvtaylor/autovalves/simulator/expSun31/" + experimentnum + "-run" + runnumber + ".h5";
+  //H5File* file=NULL;
+  H5File* file=new H5File(filename, H5F_ACC_EXCL);
 
   // casual variables
   int flag, i, p;
@@ -279,7 +279,6 @@ int main(void) {
 // u[1] = Q in kJ/min
 
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
-
   // recast the user data pointer
   vector<double>* u = static_cast< vector<double>* >(user_data); 
 
