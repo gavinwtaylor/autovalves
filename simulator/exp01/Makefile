@@ -1,10 +1,5 @@
-all: exp01
-
-exp01: exp01.o
-	CC exp01.o -o exp01
-  
-exp01.o: exp01.cpp
-	CC -c exp01.cpp
+all: exp01.cpp
+	g++ exp01.cpp -I/gpfs/pkgs/mhpcc/sundials-3.1.0/include -L/gpfs/pkgs/mhpcc/sundials-3.1.0/lib -lsundials_cvode -o exp01
 
 clean: 
 	rm *o exp01
