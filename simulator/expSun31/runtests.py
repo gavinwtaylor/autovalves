@@ -37,7 +37,7 @@ def createScript(combos):
     #PBS -q standard
     #PBS -l walltime=00:30:00
 
-    cd $WORKDIR """ + cmd
+    cd $WORKDIR/autovalves """ + cmd
     subprocess.run(['qsub'],input=script,encoding='ascii')
     #print('\n\n',script)
 
