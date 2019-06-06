@@ -1,10 +1,10 @@
 import itertools
 import subprocess
 
-lrs = [1e-2, 1e-3, 1e-4, 1e-5, 1e-6, 1e-7]
-numiters = [100000, 200000, 300000]
-entropy = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
-value = [0.25, 0.5]
+lrs = [1e-2]
+numiters = [100000]
+entropy = [0]
+value = [0.25]
 layers = [2]
 perc = [64]
 
