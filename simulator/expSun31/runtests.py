@@ -34,13 +34,13 @@ def createScript(combos):
 
     #PBS -l select=1:ncpus=30
     #PBS -A MHPCC38870258
-    #PBS -q standard
+    #PBS -q debug
     #PBS -l walltime=00:30:00
 
     cd $WORKDIR/autovalves
     """ + cmd
     print('\n\n',script)
-    #subprocess.run(['qsub'],input=script,encoding='ascii')
+    subprocess.run(['qsub'],input=script,encoding='ascii')
 
 
 combinations=[combo for combo in itertools.product(lrs,numiters,entropy, value,layers,perc)]
