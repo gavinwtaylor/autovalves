@@ -1,3 +1,4 @@
+import pdb
 import os
 import sys
 import numpy as np
@@ -45,6 +46,7 @@ if __name__ == '__main__':
         vf_coef=line.split()[-1] 
         vf_coef=float(vf_coef)
   
+  pdb.set_trace()
   env = DummyVecEnv([lambda:ChemicalEnv(comm)])
   env = VecNormalize(env)
   network = "mlp"
