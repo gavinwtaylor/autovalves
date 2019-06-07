@@ -16,6 +16,7 @@ size=comm.Get_size()
 partner = rank - (size/2)
 partner=int(partner)
 
+'''
 os.environ["CUDA_VISIBLE_DEVICES"] =str(partner)
 class ChemicalEnv(gym.Env, utils.EzPickle):    
     def __init__(self, comm):
@@ -93,7 +94,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
        
     def _render(self, mode='human'):
       pass
-        
+'''
 def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber):
     from baselines.common.vec_env.vec_normalize import VecNormalize
     from baselines.common import set_global_seeds
