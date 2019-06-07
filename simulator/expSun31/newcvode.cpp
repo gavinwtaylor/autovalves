@@ -72,7 +72,8 @@ int main(void) {
   string runnumber = "03";
   string groupname = "Run-";
   char buffer[40];
-  string filename="/gpfs/scratch/gvtaylor/autovalves/simulator/expSun31/" + experimentnum + "-run" + runnumber + ".h5";
+  string workdir(getenv("WORKDIR"));
+  string filename=workdir+"/autovalves/simulator/expSun31/" + experimentnum + "-run" + runnumber + ".h5";
   //H5File* file=NULL;
   H5File* file=new H5File(filename, H5F_ACC_EXCL);
 

@@ -1,1 +1,0 @@
-Logging to /gpfs/scratch/m203330/autovalves/learner/evaluate_logs
