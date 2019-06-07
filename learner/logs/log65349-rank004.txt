@@ -1,0 +1,24 @@
+Logging to /gpfs/scratch/m210480/autovalves/learner/logs
+Job Number:  65349
+Rank:  4
+Learning Rate:  0.01
+Timestep:  1000000
+Entropy:  0.0
+Value Coefficent:  0.5
+Number of Layers:  3
+Width of Layers:  128
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 197      |
+| loss/approxkl           | 0.0164   |
+| loss/clipfrac           | 0.155    |
+| loss/policy_entropy     | 2.85     |
+| loss/policy_loss        | 0.00733  |
+| loss/value_loss         | 0.794    |
+| misc/explained_variance | 0.0575   |
+| misc/nupdates           | 1        |
+| misc/serial_timesteps   | 2.05e+03 |
+| misc/time_elapsed       | 10.4     |
+| misc/total_timesteps    | 2.05e+03 |
+--------------------------------------
