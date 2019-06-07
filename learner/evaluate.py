@@ -60,7 +60,9 @@ if __name__ == '__main__':
           vf_coef=float(vf_coef)
 
     env = DummyVecEnv([lambda:ChemicalEnv(comm)])
-    myChemEnv=env.envs[0]
+    setpoint=env.envs[0].setpoint
+    x0scaleinv=env.envs[0].x0scaleinv
+    x1scaleinv=env.envs[0].x1scaleinv
     env = VecNormalize(env)
     network = "mlp"
     ob_space=env.observation_space
