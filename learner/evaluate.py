@@ -1,4 +1,3 @@
-import pdb
 import os
 import sys
 import numpy as np
@@ -19,7 +18,7 @@ rank=comm.Get_rank()
 size=comm.Get_size()
 partner = rank - (size/2)
 partner=int(partner)
- 
+
 if __name__ == '__main__':
   model_fn=Model
   gamma=0.99
@@ -32,7 +31,7 @@ if __name__ == '__main__':
   parser.add_argument('jobnm', help='jobnumber of log file')
   parser.add_argument('numtrue', help='number of completed runs')
   args=parser.parse_args()
-  
+
   with open(workdir+"/autovalves/learner/logs/log"+args.jobnm+"-rank00"+args.rank+".txt") as f:
     for line in f:
       if "Number" in line and "Layers" in line:
@@ -47,8 +46,7 @@ if __name__ == '__main__':
       if "Value" in line:
         vf_coef=line.split()[-1] 
         vf_coef=float(vf_coef)
-  
-  pdb.set_trace()
+
   env = DummyVecEnv([lambda:ChemicalEnv(comm)])
   env = VecNormalize(env)
   network = "mlp"
@@ -66,53 +64,49 @@ if __name__ == '__main__':
   eval_runner=Runner(env=env, model=model, nsteps=nsteps, gamma=gamma, lam=lam)
   count = 0
   obs, returns, masks, actions, values, neglogpacs, states, epinfos = None, None, None, None, None, None,None, None 
-  
+
   f = h5py.File(workdir+"/autovalves/learner/hdf5/"+args.jobnm+"-rank"+args.rank+".hdf5","w")
 
   while(count < int(args.numtrue)):
-     eval_obs, eval_returns, eval_masks, eval_actions, eval_values, eval_neglogpacs, eval_states, eval_epinfos =eval_runner.run()
-     
-     for index,i in enumerate(eval_masks):
-       if i == True:
-         count = count+1
-         print("We got a true!")
-         if masks is None:
-            obs = eval_obs
-            returns = eval_returns
-            masks = eval_masks
-            actions=eval_actions
-            values=eval_values
-            neglogpacs=eval_neglogpacs
-            states=eval_states
-            epinfos=eval_epinfos
-            last_true = index
-     
-     obs= np.concatenate((obs,eval_obs[0:last_true]), axis=0)
-     returns = np.concatenate((returns, eval_returns[0:last_true]), axis=0)
-     masks= np.concatenate((masks,eval_masks[0:last_true]), axis=0)
-     actions=np.concatenate((actions, eval_actions[0:last_true]), axis=0)
-     values=np.concatenate((values,eval_values[0:last_true]), axis=0)
-     neglogpacs=np.concatenate((neglogpacs,eval_neglogpacs[0:last_true]), axis=0)
-     #states=np.concatenate((states,eval_states[0:last_true]), axis=0)
-     epinfos=np.concatenate((epinfos,eval_epinfos[0:last_true]), axis=0)
+    eval_obs, eval_returns, eval_masks, eval_actions, eval_values, eval_neglogpacs, eval_states, eval_epinfos =eval_runner.run()
+
+    for index,i in enumerate(eval_masks):
+      if i == True:
+        count = count+1
+        last_true = index
+    if masks is None:
+      obs = eval_obs
+      returns = eval_returns
+      masks = eval_masks
+      actions=eval_actions
+      values=eval_values
+      neglogpacs=eval_neglogpacs
+      states=eval_states
+      epinfos=eval_epinfos
+    else:
+      last_true+=1
+      obs= np.concatenate((obs,eval_obs[0:last_true,:]), axis=0)
+      returns = np.concatenate((returns, eval_returns[0:last_true]), axis=0)
+      masks= np.concatenate((masks,eval_masks[0:last_true]), axis=0)
+      actions=np.concatenate((actions, eval_actions[0:last_true,:]), axis=0)
+      values=np.concatenate((values,eval_values[0:last_true]), axis=0)
+      neglogpacs=np.concatenate((neglogpacs,eval_neglogpacs[0:last_true]), axis=0)
+      #states=np.concatenate((states,eval_states[0:last_true]), axis=0)
+      epinfos=np.concatenate((epinfos,eval_epinfos[0:last_true]), axis=0)
   numruns = 0
   lastone=-1
   thisone=0
   for ind, j in enumerate(masks):
     if j == True:
-       numruns = numruns+1
-       print("Num runs: ",numruns, " ", args.numtrue)
-       if(numruns == int(args.numtrue)):
-         print("We in here")
-         break	
-       thisone=ind
-       print("This one: ", thisone)
-       grp = f.create_group("runnumber_"+str(thisone))
-       dset1=grp.create_dataset("states",(thisone-lastone,2), dtype=obs.dtype)
-       dset2=grp.create_dataset("actions",(thisone-lastone,2), dtype=actions.dtype)
-       dset1[:]=obs[lastone+1:thisone+1,:]
-       dset2[:]=actions[lastone+1:thisone+1,:]
-       lastone=ind
-  print("We out here")      
+      if(numruns == int(args.numtrue)):
+        break	
+      numruns = numruns+1
+      thisone=ind
+      grp = f.create_group("runnumber_"+str(thisone))
+      dset1=grp.create_dataset("states",(thisone-lastone,2), dtype=obs.dtype)
+      dset2=grp.create_dataset("actions",(thisone-lastone,2), dtype=actions.dtype)
+      dset1[:]=obs[lastone+1:thisone+1,:]
+      dset2[:]=actions[lastone+1:thisone+1,:]
+      lastone=ind
   #for m in masks:
    #  print("Mask: ",m)      
