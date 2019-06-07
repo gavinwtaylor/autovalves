@@ -27,13 +27,17 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
       self.state = np.array([0.5, 350])
       
-      exp=np.empty(4)
+      exp=np.empty(8)
       
       self.comm.Recv(exp, source=self.partner, tag=0)    
       self.state = exp[:2] 
       self.reward = exp[2]
-      self.done = exp[3]     
-     
+      self.done = exp[3] 
+      self.setpoint = exp[4:6]
+      self.x0scaleinv = 1/exp[6]
+      self.x1scaleinv = 1/exp[7]
+
+
     def step(self, action):
       temp=np.empty(4)
       low=self.action_space.low
