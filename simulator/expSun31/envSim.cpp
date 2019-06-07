@@ -122,8 +122,8 @@ int main(void) {
   reset(&u0, x, xsp, &rdat, &i, &rad, x0scale, x1scale, cvode_mem, &reward);
   rdat.push_back(reward);
 
-  double foo[4] = {NV_Ith_S(x, 0), NV_Ith_S(x,1), reward, 0};
-  MPI_Send(foo, 4, MPI_DOUBLE, partner, 0, MPI_COMM_WORLD);
+  double foo[8] = {NV_Ith_S(x, 0), NV_Ith_S(x,1), reward, 0, NV_Ith_S(xsp,0), NV_Ith_S(xsp,1), x0scale, x1scale };
+  MPI_Send(foo, 8, MPI_DOUBLE, partner, 0, MPI_COMM_WORLD);
 
 
   while (true) { // a little safety check on max iterations.

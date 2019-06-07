@@ -15,6 +15,7 @@ rank=comm.Get_rank()
 size=comm.Get_size()
 partner = rank - (size/2)
 partner=int(partner)
+
 '''
 os.environ["CUDA_VISIBLE_DEVICES"] =str(partner)
 class ChemicalEnv(gym.Env, utils.EzPickle):    
@@ -28,13 +29,16 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
       self.state = np.array([0.5, 350])
       
-      exp=np.empty(4)
+      exp=np.empty(8)
       
       self.comm.Recv(exp, source=self.partner, tag=0)    
       self.state = exp[:2] 
       self.reward = exp[2]
-      self.done = exp[3]     
-     
+      self.done = exp[3] 
+      self.setpoint = exp[4:5]
+      self.x0scale = 1/exp[6]
+      self.x1scaleinv = 1/exp[7]
+
     def step(self, action):
       temp=np.empty(4)
       low=self.action_space.low
@@ -90,7 +94,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
        
     def _render(self, mode='human'):
       pass
-'''        
+'''
 def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber):
     from baselines.common.vec_env.vec_normalize import VecNormalize
     from baselines.common import set_global_seeds
