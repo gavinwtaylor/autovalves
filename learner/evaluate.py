@@ -40,7 +40,13 @@ if __name__ == '__main__':
   parser=argparse.ArgumentParser() 
   parser.add_argument('numtrue', help='number of completed runs')
   args=parser.parse_args()
-
+  
+  
+  env = DummyVecEnv([lambda:ChemicalEnv(comm)])
+  setpoint=env.envs[0].setpoint
+  x0scaleinv=env.envs[0].x0scaleinv
+  x1scaleinv=env.envs[0].x1scaleinv
+  env = VecNormalize(env)
  #with open(workdir+"/autovalves/learner/logs/log"+args.jobnm+"-rank00"+args.rank+".txt") as f:
   for name in loglist:
     print("New log file: ", name)
@@ -59,11 +65,6 @@ if __name__ == '__main__':
           vf_coef=line.split()[-1] 
           vf_coef=float(vf_coef)
     print("made it here")
-    env = DummyVecEnv([lambda:ChemicalEnv(comm)])
-    setpoint=env.envs[0].setpoint
-    x0scaleinv=env.envs[0].x0scaleinv
-    x1scaleinv=env.envs[0].x1scaleinv
-    env = VecNormalize(env)
     network = "mlp"
     ob_space=env.observation_space
     ac_space = env.action_space
