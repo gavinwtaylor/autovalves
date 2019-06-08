@@ -25,12 +25,12 @@ partner=int(partner)
 def calcReward(states, x0scaleinv, x1scaleinv, setpoint):
     n=states.shape[0]
     rewards=np.empty(n)
-    for i in states:
+    for i in range(n):
         r = -(
-              ((states[i][0] - setpoint[i][0]) * x0scaleinv) * 
-              ((states[i][0] - setpoint[i][0]) * x0scaleinv) +
-              ((states[i][1] - setpoint[i][1]) * x1scaleinv) * 
-              ((states[i][1] - setpoint[i][1]) * x1scaleinv)
+              ((states[i][0] - setpoint[0]) * x0scaleinv) * 
+              ((states[i][0] - setpoint[0]) * x0scaleinv) +
+              ((states[i][1] - setpoint[1]) * x1scaleinv) * 
+              ((states[i][1] - setpoint[1]) * x1scaleinv)
              )
         rewards[i] = r
     return rewards
@@ -135,7 +135,7 @@ if __name__ == '__main__':
         #states=np.concatenate((states,eval_states[0:last_true]), axis=0)
         epinfos=np.concatenate((epinfos,eval_epinfos[0:last_true]), axis=0)
 
-    rewards = calcRewards(obs, x0scaleinv, x1scaleinv, setpoint)
+    rewards = calcReward(obs, x0scaleinv, x1scaleinv, setpoint)
     print(rewards)
     numruns = 0
     lastone=-1
