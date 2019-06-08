@@ -21,6 +21,21 @@ size=comm.Get_size()
 partner = rank - (size/2)
 partner=int(partner)
 
+
+def calcReward(states, x0scaleinv, x1scaleinv, setpoint):
+    n=states.shape[0]
+    rewards=np.empty(n)
+    for i in states:
+        r = -(
+              ((states[i][0] - setpoint[i][0]) * x0scaleinv) * 
+              ((states[i][0] - setpoint[i][0]) * x0scaleinv) +
+              ((states[i][1] - setpoint[i][1]) * x1scaleinv) * 
+              ((states[i][1] - setpoint[i][1]) * x1scaleinv)
+             )
+        rewards[i] = r
+    return rewards
+
+
 if __name__ == '__main__':
   model_fn=Model
   gamma=0.99
@@ -65,6 +80,8 @@ if __name__ == '__main__':
           vf_coef=line.split()[-1] 
           vf_coef=float(vf_coef)
     print("made it here")
+
+
     network = "mlp"
     ob_space=env.observation_space
     ac_space = env.action_space
@@ -117,6 +134,9 @@ if __name__ == '__main__':
         neglogpacs=np.concatenate((neglogpacs,eval_neglogpacs[0:last_true]), axis=0)
         #states=np.concatenate((states,eval_states[0:last_true]), axis=0)
         epinfos=np.concatenate((epinfos,eval_epinfos[0:last_true]), axis=0)
+
+    rewards = calcRewards(obs, x0scaleinv, x1scaleinv, setpoint)
+    print(rewards)
     numruns = 0
     lastone=-1
     thisone=0
