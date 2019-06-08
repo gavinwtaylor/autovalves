@@ -65,7 +65,6 @@ if __name__ == '__main__':
   env = VecNormalize(env)
  #with open(workdir+"/autovalves/learner/logs/log"+args.jobnm+"-rank00"+args.rank+".txt") as f:
   for name in loglist:
-    print("New log file: ", name)
     with open(name) as f:
       for line in f:
         if "Number" in line and "Layers" in line:
@@ -80,7 +79,6 @@ if __name__ == '__main__':
         if "Value" in line:
           vf_coef=line.split()[-1] 
           vf_coef=float(vf_coef)
-    print("made it here")
 
 
     network = "mlp"
@@ -94,13 +92,11 @@ if __name__ == '__main__':
     max_grad_norm=0.5
     with tf.Session(graph=tf.Graph()):
       policy=build_policy(env,network, num_layers=num_layers, num_hidden=layer_width)
-      print("made it there")
       model = model_fn(policy=policy, ob_space=ob_space, ac_space=ac_space, nbatch_act=nevs, nbatch_train=nbatch_train, nsteps=nsteps, ent_coef=ent_coef, vf_coef=vf_coef, max_grad_norm=max_grad_norm)
       mname= (ntpath.basename(name)[3:]).split('.')
       split_k = mname[0].split('k')
       num = str(int(split_k[1]))         
       con_name = split_k[0]+'k'+num
-      print("Model Name: ", con_name)      
           
       model.load(workdir+"/autovalves/learner/models/"+con_name)
       eval_runner=Runner(env=env, model=model, nsteps=nsteps, gamma=gamma, lam=lam)
@@ -110,7 +106,6 @@ if __name__ == '__main__':
       f = h5py.File(workdir+"/autovalves/learner/hdf5/"+mname[0]+".hdf5","w")
 
       while(count < int(args.numtrue)):
-        print("We evaluatin")
         eval_obs, eval_returns, eval_masks, eval_actions, eval_values, eval_neglogpacs, eval_states, eval_epinfos =eval_runner.run()
 
         for index,i in enumerate(eval_masks):
@@ -138,7 +133,6 @@ if __name__ == '__main__':
           epinfos=np.concatenate((epinfos,eval_epinfos[0:last_true]), axis=0)
 
     rewards = calcReward(obs, x0scaleinv, x1scaleinv, setpoint)
-    print(rewards)
     numruns = 0
     lastone=-1
     thisone=0
@@ -151,8 +145,10 @@ if __name__ == '__main__':
         grp = f.create_group("runnumber_"+str(thisone))
         dset1=grp.create_dataset("states",(thisone-lastone,2), dtype=obs.dtype)
         dset2=grp.create_dataset("actions",(thisone-lastone,2), dtype=actions.dtype)
+        dset3=grp.create_dataset("rewards",(thisone-lastone, ), dtype=rewards.dtype)
         dset1[:]=obs[lastone+1:thisone+1,:]
         dset2[:]=actions[lastone+1:thisone+1,:]
+        dset3[:]=rewards[lastone+1:thisone+1,:]
         lastone=ind
   
   temp = np.array([0,1])
