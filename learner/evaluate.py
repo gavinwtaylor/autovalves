@@ -14,6 +14,7 @@ from baselines.common.vec_env.dummy_vec_env import DummyVecEnv
 from chem_env import ChemicalEnv
 from baselines.ppo2.model import Model
 from baselines.common.policies import build_policy
+import tensorflow as tf
 
 comm=MPI.COMM_WORLD
 rank=comm.Get_rank()
@@ -91,49 +92,50 @@ if __name__ == '__main__':
     nminibatches = 4
     nbatch_train = nbatch // nminibatches
     max_grad_norm=0.5
-    policy=build_policy(env,network, num_layers=num_layers, num_hidden=layer_width)
-    print("made it there")
-    model = model_fn(policy=policy, ob_space=ob_space, ac_space=ac_space, nbatch_act=nevs, nbatch_train=nbatch_train, nsteps=nsteps, ent_coef=ent_coef, vf_coef=vf_coef, max_grad_norm=max_grad_norm)
-    mname= (ntpath.basename(name)[3:]).split('.')
-    split_k = mname[0].split('k')
-    num = str(int(split_k[1]))         
-    con_name = split_k[0]+'k'+num
-    print("Model Name: ", con_name)      
-        
-    model.load(workdir+"/autovalves/learner/models/"+con_name)
-    eval_runner=Runner(env=env, model=model, nsteps=nsteps, gamma=gamma, lam=lam)
-    count = 0
-    obs, returns, masks, actions, values, neglogpacs, states, epinfos = None, None, None, None, None, None,None, None 
+    with tf.Session(graph=tf.Graph()):
+      policy=build_policy(env,network, num_layers=num_layers, num_hidden=layer_width)
+      print("made it there")
+      model = model_fn(policy=policy, ob_space=ob_space, ac_space=ac_space, nbatch_act=nevs, nbatch_train=nbatch_train, nsteps=nsteps, ent_coef=ent_coef, vf_coef=vf_coef, max_grad_norm=max_grad_norm)
+      mname= (ntpath.basename(name)[3:]).split('.')
+      split_k = mname[0].split('k')
+      num = str(int(split_k[1]))         
+      con_name = split_k[0]+'k'+num
+      print("Model Name: ", con_name)      
+          
+      model.load(workdir+"/autovalves/learner/models/"+con_name)
+      eval_runner=Runner(env=env, model=model, nsteps=nsteps, gamma=gamma, lam=lam)
+      count = 0
+      obs, returns, masks, actions, values, neglogpacs, states, epinfos = None, None, None, None, None, None,None, None 
 
-    f = h5py.File(workdir+"/autovalves/learner/hdf5/"+mname[0]+".hdf5","w")
+      f = h5py.File(workdir+"/autovalves/learner/hdf5/"+mname[0]+".hdf5","w")
 
-    while(count < int(args.numtrue)):
-      print("We evaluatin")
-      eval_obs, eval_returns, eval_masks, eval_actions, eval_values, eval_neglogpacs, eval_states, eval_epinfos =eval_runner.run()
+      while(count < int(args.numtrue)):
+        print("We evaluatin")
+        eval_obs, eval_returns, eval_masks, eval_actions, eval_values, eval_neglogpacs, eval_states, eval_epinfos =eval_runner.run()
 
-      for index,i in enumerate(eval_masks):
-        if i == True:
-          count = count+1
-          last_true = index
-      if masks is None:
-        obs = eval_obs
-        returns = eval_returns
-        masks = eval_masks
-        actions=eval_actions
-        values=eval_values
-        neglogpacs=eval_neglogpacs
-        states=eval_states
-        epinfos=eval_epinfos
-      else:
-        last_true+=1
-        obs= np.concatenate((obs,eval_obs[0:last_true,:]), axis=0)
-        returns = np.concatenate((returns, eval_returns[0:last_true]), axis=0)
-        masks= np.concatenate((masks,eval_masks[0:last_true]), axis=0)
-        actions=np.concatenate((actions, eval_actions[0:last_true,:]), axis=0)
-        values=np.concatenate((values,eval_values[0:last_true]), axis=0)
-        neglogpacs=np.concatenate((neglogpacs,eval_neglogpacs[0:last_true]), axis=0)
-        #states=np.concatenate((states,eval_states[0:last_true]), axis=0)
-        epinfos=np.concatenate((epinfos,eval_epinfos[0:last_true]), axis=0)
+        for index,i in enumerate(eval_masks):
+          if i == True:
+            count = count+1
+            last_true = index
+        if masks is None:
+          obs = eval_obs
+          returns = eval_returns
+          masks = eval_masks
+          actions=eval_actions
+          values=eval_values
+          neglogpacs=eval_neglogpacs
+          states=eval_states
+          epinfos=eval_epinfos
+        else:
+          last_true+=1
+          obs= np.concatenate((obs,eval_obs[0:last_true,:]), axis=0)
+          returns = np.concatenate((returns, eval_returns[0:last_true]), axis=0)
+          masks= np.concatenate((masks,eval_masks[0:last_true]), axis=0)
+          actions=np.concatenate((actions, eval_actions[0:last_true,:]), axis=0)
+          values=np.concatenate((values,eval_values[0:last_true]), axis=0)
+          neglogpacs=np.concatenate((neglogpacs,eval_neglogpacs[0:last_true]), axis=0)
+          #states=np.concatenate((states,eval_states[0:last_true]), axis=0)
+          epinfos=np.concatenate((epinfos,eval_epinfos[0:last_true]), axis=0)
 
     rewards = calcReward(obs, x0scaleinv, x1scaleinv, setpoint)
     print(rewards)
