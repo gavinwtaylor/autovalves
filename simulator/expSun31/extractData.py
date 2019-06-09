@@ -9,8 +9,9 @@ rank=comm.Get_rank()
 size=comm.Get_size()
 
 workDir = os.getenv('WORKDIR')
-h5Dir = 'h5/'
-h5list = glob.glob(workDir + '/autovalves/simulator/expSun31/' + h5Dir + '*.h5')
+h5list = glob.glob(workDir + '/autovalves/learner/hdf5/*.hdf5')
+print(h5list)
+exit()
 fCount = len(h5list)
 
 startIndex = rank * (fCount//size) + min(rank, (fCount % size))
