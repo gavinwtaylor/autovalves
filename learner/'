@@ -45,12 +45,15 @@ if __name__ == '__main__':
   workdir=os.getenv("WORKDIR")
   loglist=glob.glob(workdir+"/autovalves/learner/logs/*")
   fcount = len(loglist)
-  startIndex =partner*(fcount//(size//2))+min(partner,(fcount%(size//2))) 
-  endIndex = ((partner+1)*(fcount//(size//2)))+min(partner,(fcount%(size//2)))
-  if(fcount%(size//2)) > partner:
+  print("File count: ", fcount)
+  startIndex = rank*(fcount//(size//2))+min(rank,(fcount%(size//2))) 
+  endIndex = ((rank+1)*(fcount//(size//2)))+min(rank,(fcount%(size//2)))
+  if(fcount%(size//2)) > rank:
     endIndex+=1
+
   loglist=loglist[startIndex:endIndex]
-  
+  print("Log list size",len(loglist))
+  '''
   logger.configure(dir=workdir+"/autovalves/learner/evaluate_logs", format_strs=['stdout', 'log'], log_suffix=jobnumber)
   parser=argparse.ArgumentParser() 
   parser.add_argument('numtrue', help='number of completed runs')
@@ -150,7 +153,7 @@ if __name__ == '__main__':
         dset2[:]=actions[lastone+1:thisone+1,:]
         dset3[:]=rewards[lastone+1:thisone+1]
         lastone=ind
-  
+ ''' 
   temp = np.array([0,1])
   temp=temp.astype(float) 
   comm.Send(temp, dest=partner, tag=2)    
