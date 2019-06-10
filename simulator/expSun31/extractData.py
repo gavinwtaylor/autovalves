@@ -10,8 +10,6 @@ size=comm.Get_size()
 
 workDir = os.getenv('WORKDIR')
 h5list = glob.glob(workDir + '/autovalves/learner/hdf5/*.hdf5')
-print(h5list)
-exit()
 fCount = len(h5list)
 
 startIndex = rank * (fCount//size) + min(rank, (fCount % size))
