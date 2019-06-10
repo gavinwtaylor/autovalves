@@ -50,5 +50,5 @@ for name in h5list:
         stateAvg /= numFiles
         print('Total number of Files = ', numFiles)
         print('Total average rewards in h5 File = ', rewardAvg)
-        print('Avergae number of states in h5 File = ', stateAvg)
+        print('Average number of states in h5 File = ', stateAvg)
 
