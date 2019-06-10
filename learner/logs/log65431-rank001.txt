@@ -1,0 +1,9 @@
+Logging to /gpfs/scratch/m210480/autovalves/learner/logs
+Job Number:  65431
+Rank:  1
+Learning Rate:  0.0001
+Timestep:  100000
+Entropy:  0.5
+Value Coefficent:  0.5
+Number of Layers:  2
+Width of Layers:  64
