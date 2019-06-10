@@ -1,4 +1,5 @@
 import os
+import os.path
 import sys
 import numpy as np
 import h5py
@@ -44,6 +45,12 @@ if __name__ == '__main__':
   jobnumber=os.getenv("PBS_JOBID").split('.')[0]
   workdir=os.getenv("WORKDIR")
   loglist=glob.glob(workdir+"/autovalves/learner/logs/*")
+  for l in loglist:
+     mname= (ntpath.basename(l)[3:]).split('.')
+     hname = workdir+"/autovalves/learner/hdf5/"+ mname[0]+".hdf5"
+     if(os.path.isfile(hname)):
+       loglist.remove(l)
+  
   fcount = len(loglist)
   startIndex =partner*(fcount//(size//2))+min(partner,(fcount%(size//2))) 
   endIndex = ((partner+1)*(fcount//(size//2)))+min(partner,(fcount%(size//2)))
