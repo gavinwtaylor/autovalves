@@ -119,7 +119,7 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber):
     env = VecNormalize(env)
    # set_global_seeds(seed)
     policy = "mlp"
-    model = ppo2.learn(network=policy, env=env,total_timesteps=timest,ent_coef=entr,lr=lrnrt,vf_coef=valcoef,log_interval=500, num_layers=numlyrs, num_hidden=lyrsize)
+    model = ppo2.learn(network=policy, env=env,total_timesteps=timest,ent_coef=entr,lr=lrnrt,vf_coef=valcoef,log_interval=10, num_layers=numlyrs, num_hidden=lyrsize)
     model.save(workdir+"/autovalves/learner/models/"+str(jobnumber)+"-rank"+str(rank))
   
     return model, env
