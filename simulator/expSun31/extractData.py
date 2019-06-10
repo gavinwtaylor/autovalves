@@ -9,7 +9,7 @@ rank=comm.Get_rank()
 size=comm.Get_size()
 
 workDir = os.getenv('WORKDIR')
-h5list = glob.glob(workDir + '/autovalves/simulator/expSun31/h5/*')
+h5list = glob.glob(workDir + '/autovalves/learner/hdf5/*')
 fCount = len(h5list)
 
 startIndex = rank * (fCount//size) + min(rank, (fCount % size))
@@ -19,6 +19,8 @@ if (fCount % size) > rank:
     endIndex += 1
 
 h5list=h5list[startIndex:endIndex]
+
+F = open("stats.txt", "w")
 
 for name in h5list:
         
@@ -48,8 +50,9 @@ for name in h5list:
 
         rewardAvg /= numFiles
         stateAvg /= numFiles
-        print('File name = ', name)
-        print('Total number of Files = ', numFiles)
-        print('Total average rewards in h5 File = ', rewardAvg)
-        print('Average number of states in h5 File = ', stateAvg)
+        print("to the file!")
+        F.write('File name = ', name)
+        F.write('Total number of Files = ', numFiles)
+        F.write('Total average rewards in h5 File = ', rewardAvg)
+        F.write('Average number of states in h5 File = ', stateAvg, '\n\n')
 
