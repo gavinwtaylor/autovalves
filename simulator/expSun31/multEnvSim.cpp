@@ -148,8 +148,8 @@ int main(void) {
       reset(&u0, x, xsp,&rdat,&i,&rad,x0scale,x1scale,cvode_mem,&reward);
     }
     else if(status.MPI_TAG == 3){ //init
-       MPI_Send(foo, 8, MPI_DOUBLE, partner, 0, MPI_COMM_WORLD);
-       continue;
+      MPI_Send(foo, 8, MPI_DOUBLE, partner, 0, MPI_COMM_WORLD);
+      continue;
     }
     else{ //action	
       int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
@@ -182,7 +182,7 @@ int main(void) {
     MPI_Send(ret_data, 4, MPI_DOUBLE, partner, 0, MPI_COMM_WORLD);
 
   }
-  
+
   return(0);
 }
 
@@ -217,31 +217,30 @@ bool withinOval(N_Vector x,double x0scale,double x1scale){
 }
 
 static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>* rdat, int* i, double* rad, double x0scale, double x1scale, void* cvode_mem, double* reward){
-    (*u0)[0] = 0; 
-    (*u0)[1] = 0;   
-    *i = 0; 
-    (*rdat).clear(); 
+  (*u0)[0] = 0; 
+  (*u0)[1] = 0;   
+  *i = 0; 
+  (*rdat).clear(); 
 
-    // initialize x in a circle surroudning the region of interestit** 
-    // set rad to random number between 0 and 2 pi...would happen in initial set up and when you reset
-    *rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
-    *rad = 2;
-    NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(*rad); // mol/m3
-    NV_Ith_S(x, 1)   = 375 + x1scale * sin(*rad); // deg K
+  // initialize x in a circle surroudning the region of interestit** 
+  // set rad to random number between 0 and 2 pi...would happen in initial set up and when you reset
+  *rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
+  *rad = 2;
+  NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(*rad); // mol/m3
+  NV_Ith_S(x, 1)   = 375 + x1scale * sin(*rad); // deg K
 
-    // new setpoint
-    // STANDARD SETPOINT
-    NV_Ith_S(xsp, 0)   = 0.57; // mol/m3
-    NV_Ith_S(xsp, 1)   = 395.3; // deg K
+  // new setpoint
+  // STANDARD SETPOINT
+  NV_Ith_S(xsp, 0)   = 0.57; // mol/m3
+  NV_Ith_S(xsp, 1)   = 395.3; // deg K
 
-    // reinitialize the integrator --> **reset**
-    CVodeReInit(cvode_mem, RCONST(0.0),x);
-    double x0inv = 1/x0scale;
-    double x1inv = 1/x1scale;
+  // reinitialize the integrator --> **reset**
+  CVodeReInit(cvode_mem, RCONST(0.0),x);
+  double x0inv = 1/x0scale;
+  double x1inv = 1/x1scale;
 
-    *reward=calcReward(x,xsp,x0inv,x1inv);
-    
-    }
+  *reward=calcReward(x,xsp,x0inv,x1inv);
+
 }
 
 void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
@@ -275,7 +274,7 @@ void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
   // recast the user data pointer
   vector<double>* u = static_cast< vector<double>* >(user_data); 
- 
+
   // Precalculate some common terms.
   realtype intermed = k0 * NV_Ith_S(x,0) * exp( -E / (R * NV_Ith_S(x,1)) );
 
