@@ -35,7 +35,7 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber, numenvs):
                             inter_op_parallelism_threads=ncpu)
     tf.Session(config=config).__enter__()
 
-    env = DummyVecEnv([lambda:ChemicalEnv(comm) for i in numenvs])
+    env = DummyVecEnv([lambda:ChemicalEnv(comm) for i in range(numenvs)])
 
     env = VecNormalize(env)
    # set_global_seeds(seed)
@@ -76,5 +76,6 @@ if __name__ == '__main__':
     train(lrs[partner], tss[partner], entps[partner], vcfs[partner], nlyrs[partner], slyrs[partner],jobnumber,numenvs[partner])
     temp = np.array([0,1,2,3])
     temp = temp.astype(float)
+    print("before send in ex.py")
     comm.Send(temp, dest=partner, tag=2) #two is the exit tag
       

@@ -30,8 +30,11 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       snd=np.array([0,1,2,3])
       exp=np.empty(8)
       snd=snd.astype(float)
-      self.comm.Send(snd, dest=self.partner, tag=3) #send init tag 
-      self.comm.Recv(exp, source=self.partner, tag=0)    
+      print("before send in env init")
+      self.comm.Send(snd, dest=self.partner, tag=3) #send init tag
+      print("beofore init receive in env") 
+      self.comm.Recv(exp, source=self.partner, tag=0)
+      print("after init receive in chem env")    
       self.state = exp[:2] 
       self.reward = exp[2]
       self.done = exp[3] 
@@ -58,8 +61,11 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       env_data[2]=self.state[0]
       env_data[3]=self.state[1]
       env_data=env_data.astype(float)   
+      print("before sending in env step")
       self.comm.Send(env_data, dest=self.partner, tag=0) #zero is the action tag
+      print("Before step receive in chem env")
       self.comm.Recv(temp, source=self.partner, tag=0)
+      print("After step receive in chem env")
       self.state = temp[:2]
       self.reward=temp[2]
       self.done=temp[3]
@@ -85,10 +91,10 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
     def reset(self):
       s=np.array([0.0,1.0,2.0,3.0])  
       s=s.astype(float) 
-
+      print("before sending in env reset")
       self.comm.Send(s, dest=self.partner, tag=1) #one is the reset tag
+      print("before reset receive in chem env")
       self.comm.Recv(s, source=self.partner, tag=0)
-
       self.state = s[0:1]
       self.reward = s[2]
       self.done = s[3]

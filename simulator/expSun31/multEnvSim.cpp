@@ -149,6 +149,7 @@ int main(void) {
     }
     else if(status.MPI_TAG == 3){ //init
        MPI_Send(foo, 8, MPI_DOUBLE, partner, 0, MPI_COMM_WORLD);
+       continue;
     }
     else{ //action	
       int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
@@ -239,6 +240,8 @@ static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>
     double x1inv = 1/x1scale;
 
     *reward=calcReward(x,xsp,x0inv,x1inv);
+    
+    }
 }
 
 void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
