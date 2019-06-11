@@ -133,9 +133,7 @@ int main(void) {
     MPI_Status status;
     double env_data[4]; //action and state info coming from the environment
     double ret_data[4]; //state, reward, and done status being returned to env
-    cout<<"Before receiving env_data in simulator"<<endl;
     MPI_Recv(env_data, 4, MPI_DOUBLE, partner, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
-    cout<<"After receiving env_data in simulator"<<endl;
     u0[0] = env_data[0];
     u0[1] = env_data[1]; 
     NV_Ith_S(x,0) = env_data[2];
@@ -241,7 +239,7 @@ static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>
 
     *reward=calcReward(x,xsp,x0inv,x1inv);
     
-    }
+    
 }
 
 void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
