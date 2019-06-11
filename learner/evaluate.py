@@ -103,7 +103,6 @@ if __name__ == '__main__':
       split_k = mname[0].split('k')
       num = str(int(split_k[1]))         
       con_name = split_k[0]+'k'+num
-          
       model.load(workdir+"/autovalves/learner/models/"+con_name)
       eval_runner=Runner(env=env, model=model, nsteps=nsteps, gamma=gamma, lam=lam)
       count = 0
