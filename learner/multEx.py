@@ -16,7 +16,7 @@ size=comm.Get_size()
 partner = rank - (size/2)
 partner=int(partner)
 
-def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber):
+def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber, numenvs):
     from baselines.common.vec_env.vec_normalize import VecNormalize
     from baselines.common import set_global_seeds
     #from baselines.ppo2.policies import MlpPolicy
@@ -35,7 +35,7 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber):
                             inter_op_parallelism_threads=ncpu)
     tf.Session(config=config).__enter__()
 
-    env = DummyVecEnv([lambda:ChemicalEnv(comm)])
+    env = DummyVecEnv([lambda:ChemicalEnv(comm) for i in numenvs])
 
     env = VecNormalize(env)
    # set_global_seeds(seed)
@@ -53,6 +53,7 @@ if __name__ == '__main__':
     parser.add_argument('vcfs',help='comma-separated list of value coefficents')
     parser.add_argument('nlyrs', help='comma-separated list of layer numbers')
     parser.add_argument('slyrs', help='comma-separated list of layer sizes')
+    parser.add_argument('numenvs', help='comma-separated list of layer sizes')
     args=parser.parse_args()
     lrs=[float(lr) for lr in args.lrs.split(',')]
     tss=[int(ts) for ts in args.tss.split(',')]
@@ -60,6 +61,7 @@ if __name__ == '__main__':
     vcfs=[float(vcf) for vcf in args.vcfs.split(',')]
     nlyrs=[int(lyr) for lyr in args.nlyrs.split(',')]
     slyrs=[int(sz) for sz in args.slyrs.split(',')]
+    numenvs=[int(ne) for ne in args.numenvs.split(',')]
     workdir=os.getenv("WORKDIR")
     jobnumber=os.getenv("PBS_JOBID").split('.')[0]
     logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber)
@@ -71,7 +73,7 @@ if __name__ == '__main__':
     logger.log("Value Coefficent: ",vcfs[partner])
     logger.log("Number of Layers: ", nlyrs[partner])
     logger.log("Width of Layers: ", slyrs[partner])
-    train(lrs[partner], tss[partner], entps[partner], vcfs[partner], nlyrs[partner], slyrs[partner],jobnumber)
+    train(lrs[partner], tss[partner], entps[partner], vcfs[partner], nlyrs[partner], slyrs[partner],jobnumber,numenvs[partner])
     temp = np.array([0,1,2,3])
     temp = temp.astype(float)
     comm.Send(temp, dest=partner, tag=2) #two is the exit tag
