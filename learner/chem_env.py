@@ -28,7 +28,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       self.state = np.array([0.5, 350])
       
       exp=np.empty(8)
-      
+      self.comm.Send(exp, dest=self.partner, tag=3) #send init tag 
       self.comm.Recv(exp, source=self.partner, tag=0)    
       self.state = exp[:2] 
       self.reward = exp[2]
@@ -50,7 +50,13 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
           action[i]=high[i]
       action=action.astype(float)
       assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
-      self.comm.Send(action, dest=self.partner, tag=0) #zero is the action tag
+      env_data= np.empty(4)
+      env_data[0]=action[0]
+      env_data[1]=action[1]
+      env_data[2]=self.state[0]
+      env_data[3]=self.state[1]
+   
+      self.comm.Send(env_data, dest=self.partner, tag=0) #zero is the action tag
       self.comm.Recv(temp, source=self.partner, tag=0)
       self.state = temp[:2]
       self.reward=temp[2]
@@ -79,9 +85,7 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       a[0] = 1.0
       a[1] = 1.0
       
-      s= np.empty(4)
-           
-       
+      s= np.empty(4)    
 
       self.comm.Send(a, dest=self.partner, tag=1) #one is the reset tag
       self.comm.Recv(s, source=self.partner, tag=0)
