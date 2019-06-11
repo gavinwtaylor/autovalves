@@ -27,8 +27,10 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
       self.state = np.array([0.5, 350])
       
+      snd=np.array([0,1,2,3])
       exp=np.empty(8)
-      self.comm.Send(exp, dest=self.partner, tag=3) #send init tag 
+      snd=snd.astype(float)
+      self.comm.Send(snd, dest=self.partner, tag=3) #send init tag 
       self.comm.Recv(exp, source=self.partner, tag=0)    
       self.state = exp[:2] 
       self.reward = exp[2]
@@ -81,13 +83,10 @@ class ChemicalEnv(gym.Env, utils.EzPickle):
       pass
        
     def reset(self):
-      a = np.empty(2)
-      a[0] = 1.0
-      a[1] = 1.0
-      a=a.astype(float)
-      s= np.empty(4)    
+      s=np.array([0.0,1.0,2.0,3.0])  
+      s=s.astype(float) 
 
-      self.comm.Send(a, dest=self.partner, tag=1) #one is the reset tag
+      self.comm.Send(s, dest=self.partner, tag=1) #one is the reset tag
       self.comm.Recv(s, source=self.partner, tag=0)
 
       self.state = s[0:1]
