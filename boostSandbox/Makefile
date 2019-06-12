@@ -1,4 +1,4 @@
-BOOST_ROOT := /gpfs/scratch/gvtaylor/boost
+BOOST_ROOT := $(WORKDIR)/boost
 PYTHON_ROOT := /gpfs/pkgs/mhpcc/anaconda3-5.0.1
 PYTHON_INC := $(PYTHON_ROOT)/include/python3.6m
 PYTHON_LIB_LOCATION := $(PYTHON_ROOT)/lib
