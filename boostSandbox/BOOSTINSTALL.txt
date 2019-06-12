@@ -4,3 +4,4 @@ cd boost_1_68_0.tar.gz
 ./bootstrap.sh --with-python=/gpfs/pkgs/mhpcc/anaconda3-5.0.1/bin/python --prefix=$WORKDIR/boost --with-toolset=gcc --with-libraries=python
 export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/gpfs/pkgs/mhpcc/anaconda3-5.0.1/include/python3.6m/"
 ./b2 install
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$WORKDIR/boost/lib"
