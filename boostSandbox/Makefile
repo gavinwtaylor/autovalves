@@ -13,7 +13,7 @@ CInc := -I$(BOOST_INC) -I$(PYTHON_INC)
 
 CLinkFlags = -shared -Wl,-soname,$@ -Wl,-rpath -L$(BOOST_LIB_LOCATION) -L$(PYTHON_LIB_LOCATION) -lpython3.6m -l$(BOOST_LIB_FILE)
 
-all: adder.so hello.so world.so
+all: adder.so hello.so world.so rabbit.so
 
 %.so: %.cpp
 	$(CC) $^ $(CFLAGS) $(CInc) $(CLinkFlags) -o $@
