@@ -8,22 +8,15 @@ BOOST_LIB_FILE := boost_python36
 
 CC := gcc
 
-CFLAGS := -c -fPIC
+CFLAGS := -fPIC
 CInc := -I$(BOOST_INC) -I$(PYTHON_INC)
 
 CLinkFlags = -shared -Wl,-soname,$@ -Wl,-rpath -L$(BOOST_LIB_LOCATION) -L$(PYTHON_LIB_LOCATION) -lpython3.6m -l$(BOOST_LIB_FILE)
 
-all: hello.so world.so
+all: adder.so hello.so world.so
 
-world.so: world.o
-
-hello.so: hello.o
-
-%.so: %.o
-	$(CC) $^ $(CLinkFlags) -o $@
-
-%.o: %.cpp
-	$(CC) $(CFLAGS) $(CInc) $^
+%.so: %.cpp
+	$(CC) $^ $(CFLAGS) $(CInc) $(CLinkFlags) -o $@
 
 clean:
 	rm *.o *.so
