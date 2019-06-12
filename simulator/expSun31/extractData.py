@@ -9,7 +9,7 @@ rank=comm.Get_rank()
 size=comm.Get_size()
 
 workDir = os.getenv('WORKDIR')
-h5list = glob.glob(workDir + '/autovalves/learner/hdf5/*')
+h5list = glob.glob(workDir + '/autovalves/learner/hdf5/*.hdf5')
 fCount = len(h5list)
 
 startIndex = rank * (fCount//size) + min(rank, (fCount % size))
@@ -26,6 +26,10 @@ for name in h5list:
         rewardAvg = 0
         stateAvg = 0
         numFiles = 0
+     
+        if (len(f.keys()) == 0):
+            print('There are no files in the hdf5 files')
+            exit()
 
         for page in f:
             #AVERAGE FOR REWARD IN ONE RUN
