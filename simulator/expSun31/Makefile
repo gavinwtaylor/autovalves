@@ -38,6 +38,5 @@ multEnvSim: multEnvSim.cpp
 chesSimEnv.so: chesSimEnv.cpp
 	$(CC) chesSimEnv.cpp $(CFLAGS) $(CInc) -I$(BOOST_INC) -I$(PYTHON_INC) -I$(CVODE_INC) $(CLinkFlags) -L$(PYTHON_LIB_LOCATION) -L$(BOOST_LIB_LOCATION) -L$(CVODE_LIB_LOCATION) -l$(PYTHON_LIB_FILE) -l$(BOOST_LIB_FILE) -l$(CVODE_LIB_FILE) -o chesSimEnv.so
 
-gtSimEnv.so: gtSimEnv.cpp
-	$(CC) gtSimEnv.cpp $(CFLAGS) $(CInc) -I$(BOOST_INC) -I$(PYTHON_INC) -I$(CVODE_INC) $(CLinkFlags) -L$(PYTHON_LIB_LOCATION) -L$(BOOST_LIB_LOCATION) -L$(CVODE_LIB_LOCATION) -l$(PYTHON_LIB_FILE) -l$(BOOST_LIB_FILE) -l$(CVODE_LIB_FILE) -o gtSimEnv.so
-
+cstr.so: gtSimEnv.cpp gtSimEnv.h
+	$(CC) gtSimEnv.cpp $(CFLAGS) $(CInc) -I$(BOOST_INC) -I$(PYTHON_INC) -I$(CVODE_INC) $(CLinkFlags) -L$(PYTHON_LIB_LOCATION) -L$(BOOST_LIB_LOCATION) -L$(CVODE_LIB_LOCATION) -l$(PYTHON_LIB_FILE) -l$(BOOST_LIB_FILE) -l$(CVODE_LIB_FILE) -o cstr.so
