@@ -12,7 +12,7 @@ import argparse
 from mpi4py import MPI
 from baselines.common.vec_env.vec_normalize import VecNormalize
 from baselines.common.vec_env.dummy_vec_env import DummyVecEnv
-from chem_env import ChemicalEnv
+from multChem_env import ChemicalEnv
 from baselines.ppo2.model import Model
 from baselines.common.policies import build_policy
 import tensorflow as tf
@@ -105,13 +105,11 @@ if __name__ == '__main__':
       con_name = split_k[0]+'k'+num
           
       model.load(workdir+"/autovalves/learner/models/"+con_name)
-      print("I am about to work with model ", con_name)
       eval_runner=Runner(env=env, model=model, nsteps=nsteps, gamma=gamma, lam=lam)
       count = 0
       obs, returns, masks, actions, values, neglogpacs, states, epinfos = None, None, None, None, None, None,None, None 
 
       f = h5py.File(workdir+"/autovalves/learner/hdf5/"+mname[0]+".hdf5","w")
-      print("Working with hdf5 file ", mname[0])
       while(count < int(args.numtrue)):
         eval_obs, eval_returns, eval_masks, eval_actions, eval_values, eval_neglogpacs, eval_states, eval_epinfos =eval_runner.run()
 
@@ -158,6 +156,6 @@ if __name__ == '__main__':
         dset3[:]=rewards[lastone+1:thisone+1]
         lastone=ind
   
-  temp = np.array([0,1])
-  temp=temp.astype(float) 
+  temp = np.array([0,1,2,3])
+  temp=temp.astype(float)
   comm.Send(temp, dest=partner, tag=2)    

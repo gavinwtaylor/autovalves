@@ -133,9 +133,7 @@ int main(void) {
     MPI_Status status;
     double env_data[4]; //action and state info coming from the environment
     double ret_data[4]; //state, reward, and done status being returned to env
-    cout<<"Before receiving env_data in simulator"<<endl;
     MPI_Recv(env_data, 4, MPI_DOUBLE, partner, MPI_ANY_TAG, MPI_COMM_WORLD,&status);
-    cout<<"After receiving env_data in simulator"<<endl;
     u0[0] = env_data[0];
     u0[1] = env_data[1]; 
     NV_Ith_S(x,0) = env_data[2];
@@ -217,30 +215,31 @@ bool withinOval(N_Vector x,double x0scale,double x1scale){
 }
 
 static void reset(vector<double>* u0, N_Vector& x, N_Vector& xsp, vector<double>* rdat, int* i, double* rad, double x0scale, double x1scale, void* cvode_mem, double* reward){
-  (*u0)[0] = 0; 
-  (*u0)[1] = 0;   
-  *i = 0; 
-  (*rdat).clear(); 
+    (*u0)[0] = 0; 
+    (*u0)[1] = 0;   
+    *i = 0; 
+    (*rdat).clear(); 
 
-  // initialize x in a circle surroudning the region of interestit** 
-  // set rad to random number between 0 and 2 pi...would happen in initial set up and when you reset
-  *rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
-  *rad = 2;
-  NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(*rad); // mol/m3
-  NV_Ith_S(x, 1)   = 375 + x1scale * sin(*rad); // deg K
+    // initialize x in a circle surroudning the region of interestit** 
+    // set rad to random number between 0 and 2 pi...would happen in initial set up and when you reset
+    *rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
+    *rad = 2;
+    NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(*rad); // mol/m3
+    NV_Ith_S(x, 1)   = 375 + x1scale * sin(*rad); // deg K
 
-  // new setpoint
-  // STANDARD SETPOINT
-  NV_Ith_S(xsp, 0)   = 0.57; // mol/m3
-  NV_Ith_S(xsp, 1)   = 395.3; // deg K
+    // new setpoint
+    // STANDARD SETPOINT
+    NV_Ith_S(xsp, 0)   = 0.57; // mol/m3
+    NV_Ith_S(xsp, 1)   = 395.3; // deg K
 
-  // reinitialize the integrator --> **reset**
-  CVodeReInit(cvode_mem, RCONST(0.0),x);
-  double x0inv = 1/x0scale;
-  double x1inv = 1/x1scale;
+    // reinitialize the integrator --> **reset**
+    CVodeReInit(cvode_mem, RCONST(0.0),x);
+    double x0inv = 1/x0scale;
+    double x1inv = 1/x1scale;
 
-  *reward=calcReward(x,xsp,x0inv,x1inv);
-
+    *reward=calcReward(x,xsp,x0inv,x1inv);
+    
+    
 }
 
 void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
