@@ -146,8 +146,8 @@ int main(void) {
       reset(&u0, x, xsp,&rdat,&i,&rad,x0scale,x1scale,cvode_mem,&reward);
     }
     else if(status.MPI_TAG == 3){ //init
-       MPI_Send(foo, 8, MPI_DOUBLE, partner, 0, MPI_COMM_WORLD);
-       continue;
+      MPI_Send(foo, 8, MPI_DOUBLE, partner, 0, MPI_COMM_WORLD);
+      continue;
     }
     else{ //action	
       int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
@@ -180,7 +180,7 @@ int main(void) {
     MPI_Send(ret_data, 4, MPI_DOUBLE, partner, 0, MPI_COMM_WORLD);
 
   }
-  
+
   return(0);
 }
 
@@ -273,7 +273,7 @@ void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
   // recast the user data pointer
   vector<double>* u = static_cast< vector<double>* >(user_data); 
- 
+
   // Precalculate some common terms.
   realtype intermed = k0 * NV_Ith_S(x,0) * exp( -E / (R * NV_Ith_S(x,1)) );
 
