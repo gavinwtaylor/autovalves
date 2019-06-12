@@ -1,3 +1,6 @@
+#include <boost/python.hpp>
+using namespace boost::python;
+
 class Adder {
   private:
     double a,b;
@@ -16,10 +19,11 @@ class Adder {
     double add() {
       return a+b;
     }
+    tuple getter() { //tuple and make_tuple are in boost::python
+      return make_tuple(a,b);
+    }
 };
 
-#include <boost/python.hpp>
-using namespace boost::python;
 
 BOOST_PYTHON_MODULE(adder)
 {
@@ -27,5 +31,6 @@ BOOST_PYTHON_MODULE(adder)
     .def("setA", &Adder::setA)
     .def("setB", &Adder::setB)
     .def("add", &Adder::add)
+    .def("getter", &Adder::getter)
     ;
 }

@@ -19,4 +19,4 @@ all: adder.so hello.so world.so rabbit.so
 	$(CC) $^ $(CFLAGS) $(CInc) $(CLinkFlags) -o $@
 
 clean:
-	rm *.o *.so
+	rm *.so
