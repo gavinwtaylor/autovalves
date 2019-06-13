@@ -80,6 +80,26 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
 
   return(0);
 }
+
+bool CSTREnv::steadyCheck(){
+  if (numsteps >= REWARDCHECK) {
+    double rewardsum = 0;
+    for (int j=rdat.size() - 1; j >= rdat.size() - REWARDCHECK; j--)
+      rewardsum = rewardsum + fabs(rdat[j]);
+    // stop if our reward is smaller than our cumulative tolerance over three iterations
+    if (REWARDTOL > rewardsum){
+      cout << "YES! STEADY STATE"<<endl;
+      return true;
+    }
+  }
+  return false;
+}
+bool CSTREnv::withinOval(){
+  double centerx0=(NV_Ith_S(x,0)-.55)/x0scale;
+  double centerx1=(NV_Ith_S(x,1)-375)/x1scale;
+  double dist=centerx0*centerx0+centerx1*centerx1;
+  return dist<1;
+}
 /*
 int main(void) {
   int k;
@@ -222,27 +242,8 @@ int main(void) {
   return(0);
   }
 
-  bool steadyCheck(vector<double> rdat, int rewardcheck, double rewardtol,int i) {
-    if (i >= rewardcheck) {
-      double rewardsum = 0;
-      for (int j=rdat.size() - 1; j >= rdat.size() - rewardcheck; j--)
-        rewardsum = rewardsum + fabs(rdat[j]);
-      // stop if our reward is smaller than our cumulative tolerance over three iterations
-      if (rewardtol > rewardsum){
-        cout << "YES! STEADY STATE"<<endl;
-        return true;
-      }
-    }
-    return false;
-  }
 
 
-  bool withinOval(N_Vector x,double x0scale,double x1scale){
-    double centerx0=(NV_Ith_S(x,0)-.55)/x0scale;
-    double centerx1=(NV_Ith_S(x,1)-375)/x1scale;
-    double dist=centerx0*centerx0+centerx1*centerx1;
-    return dist<1;
-  }
 
 
   void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
