@@ -154,7 +154,6 @@ int main(void) {
 
       reward=calcReward(x,xsp,x0scaleinverse,x1scaleinverse);      
       if(!withinOval(x, x0scale, x1scale)){
-        reward=reward*100;
         done = 1;
       }
 

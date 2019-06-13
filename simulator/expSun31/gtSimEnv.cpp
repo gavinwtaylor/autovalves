@@ -16,12 +16,32 @@ CSTREnv::CSTREnv():u0(2,0),numsteps(0),x0scale(0.45),x1scale(65) {
   CVodeSetUserData(cvode_mem, &u0);                // sets the user data pointer
   // TEMP
   // execute for 1 minute
-  realtype tstep = RCONST(0.01); // the reporting interval / the time between updates to the control variabels.
-  realtype tfin = RCONST(10); // the desired final time
-  realtype t; // the time at the end of the integrator, which may be earlier than tout if it failed
-  maxit = tfin / tstep + RCONST(100);
 
   reset();
+}
+boost::python::tuple CSTREnv::step(boost::python::tuple action){
+  u0[0]=boost::python::extract<double>(action[0]);
+  u0[1]=boost::python::extract<double>(action[1]);
+  int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
+  double reward=calcReward();      
+  bool done = false;
+  if(!withinOval())
+    done = true;
+  rdat.push_back(reward);	
+  done = steadyCheck();
+  if (flag < 0) {
+    cout << "CVode error"  << endl;
+    done=true;
+  }
+
+  numsteps++;
+
+  if(numsteps >= maxit)
+    done = true;
+
+  boost::python::tuple state=boost::python::make_tuple(NV_Ith_S(x,0),NV_Ith_S(x,1));
+  boost::python::tuple retVal=boost::python::make_tuple(state,reward,done);
+  return retVal;
 }
 
 double CSTREnv::calcReward(){
@@ -35,6 +55,10 @@ double CSTREnv::calcReward(){
 }
 
 void CSTREnv::reset(){
+  tstep = RCONST(0.01); // the reporting interval / the time between updates to the control variabels.
+  realtype tfin = RCONST(10); // the desired final time
+  t = RCONST(0.000);
+  maxit = tfin / tstep + RCONST(100);
   u0[0] = 0; 
   u0[1] = 0;   
   numsteps = 0; 
@@ -268,5 +292,6 @@ using namespace boost::python;
 BOOST_PYTHON_MODULE(cstr){
   class_<CSTREnv>("CSTREnv")
     .def("reset", &CSTREnv::reset)
+    .def("step", &CSTREnv::step)
     ;
 }
