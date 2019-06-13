@@ -30,8 +30,17 @@ for name in h5list:
         if (len(f.keys()) == 0):
             print('There are no files in the hdf5 files')
             exit()
-
+        
+        maxR = -100
         for page in f:
+            #MAX REWARD
+            l=f[page]['rewards']
+            rewards=l[:]
+            for i in rewards:
+                if (maxR < i):
+                    maxR = i
+           
+
             #AVERAGE FOR REWARD IN ONE RUN
             l=f[page]['rewards']
             rewards=l[-10:]
@@ -52,8 +61,9 @@ for name in h5list:
 
         rewardAvg /= numFiles
         stateAvg /= numFiles
-
+        
         print('File name = ', name)
+        print('Max reward = ', maxR)
         print('Average rewards = ', rewardAvg)
         print('Average # of states = ', stateAvg)
         print('Total # of files = ', numFiles, '\n\n')
