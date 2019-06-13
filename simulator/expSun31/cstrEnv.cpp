@@ -1,4 +1,4 @@
-#include "gtSimEnv.h"
+#include "cstrEnv.h"
 
 CSTREnv::CSTREnv():u0(2,0),numsteps(0),x0scale(0.45),x1scale(65) {
   xsp=N_VNew_Serial(2);
