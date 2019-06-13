@@ -16,12 +16,32 @@ CSTREnv::CSTREnv():u0(2,0),numsteps(0),x0scale(0.45),x1scale(65) {
   CVodeSetUserData(cvode_mem, &u0);                // sets the user data pointer
   // TEMP
   // execute for 1 minute
-  realtype tstep = RCONST(0.01); // the reporting interval / the time between updates to the control variabels.
-  realtype tfin = RCONST(10); // the desired final time
-  realtype t; // the time at the end of the integrator, which may be earlier than tout if it failed
-  maxit = tfin / tstep + RCONST(100);
 
   reset();
+}
+boost::python::tuple CSTREnv::step(boost::python::tuple action){
+  u0[0]=boost::python::extract<double>(action[0]);
+  u0[1]=boost::python::extract<double>(action[1]);
+  int flag = CVode(cvode_mem, t + tstep, x, &t, CV_NORMAL);
+  double reward=calcReward();      
+  bool done = false;
+  if(!withinOval())
+    done = true;
+  rdat.push_back(reward);	
+  done = steadyCheck();
+  if (flag < 0) {
+    cout << "CVode error"  << endl;
+    done=true;
+  }
+
+  numsteps++;
+
+  if(numsteps >= maxit)
+    done = true;
+
+  boost::python::tuple state=boost::python::make_tuple(NV_Ith_S(x,0),NV_Ith_S(x,1));
+  boost::python::tuple retVal=boost::python::make_tuple(state,reward,done);
+  return retVal;
 }
 
 double CSTREnv::calcReward(){
@@ -35,6 +55,10 @@ double CSTREnv::calcReward(){
 }
 
 void CSTREnv::reset(){
+  tstep = RCONST(0.01); // the reporting interval / the time between updates to the control variabels.
+  realtype tfin = RCONST(10); // the desired final time
+  t = RCONST(0.000);
+  maxit = tfin / tstep + RCONST(100);
   u0[0] = 0; 
   u0[1] = 0;   
   numsteps = 0; 
@@ -79,6 +103,26 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
   NV_Ith_S(xp,1) = (F/V) * (TIN - NV_Ith_S(x,1)) + ( DH/(cp * rho) ) * intermed + (*u)[1] / (cp * rho * V);
 
   return(0);
+}
+
+bool CSTREnv::steadyCheck(){
+  if (numsteps >= REWARDCHECK) {
+    double rewardsum = 0;
+    for (int j=rdat.size() - 1; j >= rdat.size() - REWARDCHECK; j--)
+      rewardsum = rewardsum + fabs(rdat[j]);
+    // stop if our reward is smaller than our cumulative tolerance over three iterations
+    if (REWARDTOL > rewardsum){
+      cout << "YES! STEADY STATE"<<endl;
+      return true;
+    }
+  }
+  return false;
+}
+bool CSTREnv::withinOval(){
+  double centerx0=(NV_Ith_S(x,0)-.55)/x0scale;
+  double centerx1=(NV_Ith_S(x,1)-375)/x1scale;
+  double dist=centerx0*centerx0+centerx1*centerx1;
+  return dist<1;
 }
 /*
 int main(void) {
@@ -222,27 +266,8 @@ int main(void) {
   return(0);
   }
 
-  bool steadyCheck(vector<double> rdat, int rewardcheck, double rewardtol,int i) {
-    if (i >= rewardcheck) {
-      double rewardsum = 0;
-      for (int j=rdat.size() - 1; j >= rdat.size() - rewardcheck; j--)
-        rewardsum = rewardsum + fabs(rdat[j]);
-      // stop if our reward is smaller than our cumulative tolerance over three iterations
-      if (rewardtol > rewardsum){
-        cout << "YES! STEADY STATE"<<endl;
-        return true;
-      }
-    }
-    return false;
-  }
 
 
-  bool withinOval(N_Vector x,double x0scale,double x1scale){
-    double centerx0=(NV_Ith_S(x,0)-.55)/x0scale;
-    double centerx1=(NV_Ith_S(x,1)-375)/x1scale;
-    double dist=centerx0*centerx0+centerx1*centerx1;
-    return dist<1;
-  }
 
 
   void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem) {
@@ -267,5 +292,6 @@ using namespace boost::python;
 BOOST_PYTHON_MODULE(cstr){
   class_<CSTREnv>("CSTREnv")
     .def("reset", &CSTREnv::reset)
+    .def("step", &CSTREnv::step)
     ;
 }

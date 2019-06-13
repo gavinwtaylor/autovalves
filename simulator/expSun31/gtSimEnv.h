@@ -29,6 +29,7 @@ namespace bp = boost::python;
 #include <sunlinsol/sunlinsol_dense.h> /* access to dense SUNLinearSolver      */
 
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data);
+
 #define REWARDTOL 0.0001
 #define REWARDCHECK 10
   // define model constants 
@@ -47,7 +48,6 @@ class CSTREnv {
     N_Vector x;
     N_Vector xsp;
     N_Vector abstol;
-    void* user_data;
     realtype reltol;
     realtype maxit;
     vector<double> u0;
@@ -56,17 +56,19 @@ class CSTREnv {
     double x1scale;
     vector<double> rdat;
     double rad;
+    realtype t;
+    realtype tstep;
     
     double calcReward();
+    bool steadyCheck();
+    bool withinOval();
 
   public:
     CSTREnv();
     ~CSTREnv();
     void reset();
+    boost::python::tuple step(boost::python::tuple);
 
 };
 // prototype for the function we have
-void cleanUp(N_Vector& x, N_Vector& abstol, void* cvode_mem);
-bool steadyCheck(vector<double> rdat, int rewardcheck, double rewardtol,int i);
-bool withinOval(N_Vector x,double x0scale,double x1scale);
 #endif
