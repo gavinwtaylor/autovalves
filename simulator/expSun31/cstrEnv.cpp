@@ -1,5 +1,8 @@
 #include "cstrEnv.h"
 
+/**
+ * Constructor.  Defines initial state, setpoints, etc.  Depends upon reset()
+ */
 CSTREnv::CSTREnv():u0(2,0),numsteps(0),x0scale(0.45),x1scale(65) {
   xsp=N_VNew_Serial(2);
   x=N_VNew_Serial(2);
@@ -17,6 +20,12 @@ CSTREnv::CSTREnv():u0(2,0),numsteps(0),x0scale(0.45),x1scale(65) {
 
   reset();
 }
+
+/**
+ * Assumes a 2-element action and 2-element state.  Input is a 2-element tuple, representing the actions
+ * assumed to have already been clipped.  Returns a 3-element tuple (state, reward, done), where state
+ * is a 2-element tuple, reward is a double, and done is a boolean.
+ */
 boost::python::tuple CSTREnv::step(boost::python::tuple action){
   u0[0]=boost::python::extract<double>(action[0]);
   u0[1]=boost::python::extract<double>(action[1]);
@@ -42,6 +51,7 @@ boost::python::tuple CSTREnv::step(boost::python::tuple action){
   return retVal;
 }
 
+/* Calculates the squared distance from the setpoint, scaled by x0scale, and x1scale */
 double CSTREnv::calcReward(){
   double x0scaleinverse=1/x0scale;
   double x1scaleinverse=1/x1scale;
@@ -52,6 +62,7 @@ double CSTREnv::calcReward(){
   return r;
 }
 
+/* Resets without having to rebuild the object, required by baselines */
 void CSTREnv::reset(){
   tstep = RCONST(0.01); // the reporting interval / the time between updates to the control variabels.
   realtype tfin = RCONST(10); // the desired final time
@@ -78,6 +89,7 @@ void CSTREnv::reset(){
   CVodeReInit(cvode_mem, RCONST(0.0),x);
 }
 
+/* Destructor, deallocating memory when the python garbage collector cleans it up*/
 CSTREnv::~CSTREnv(){
   N_VDestroy_Serial(x);
   N_VDestroy_Serial(xsp);
@@ -87,6 +99,39 @@ CSTREnv::~CSTREnv(){
   CVodeFree(&cvode_mem);
 }
 
+/* Returns true if we've been close enough to the setpoint for long enough, as determined by
+ * REWARDTOL and REWARDCHECK
+ */
+bool CSTREnv::steadyCheck(){
+  if (numsteps >= REWARDCHECK) {
+    double rewardsum = 0;
+    for (int j=rdat.size() - 1; j >= rdat.size() - REWARDCHECK; j--)
+      rewardsum = rewardsum + fabs(rdat[j]);
+    // stop if our reward is smaller than our cumulative tolerance over three iterations
+    if (REWARDTOL > rewardsum){
+      cout << "YES! STEADY STATE"<<endl;
+      return true;
+    }
+  }
+  return false;
+}
+
+/* Returns if we're within the stable oval, or if we're out where there be dragons */
+bool CSTREnv::withinOval(){
+  double centerx0=(NV_Ith_S(x,0)-.55)/x0scale;
+  double centerx1=(NV_Ith_S(x,1)-375)/x1scale;
+  double dist=centerx0*centerx0+centerx1*centerx1;
+  return dist<1;
+}
+
+/* Returns a tuple containing what's necessary to compute a reward: the setpoint (as a 2-element tuple),
+ * the x0scale, and the x1scale. */
+boost::python::tuple CSTREnv::getrewardstuff() {
+  boost::python::tuple setpoint = boost::python::make_tuple(NV_Ith_S(xsp,0),NV_Ith_S(xsp,1));
+  return boost::python::make_tuple(setpoint, x0scale, x1scale);
+}
+
+/* RHS to the integrator (did I use those words right?) */
 static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
   // recast the user data pointer
   vector<double>* u = static_cast< vector<double>* >(user_data); 
@@ -104,30 +149,12 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
   return(0);
 }
 
-bool CSTREnv::steadyCheck(){
-  if (numsteps >= REWARDCHECK) {
-    double rewardsum = 0;
-    for (int j=rdat.size() - 1; j >= rdat.size() - REWARDCHECK; j--)
-      rewardsum = rewardsum + fabs(rdat[j]);
-    // stop if our reward is smaller than our cumulative tolerance over three iterations
-    if (REWARDTOL > rewardsum){
-      cout << "YES! STEADY STATE"<<endl;
-      return true;
-    }
-  }
-  return false;
-}
-bool CSTREnv::withinOval(){
-  double centerx0=(NV_Ith_S(x,0)-.55)/x0scale;
-  double centerx1=(NV_Ith_S(x,1)-375)/x1scale;
-  double dist=centerx0*centerx0+centerx1*centerx1;
-  return dist<1;
-}
-
+/* Exposes the constructor, reset, and step functions for use as a Python module */
 using namespace boost::python;
 BOOST_PYTHON_MODULE(cstr){
   class_<CSTREnv>("CSTREnv")
     .def("reset", &CSTREnv::reset)
     .def("step", &CSTREnv::step)
+    .def("getrewardstuff", &CSTREnv::getrewardstuff)
     ;
 }
