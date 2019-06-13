@@ -79,8 +79,7 @@ int main(void) {
 
   N_Vector abstol  = N_VNew_Serial(2); // the vector of absolute tolerances
   NV_Ith_S(abstol, 0) = RCONST(1.0e-8);  // ok with CA (0...2) to the 1e-8      mol/m3
-  NV_Ith_S(abstol, 1) = RCONST(1.0e-6);  // ok with T (300-400) to the 1e06
-
+  NV_Ith_S(abstol, 1) = RCONST(1.0e-6);  // ok with T (300-400) to the 1e06 
   realtype reltol  = RCONST(1.0e-4); // ok with relative error of 0.01%
 
   // Create the CV ODE memory space and provide settings.
