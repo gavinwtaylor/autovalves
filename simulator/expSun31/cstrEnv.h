@@ -44,31 +44,29 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data);
 #define R    RCONST(8.314)   // kJ/kmol-K
 class CSTREnv {
   private:
-    void* cvode_mem;
-    N_Vector x;
-    N_Vector xsp;
-    N_Vector abstol;
-    realtype reltol;
-    realtype maxit;
-    vector<double> u0;
-    int numsteps;
-    double x0scale;
-    double x1scale;
-    vector<double> rdat;
-    double rad;
-    realtype t;
-    realtype tstep;
+    void* cvode_mem;  //cvode memory
+    N_Vector x;       //current location
+    N_Vector xsp;     //setpoint
+    N_Vector abstol;  //not sure!
+    realtype reltol;  //not sure!
+    realtype maxit;   //total number of iterations before quitting
+    vector<double> u0;//action location
+    int numsteps;     //total number of iterations so far
+    double x0scale;   //defines oval
+    double x1scale;   //defines oval
+    vector<double> rdat; //all the rewards
+    realtype t;       //time...?
+    realtype tstep;   //size of each timestep
     
-    double calcReward();
-    bool steadyCheck();
-    bool withinOval();
+    double calcReward(); //given current state, what's the reward
+    bool steadyCheck();  //have we balanced for 10 steps at setpoint
+    bool withinOval();   //are we within the stable oval
 
   public:
-    CSTREnv();
-    ~CSTREnv();
-    void reset();
-    boost::python::tuple step(boost::python::tuple);
+    CSTREnv(); //constructor
+    ~CSTREnv();//destructor
+    void reset();//reset everything
+    boost::python::tuple step(boost::python::tuple);//apply one action
 
 };
-// prototype for the function we have
 #endif
