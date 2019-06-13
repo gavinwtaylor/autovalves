@@ -51,8 +51,7 @@ boost::python::tuple CSTREnv::step(boost::python::tuple action){
   return retVal;
 }
 
-/* Calculates the squared distance from the setpoint, scaled by x0scale, and x1scale
- */
+/* Calculates the squared distance from the setpoint, scaled by x0scale, and x1scale */
 double CSTREnv::calcReward(){
   double x0scaleinverse=1/x0scale;
   double x1scaleinverse=1/x1scale;

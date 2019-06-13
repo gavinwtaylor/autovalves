@@ -36,8 +36,14 @@ class CSTREnvironment(gym.Env, utils.EzPickle):
     state,reward,done=self.realEnv.step(action)
     return np.array(state),reward,done,{}
 
-ce=CSTREnvironment()
-print(ce.step(np.array([0,0])))
-ce.reset()
-print(ce.step(np.array([0,0])))
-print(ce.step(np.array([0,0])))
+  def getrewardstuff(self):
+    setpoint, x0scale,x1scale=self.realEnv.getrewardstuff()
+    return np.array(setpoint),x0scale,x1scale
+
+#ce=CSTREnvironment()
+#sp,x0scale,x1scale=ce.getrewardstuff()
+#print(sp,x0scale,x1scale)
+#print(ce.step(np.array([0,0])))
+#ce.reset()
+#print(ce.step(np.array([0,0])))
+#print(ce.step(np.array([0,0])))
