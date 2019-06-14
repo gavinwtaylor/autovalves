@@ -9,7 +9,6 @@ from baselines import logger
 from collections import deque
 from baselines.ppo2.runner import Runner
 import argparse
-from mpi4py import MPI
 from baselines.common.vec_env.vec_normalize import VecNormalize
 from baselines.common.vec_env.dummy_vec_env import DummyVecEnv
 from multChem_env import ChemicalEnv
