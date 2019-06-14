@@ -1,14 +1,14 @@
 import itertools
 import subprocess
 
-lrs = [1e-2, 1e-4, 1e-6]
-numiters = [5000]
+lrs = [1e-6, 1e-8, 1e-10]
+numiters = [5000000000]
 entropy = [0]   
 value = [0.5]
-layers = [2]
-perc = [64,128,256]
-envs = [5]
-numNodes = 5
+layers = [3]
+perc = [64]
+envs = [10]
+numNodes = 3
 
 def createScript(combos):
     cmd = 'mpiexec -np ' + str(4*numNodes) + ' python learner/cstr_ex.py ' 
