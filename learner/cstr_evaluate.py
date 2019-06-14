@@ -15,9 +15,14 @@ from cstrEnv import CSTREnvironment
 from baselines.ppo2.model import Model
 from baselines.common.policies import build_policy
 import tensorflow as tf
-stpoint=np.array([0.57,395.3])
-x0s=0.45 
-x1s=65
+from mpi4py import MPI
+from baselines.common.mpi_util import setup_mpi_gpus
+
+
+comm=MPI.COMM_WORLD
+rank=comm.Get_rank()
+size=comm.Get_size()
+
 def calcReward(states, x0scaleinv, x1scaleinv, setpoint):
     n=states.shape[0]
     rewards=np.empty(n)
@@ -33,6 +38,7 @@ def calcReward(states, x0scaleinv, x1scaleinv, setpoint):
 
 
 if __name__ == '__main__':
+  setup_mpi_gpus()
   model_fn=Model
   gamma=0.99
   lam=0.99
@@ -44,14 +50,12 @@ if __name__ == '__main__':
      hname = workdir+"/autovalves/learner/hdf5/"+ mname[0]+".hdf5"
      if(os.path.isfile(hname)):
        loglist.remove(l)
-  partner=0
   fcount = len(loglist)
-  #startIndex =partner*(fcount//(size//2))+min(partner,(fcount%(size//2))) 
- # endIndex = ((partner+1)*(fcount//(size//2)))+min(partner,(fcount%(size//2)))
- # if(fcount%(size//2)) > partner:
-  #  endIndex+=1
+  startIndex =rank*(fcount//(size//2))+min(rank,(fcount%(size//2))) 
+  endIndex = ((rank+1)*(fcount//(size//2)))+min(rank,(fcount%(size//2)))
+  if(fcount%(size//2)) > rank:
+    endIndex+=1
   
-  loglist=[workdir+"/autovalves/learner/logs/log-65848.txt"]
   
   logger.configure(dir=workdir+"/autovalves/learner/evaluate_logs", format_strs=['stdout', 'log'], log_suffix=jobnumber)
   parser=argparse.ArgumentParser() 
@@ -60,11 +64,8 @@ if __name__ == '__main__':
   
   
   env = DummyVecEnv([lambda:CSTREnvironment()])
-  #setpoint=env.envs[0].setpoint
-  #x0scaleinv=env.envs[0].x0scaleinv
- # x1scaleinv=env.envs[0].x1scaleinv
+  setpoint, x0scale, x1scale = env.envs[0].getrewardstuff()
   env = VecNormalize(env)
- #with open(workdir+"/autovalves/learner/logs/log"+args.jobnm+"-rank00"+args.rank+".txt") as f:
   for name in loglist:
     with open(name) as f:
       for line in f:
@@ -127,11 +128,10 @@ if __name__ == '__main__':
           actions=np.concatenate((actions, eval_actions[0:last_true,:]), axis=0)
           values=np.concatenate((values,eval_values[0:last_true]), axis=0)
           neglogpacs=np.concatenate((neglogpacs,eval_neglogpacs[0:last_true]), axis=0)
-          #states=np.concatenate((states,eval_states[0:last_true]), axis=0)
           epinfos=np.concatenate((epinfos,eval_epinfos[0:last_true]), axis=0)
-    x0scaleinv=1.0/x0s
-    x1sscaleinv=1.0/x1s
-    rewards = calcReward(obs, x0scaleinv, x1scaleinv, stpoint)
+    x0scaleinv=1.0/x0scale
+    x1scaleinv=1.0/x1scale
+    rewards = calcReward(obs, x0scaleinv, x1scaleinv, setpoint)
     numruns = 0
     lastone=-1
     thisone=0

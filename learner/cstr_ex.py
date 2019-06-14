@@ -24,6 +24,7 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber, numevs):
     import tensorflow as tf
     from baselines.common.vec_env.dummy_vec_env import DummyVecEnv
     import multiprocessing
+   
     from baselines.common.mpi_util import setup_mpi_gpus
   
     setup_mpi_gpus()
