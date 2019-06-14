@@ -21,13 +21,6 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber, numevs):
     import multiprocessing
     from baselines.common.mpi_util import setup_mpi_gpus
   
-    '''
-    ncpu = 10
-    config = tf.ConfigProto(allow_soft_placement=True,
-                            intra_op_parallelism_threads=ncpu,
-                            inter_op_parallelism_threads=ncpu)
-    tf.Session(config=config).__enter__()
-    '''
     setup_mpi_gpus()
     env = DummyVecEnv([lambda:CSTREnvironment() for i in range(numevs)])
 
@@ -49,13 +42,19 @@ if __name__ == '__main__':
     args=parser.parse_args()
     workdir=os.getenv("WORKDIR")
     jobnumber=os.getenv("PBS_JOBID").split('.')[0]
-    logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber)
-    logger.log("Job Number: ",jobnumber)
-    logger.log("Learning Rate: ", args.lrs)
-    logger.log("Timestep: ", args.tss)
-    logger.log("Entropy: ", args.entps)
-    logger.log("Value Coefficent: ",args.vcfs)
-    logger.log("Number of Layers: ", args.nlyrs)
-    logger.log("Width of Layers: ", args.slyrs)
+    try:
+        from mpi4py import MPI
+    except ImportError:
+        MPI = None
+    is_mpi_root = (MPI is None or MPI.COMM_WORLD.Get_rank() == 0)
+    if is_mpi_root:
+      logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber)
+      logger.log("Job Number: ",jobnumber)
+      logger.log("Learning Rate: ", args.lrs)
+      logger.log("Timestep: ", args.tss)
+      logger.log("Entropy: ", args.entps)
+      logger.log("Value Coefficent: ",args.vcfs)
+      logger.log("Number of Layers: ", args.nlyrs)
+      logger.log("Width of Layers: ", args.slyrs)
     train(args.lrs, args.tss, args.entps, args.vcfs, args.nlyrs, args.slyrs,jobnumber,args.nevs)
       
