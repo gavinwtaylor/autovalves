@@ -28,9 +28,6 @@ with h5py.File(name) as f:
         l=f[run]['states']
         states=l[:]
 
-        for i in range(len(states)):
-          states[i][1] = states[i][1]*100+310
-
         plt.plot(states[:,0],states[:,1],'.')
 plt.show()
 
