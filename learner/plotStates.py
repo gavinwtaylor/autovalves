@@ -10,7 +10,8 @@ args=parser.parse_args()
 filename=args.fname
 
 workDir = os.getenv('WORKDIR')
-name = workDir + '/autovalves/learner/hdf5/' + filename
+workDir = os.getenv('HOME')
+name = workDir + '/autovalves/learner/' + filename
 
 with h5py.File(name) as f:
     myList = list(f.keys())
@@ -27,7 +28,9 @@ with h5py.File(name) as f:
     for run in myList:
         l=f[run]['states']
         states=l[:]
-        plt.plot(states[:,0],states[:,1],'.')
+        plt.plot(states[:,0],states[:,1],'-o')
+        print(states)
+    #plt.plot([.57,395.3])
 plt.show()
 
 
