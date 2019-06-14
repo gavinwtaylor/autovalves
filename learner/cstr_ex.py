@@ -8,6 +8,11 @@ import argparse
 import numpy as np
 from cstrEnv import CSTREnvironment
 from baselines import bench, logger
+try:
+    from mpi4py import MPI
+except ImportError:
+    MPI = None
+is_mpi_root = (MPI is None or MPI.COMM_WORLD.Get_rank() == 0)
 
 def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber, numevs):
     from baselines.common.vec_env.vec_normalize import VecNormalize
@@ -28,7 +33,8 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber, numevs):
     env = VecNormalize(env)
     policy = "mlp"
     model = ppo2.learn(network=policy, env=env,total_timesteps=timest,ent_coef=entr,lr=lrnrt,vf_coef=valcoef,log_interval=10, num_layers=numlyrs, num_hidden=lyrsize)
-    model.save(workdir+"/autovalves/learner/models/"+str(jobnumber))
+    if is_mpi_root:
+      model.save(workdir+"/autovalves/learner/models/"+str(jobnumber))
     return model, env
 
 if __name__ == '__main__':
@@ -43,13 +49,14 @@ if __name__ == '__main__':
     args=parser.parse_args()
     workdir=os.getenv("WORKDIR")
     jobnumber=os.getenv("PBS_JOBID").split('.')[0]
-    logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber)
-    logger.log("Job Number: ",jobnumber)
-    logger.log("Learning Rate: ", args.lrs)
-    logger.log("Timestep: ", args.tss)
-    logger.log("Entropy: ", args.entps)
-    logger.log("Value Coefficent: ",args.vcfs)
-    logger.log("Number of Layers: ", args.nlyrs)
-    logger.log("Width of Layers: ", args.slyrs)
+    if is_mpi_root:
+      logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber,comm=MPI.COMM_WORLD)
+      logger.log("Job Number: ",jobnumber)
+      logger.log("Learning Rate: ", args.lrs)
+      logger.log("Timestep: ", args.tss)
+      logger.log("Entropy: ", args.entps)
+      logger.log("Value Coefficent: ",args.vcfs)
+      logger.log("Number of Layers: ", args.nlyrs)
+      logger.log("Width of Layers: ", args.slyrs)
     train(args.lrs, args.tss, args.entps, args.vcfs, args.nlyrs, args.slyrs,jobnumber,args.nevs)
       
