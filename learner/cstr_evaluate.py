@@ -52,7 +52,7 @@ if __name__ == '__main__':
  # if(fcount%(size//2)) > partner:
   #  endIndex+=1
   
-  loglist=[workdir+"/autovalves/learner/logs/log65848.txt"]
+  loglist=[workdir+"/autovalves/learner/logs/log-65848.txt"]
   
   logger.configure(dir=workdir+"/autovalves/learner/evaluate_logs", format_strs=['stdout', 'log'], log_suffix=jobnumber)
   parser=argparse.ArgumentParser() 
