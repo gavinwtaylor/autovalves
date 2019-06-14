@@ -13,6 +13,7 @@ class CSTREnvironment(gym.Env, utils.EzPickle):
     self.observation_space = spaces.Box(np.array([0.1,310]), np.array([1, 440]))      
     self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
     self.realEnv=cstr.CSTREnv()
+    self.state=np.array([0.3,400])
 
   def reset(self):
     self.realEnv.reset()
@@ -22,19 +23,21 @@ class CSTREnvironment(gym.Env, utils.EzPickle):
     high=self.action_space.high
     action=action*.5*(high-low)+.5*(high-low)
 
-    '''
-    action[0]=3*(action[0]-1)
-    action[1]=np.log(max(action[1],.0001))-4.5
-    '''
     for i in range(len(action)):
       if action[i]<low[i]:
         action[i]=low[i]
       if action[i]>high[i]:
         action[i]=high[i]
+    if np.isnan(action[0]):
+      action=np.array([1.0,10000.0])
+      print("*****AHHHHHH******")
     assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
     action=(action[0],action[1])
     state,reward,done=self.realEnv.step(action)
+    print("State: ", state)
     return np.array(state),reward,done,{}
+
+
 
   def getrewardstuff(self):
     setpoint, x0scale,x1scale=self.realEnv.getrewardstuff()

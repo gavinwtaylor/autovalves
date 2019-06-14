@@ -12,7 +12,6 @@ from baselines import bench, logger
 def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber):
     from baselines.common.vec_env.vec_normalize import VecNormalize
     from baselines.common import set_global_seeds
-    #from baselines.ppo2.policies import MlpPolicy
     from baselines.bench import Monitor
     from baselines.ppo2 import ppo2
     import sys
@@ -28,13 +27,12 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber):
                             inter_op_parallelism_threads=ncpu)
     tf.Session(config=config).__enter__()
 
-    env = DummyVecEnv([lambda:CSTREnvironment(comm)])
+    env = DummyVecEnv([lambda:CSTREnvironment()])
 
     env = VecNormalize(env)
-   # set_global_seeds(seed)
     policy = "mlp"
     model = ppo2.learn(network=policy, env=env,total_timesteps=timest,ent_coef=entr,lr=lrnrt,vf_coef=valcoef,log_interval=10, num_layers=numlyrs, num_hidden=lyrsize)
-    model.save(workdir+"/autovalves/learner/models/"+str(jobnumber)+"-rank"+str(rank))
+    model.save(workdir+"/autovalves/learner/models/"+str(jobnumber))
   
     return model, env
 
@@ -59,6 +57,7 @@ if __name__ == '__main__':
     logger.log("Job Number: ",jobnumber)
     #logger.log("Rank: ",rank)
     partner=0
+    rank=8
     logger.log("Learning Rate: ", lrs[partner])
     logger.log("Timestep: ", tss[partner])
     logger.log("Entropy: ", entps[partner])
