@@ -26,15 +26,15 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber, numevs):
     import multiprocessing
    
     from baselines.common.mpi_util import setup_mpi_gpus
-  
-    setup_mpi_gpus()
-    env = DummyVecEnv([lambda:CSTREnvironment() for i in range(numevs)])
+    
+    setup_mpi_gpus() #each process only sees one gpu
+    env = DummyVecEnv([lambda:CSTREnvironment() for i in range(numevs)]) #used for multiple environments
 
     env = VecNormalize(env)
     policy = "mlp"
     model = ppo2.learn(network=policy, env=env,total_timesteps=timest,ent_coef=entr,lr=lrnrt,vf_coef=valcoef,log_interval=10, num_layers=numlyrs, num_hidden=lyrsize)
-    if is_mpi_root:
-      model.save(workdir+"/autovalves/learner/models/"+str(jobnumber))
+    if is_mpi_root: #only want one model saved
+      model.save(workdir+"/autovalves/learner/models/"+str(jobnumber)) #only want to save one of the models
     return model, env
 
 if __name__ == '__main__':
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     args=parser.parse_args()
     workdir=os.getenv("WORKDIR")
     jobnumber=os.getenv("PBS_JOBID").split('.')[0]
-    if is_mpi_root:
+    if is_mpi_root: #only want one log file
       logger.configure(dir=workdir+"/autovalves/learner/logs", format_strs=['stdout','log'], log_suffix=jobnumber,comm=MPI.COMM_WORLD)
       logger.log("Job Number: ",jobnumber)
       logger.log("Learning Rate: ", args.lrs)

@@ -18,7 +18,7 @@ import tensorflow as tf
 from mpi4py import MPI
 from baselines.common.mpi_util import setup_mpi_gpus
 
-
+#setup MPI stuff
 comm=MPI.COMM_WORLD
 rank=comm.Get_rank()
 size=comm.Get_size()
@@ -38,19 +38,20 @@ def calcReward(states, x0scaleinv, x1scaleinv, setpoint):
 
 
 if __name__ == '__main__':
-  setup_mpi_gpus()
-  model_fn=Model
-  gamma=0.99
+  setup_mpi_gpus() #prevents GPU hogging
+  model_fn=Model 
+  gamma=0.99 #hardcoded in these values
   lam=0.99
   jobnumber=os.getenv("PBS_JOBID").split('.')[0]
   workdir=os.getenv("WORKDIR")
   loglist=glob.glob(workdir+"/autovalves/learner/logs/*")
-  for l in loglist:
-     mname= (ntpath.basename(l)[3:]).split('.')
+  for l in loglist:  
+     mname= (ntpath.basename(l)[3:]).split('.') 
      hname = workdir+"/autovalves/learner/hdf5/"+ mname[0]+".hdf5"
      if(os.path.isfile(hname)):
-       loglist.remove(l)
-  fcount = len(loglist)
+       loglist.remove(l) #only want to evaluate log files that haven't beeen evaluated yet
+  fcount = len(loglist) 
+  #divide up log list to each of the processes
   startIndex =rank*(fcount//(size//2))+min(rank,(fcount%(size//2))) 
   endIndex = ((rank+1)*(fcount//(size//2)))+min(rank,(fcount%(size//2)))
   if(fcount%(size//2)) > rank:
@@ -59,14 +60,14 @@ if __name__ == '__main__':
   
   logger.configure(dir=workdir+"/autovalves/learner/evaluate_logs", format_strs=['stdout', 'log'], log_suffix=jobnumber)
   parser=argparse.ArgumentParser() 
-  parser.add_argument('numtrue', help='number of completed runs')
+  parser.add_argument('numtrue', help='number of completed runs') #argument for number of trajectories
   args=parser.parse_args()
   
   
   env = DummyVecEnv([lambda:CSTREnvironment()])
-  setpoint, x0scale, x1scale = env.envs[0].getrewardstuff()
-  env = VecNormalize(env)
-  for name in loglist:
+  setpoint, x0scale, x1scale = env.envs[0].getrewardstuff() #info needed from environment
+  env = VecNormalize(env) 
+  for name in loglist: #retrieving data from each of the log files
     with open(name) as f:
       for line in f:
         if "Number" in line and "Layers" in line:
@@ -82,7 +83,7 @@ if __name__ == '__main__':
           vf_coef=line.split()[-1] 
           vf_coef=float(vf_coef)
 
-
+    #parameters needed such that the model can be rebuilt
     network = "mlp"
     ob_space=env.observation_space
     ac_space = env.action_space
@@ -99,14 +100,16 @@ if __name__ == '__main__':
       con_name = mname[0]
       print("Model name: "+con_name)
       model.load(workdir+"/autovalves/learner/models/"+con_name)
-      eval_runner=Runner(env=env, model=model, nsteps=nsteps, gamma=gamma, lam=lam)
+      eval_runner=Runner(env=env, model=model, nsteps=nsteps, gamma=gamma, lam=lam) #load the model
       count = 0
       obs, returns, masks, actions, values, neglogpacs, states, epinfos = None, None, None, None, None, None,None, None 
 
-      f = h5py.File(workdir+"/autovalves/learner/hdf5/"+mname[0]+".hdf5","w")
+      f = h5py.File(workdir+"/autovalves/learner/hdf5/"+mname[0]+".hdf5","w") 
       while(count < int(args.numtrue)):
+         #evaluation metrics
         eval_obs, eval_returns, eval_masks, eval_actions, eval_values, eval_neglogpacs, eval_states, eval_epinfos =eval_runner.run()
-
+   
+        #obtaining data from completed runs (Trues)
         for index,i in enumerate(eval_masks):
           if i == True:
             count = count+1
@@ -135,6 +138,8 @@ if __name__ == '__main__':
     numruns = 0
     lastone=-1
     thisone=0
+    
+    #create the hdf5 file with the states, actions, and rewards that correspond to a particular log file
     for ind, j in enumerate(masks):
       if j == True:
         if(numruns == int(args.numtrue)):
@@ -150,5 +155,3 @@ if __name__ == '__main__':
         dset3[:]=rewards[lastone+1:thisone+1]
         lastone=ind
   
-  temp = np.array([0,1,2,3])
-  temp=temp.astype(float)
