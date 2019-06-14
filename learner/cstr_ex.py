@@ -20,21 +20,17 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber, numevs):
     from baselines.common.vec_env.dummy_vec_env import DummyVecEnv
     import multiprocessing
    
-    print("Print 1") 
     ncpu = 10
     config = tf.ConfigProto(allow_soft_placement=True,
                             intra_op_parallelism_threads=ncpu,
                             inter_op_parallelism_threads=ncpu)
     tf.Session(config=config).__enter__()
-    print("Print 2")
     env = DummyVecEnv([lambda:CSTREnvironment() for i in range(numevs)])
 
     env = VecNormalize(env)
     policy = "mlp"
-    print("Print 3")
     model = ppo2.learn(network=policy, env=env,total_timesteps=timest,ent_coef=entr,lr=lrnrt,vf_coef=valcoef,log_interval=10, num_layers=numlyrs, num_hidden=lyrsize)
     model.save(workdir+"/autovalves/learner/models/"+str(jobnumber))
-    print("Print 4")
     return model, env
 
 if __name__ == '__main__':
