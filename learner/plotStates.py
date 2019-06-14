@@ -27,6 +27,7 @@ with h5py.File(name) as f:
     for run in myList:
         l=f[run]['states']
         states=l[:]
+
         plt.plot(states[:,0],states[:,1],'.')
 plt.show()
 
