@@ -63,7 +63,7 @@ double CSTREnv::calcReward(){
 }
 
 /* Resets without having to rebuild the object, required by baselines */
-void CSTREnv::reset(){
+boost::python::tuple CSTREnv::reset(){
   tstep = RCONST(0.01); // the reporting interval / the time between updates to the control variabels.
   realtype tfin = RCONST(10); // the desired final time
   t = RCONST(0.000);
@@ -87,6 +87,7 @@ void CSTREnv::reset(){
 
   // reinitialize the integrator --> **reset**
   CVodeReInit(cvode_mem, RCONST(0.0),x);
+  return boost::python::make_tuple(NV_Ith_S(x,0),NV_Ith_S(x,1));
 }
 
 /* Destructor, deallocating memory when the python garbage collector cleans it up*/

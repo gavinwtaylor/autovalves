@@ -18,7 +18,6 @@ import tensorflow as tf
 stpoint=np.array([0.57,395.3])
 x0s=0.45 
 x1s=65
-rank=8
 def calcReward(states, x0scaleinv, x1scaleinv, setpoint):
     n=states.shape[0]
     rewards=np.empty(n)
@@ -96,8 +95,6 @@ if __name__ == '__main__':
       policy=build_policy(env,network, num_layers=num_layers, num_hidden=layer_width)
       model = model_fn(policy=policy, ob_space=ob_space, ac_space=ac_space, nbatch_act=nevs, nbatch_train=nbatch_train, nsteps=nsteps, ent_coef=ent_coef, vf_coef=vf_coef, max_grad_norm=max_grad_norm)
       mname= (ntpath.basename(name)[3:]).split('.')
-      #split_k = mname[0].split('k')
-     # num = str(int(split_k[1]))         
       con_name = mname[0]
       print("Model name: "+con_name)
       model.load(workdir+"/autovalves/learner/models/"+con_name)
