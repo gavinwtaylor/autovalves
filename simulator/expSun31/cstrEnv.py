@@ -9,20 +9,30 @@ import numpy as np
 from baselines import bench, logger
 
 class CSTREnvironment(gym.Env, utils.EzPickle):
+  '''
+  observation_space and action_space are required
+  '''
   def __init__(self):
     self.observation_space = spaces.Box(np.array([0.1,310]), np.array([1, 440]))      
     self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
     self.realEnv=cstr.CSTREnv()
-    self.state=np.array([0.3,400])
 
+  '''
+  resets the environment to beginning state.
+  MUST return a state - will get nans as actions without it
+  '''
   def reset(self):
     self.state=np.array(self.realEnv.reset())
     return self.state
 
+  '''
+  takes in an action as a numpy array and returns a state (as a numpy array)
+  a reward (a float), and done, a boolean
+  '''
   def step(self,action):
     low=self.action_space.low
     high=self.action_space.high
-    action=action*.5*(high-low)+.5*(high-low)
+    action=action*.5*(high-low)+.5*(high-low) #scale actions
 
     for i in range(len(action)):
       if action[i]<low[i]:
@@ -30,12 +40,15 @@ class CSTREnvironment(gym.Env, utils.EzPickle):
       if action[i]>high[i]:
         action[i]=high[i]
     assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
-    action=action.astype(float)
+    action=action.astype(float) #has to be double precision, or the C++ can't read it as a double
     action=(action[0],action[1])
-    state,reward,done=self.realEnv.step(action)
+    state,reward,done=self.realEnv.step(action) #action and state are tuples, here
     self.state=np.array(state)
     return self.state,reward,done,{}
 
+  '''
+  necessary getter to compute the reward of a state outside the simulator
+  '''
   def getrewardstuff(self):
     setpoint, x0scale,x1scale=self.realEnv.getrewardstuff()
     return np.array(setpoint),x0scale,x1scale
