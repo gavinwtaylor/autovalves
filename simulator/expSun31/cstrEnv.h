@@ -65,7 +65,7 @@ class CSTREnv {
   public:
     CSTREnv(); //constructor
     ~CSTREnv();//destructor
-    void reset();//reset everything
+    boost::python::tuple reset();//reset everything
     boost::python::tuple step(boost::python::tuple);//apply one action
     boost::python::tuple getrewardstuff();
 };
