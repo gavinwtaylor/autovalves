@@ -20,11 +20,9 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber, numevs):
     from baselines.common.vec_env.dummy_vec_env import DummyVecEnv
     import multiprocessing
    
-    ncpu = 10
-    config = tf.ConfigProto(allow_soft_placement=True,
-                            intra_op_parallelism_threads=ncpu,
-                            inter_op_parallelism_threads=ncpu)
-    tf.Session(config=config).__enter__()
+    from baselines.common.mpi_util import setup_mpi_gpus
+  
+    setup_mpi_gpus()
     env = DummyVecEnv([lambda:CSTREnvironment() for i in range(numevs)])
 
     env = VecNormalize(env)
