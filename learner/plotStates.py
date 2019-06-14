@@ -28,9 +28,13 @@ with h5py.File(name) as f:
     for run in myList:
         l=f[run]['states']
         states=l[:]
-        plt.plot(states[:,0],states[:,1],'-o')
+        i = 0;
+        while i < len(states):
+          states[i][1] = states[i][1]*100+310
+          i += 1
         print(states)
-    #plt.plot([.57,395.3])
+
+        plt.plot(states[:,0],states[:,1],'.')
 plt.show()
 
 
