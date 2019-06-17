@@ -12,16 +12,20 @@ workDir = os.getenv('WORKDIR')
 h5list = glob.glob(workDir + '/autovalves/learner/hdf5/*.hdf5')
 fCount = len(h5list)
 
+#Assign specific indices for each process 
 startIndex = rank * (fCount//size) + min(rank, (fCount % size))
 endIndex = ((rank + 1) * (fCount//size)) + min(rank, (fCount % size))
 
 if (fCount % size) > rank:
     endIndex += 1
 
+#shorten the list of files to the specified indices
 h5list=h5list[startIndex:endIndex]
 
+#for every hdf5 file in the directory
 for name in h5list:
-        
+    
+    #open the hdf5 file
     with h5py.File(name) as f:
         rewardAvg = 0
         stateAvg = 0

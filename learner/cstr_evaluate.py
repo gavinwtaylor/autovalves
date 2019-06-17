@@ -44,7 +44,7 @@ if __name__ == '__main__':
   lam=0.99
   jobnumber=os.getenv("PBS_JOBID").split('.')[0]
   workdir=os.getenv("WORKDIR")
-  loglist=glob.glob(workdir+"/autovalves/learner/logs/*")
+  loglist=glob.glob(workdir+"/autovalves/learner/logs/*") #all of the log files in the logs directory
   for l in loglist:  
      mname= (ntpath.basename(l)[3:]).split('.') 
      hname = workdir+"/autovalves/learner/hdf5/"+ mname[0]+".hdf5"
