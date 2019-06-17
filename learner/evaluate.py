@@ -9,7 +9,6 @@ from baselines import logger
 from collections import deque
 from baselines.ppo2.runner import Runner
 import argparse
-from mpi4py import MPI
 from baselines.common.vec_env.vec_normalize import VecNormalize
 from baselines.common.vec_env.dummy_vec_env import DummyVecEnv
 from multChem_env import ChemicalEnv
@@ -28,13 +27,15 @@ def calcReward(states, x0scaleinv, x1scaleinv, setpoint):
     n=states.shape[0]
     rewards=np.empty(n)
     for i in range(n):
+        tempy=states[i][1]*100+310
         r = -(
               ((states[i][0] - setpoint[0]) * x0scaleinv) * 
               ((states[i][0] - setpoint[0]) * x0scaleinv) +
-              ((states[i][1] - setpoint[1]) * x1scaleinv) * 
-              ((states[i][1] - setpoint[1]) * x1scaleinv)
-             )
+              ((tempy - setpoint[1]) * x1scaleinv) * 
+              ((tempy - setpoint[1]) * x1scaleinv)
+              )
         rewards[i] = r
+
     return rewards
 
 
@@ -135,7 +136,6 @@ if __name__ == '__main__':
           neglogpacs=np.concatenate((neglogpacs,eval_neglogpacs[0:last_true]), axis=0)
           #states=np.concatenate((states,eval_states[0:last_true]), axis=0)
           epinfos=np.concatenate((epinfos,eval_epinfos[0:last_true]), axis=0)
-
     rewards = calcReward(obs, x0scaleinv, x1scaleinv, setpoint)
     numruns = 0
     lastone=-1
@@ -150,6 +150,9 @@ if __name__ == '__main__':
         dset1=grp.create_dataset("states",(thisone-lastone,2), dtype=obs.dtype)
         dset2=grp.create_dataset("actions",(thisone-lastone,2), dtype=actions.dtype)
         dset3=grp.create_dataset("rewards",(thisone-lastone, ), dtype=rewards.dtype)
+        #readjust the values of the states 
+        for i in range(len(states)):
+          obs[i][1] = obs[i][1]*100+310
         dset1[:]=obs[lastone+1:thisone+1,:]
         dset2[:]=actions[lastone+1:thisone+1,:]
         dset3[:]=rewards[lastone+1:thisone+1]

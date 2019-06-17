@@ -63,7 +63,7 @@ class CSTREnv {
     bool withinOval();   //are we within the stable oval
 
   public:
-    CSTREnv(); //constructor
+    CSTREnv(); //constructor - calls reset()
     ~CSTREnv();//destructor
     boost::python::tuple reset();//reset everything
     boost::python::tuple step(boost::python::tuple);//apply one action

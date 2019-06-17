@@ -1,53 +1,41 @@
 import itertools
 import subprocess
 
-lrs = [1e-2, 1e-4, 1e-6]
-numiters = [5000]
-entropy = [0]   
-value = [0.5]
-layers = [2]
-perc = [64,128,256]
-envs = [5]
+lrs = [1e-6, 1e-8, 1e-10]  #learning rate
+numiters = [5000000000]    #timesteps
+entropy = [0]              #value for randomness
+value = [0.5]              #value coefficient
+layers = [3]               #number of layers within neural net
+perc = [64]                #width of neural net
+envs = [10]                #number of environments
+numNodes = 3               #number of nodes
 
 def createScript(combos):
-    cmd = 'mpiexec -np ' + str(len(combos)) 
-    cmd2 = ' ./simulator/expSun31/multEnvSim : -np ' + str(len(combos))
-    cmd3 = ' python learner/multEx.py'
+    cmd = 'mpiexec -np ' + str(4*numNodes) + ' python learner/cstr_ex.py ' 
 
-    rateList  = [str(combo[0]) for combo in combos]
-    tstepList = [str(combo[1]) for combo in combos]
-    entpsList = [str(combo[2]) for combo in combos]
-    vcfsList  = [str(combo[3]) for combo in combos]
-    nlyrsList = [str(combo[4]) for combo in combos]
-    slyrsList = [str(combo[5]) for combo in combos]
-    envsList  = [str(combo[6]) for combo in combos]
+    for combo in combos:
+      selection = ' '.join([str(c) for c in combo])
 
-    rates  = ','.join(rateList)
-    tsteps = ','.join(tstepList)
-    entps  = ','.join(entpsList)
-    vcfs   = ','.join(vcfsList)
-    nlyrs  = ','.join(nlyrsList)
-    slyrs  = ','.join(slyrsList)
-    numEnvs =','.join(envsList)
+      #assemble the command for each combo
+      cmd2 = cmd + selection
+      #assemble a script
+      script = """#!/bin/bash
 
+      #PBS -l select=""" + str(numNodes) + """:ncpus=20:mpiprocs=4
+      #PBS -A MHPCC38870258
+      #PBS -q standard
+      #PBS -l walltime=36:00:00
 
-    cmd = cmd + cmd2 + cmd3 + ' ' + rates + ' ' + tsteps + ' ' + entps + ' ' + vcfs + ' ' + nlyrs + ' ' + slyrs + ' ' + numEnvs
-    
-    script = """#!/bin/bash
-
-    #PBS -l select=1:ncpus=30
-    #PBS -A MHPCC38870258
-    #PBS -q standard
-    #PBS -l walltime=36:00:00
-
-    cd $WORKDIR/autovalves
-    """ + cmd
-    print('\n\n',script)
-    subprocess.run(['qsub'],input=script,encoding='ascii')
+      cd $WORKDIR/autovalves
+      """ + cmd2
+      #qsub the script for each combo
+      subprocess.run(['qsub'],input=script,encoding='ascii')
 
 
+#create every combination for the parameters above
 combinations=[combo for combo in itertools.product(lrs,numiters,entropy, value,layers,perc, envs)]
 while len(combinations) > 0: 
+    #assign four per node 
     createScript(combinations[-4:])
     for i in range( min(4,len(combinations)) ):
         combinations.pop()
