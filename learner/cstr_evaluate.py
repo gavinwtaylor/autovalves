@@ -11,7 +11,7 @@ from baselines.ppo2.runner import Runner
 import argparse
 from baselines.common.vec_env.vec_normalize import VecNormalize
 from baselines.common.vec_env.dummy_vec_env import DummyVecEnv
-from cstrEnv import CSTREnvironment
+from cstrEnv import *
 from baselines.ppo2.model import Model
 from baselines.common.policies import build_policy
 import tensorflow as tf
@@ -132,6 +132,7 @@ if __name__ == '__main__':
           values=np.concatenate((values,eval_values[0:last_true]), axis=0)
           neglogpacs=np.concatenate((neglogpacs,eval_neglogpacs[0:last_true]), axis=0)
           epinfos=np.concatenate((epinfos,eval_epinfos[0:last_true]), axis=0)
+    actions=np.apply_along_axis(action_net_to_env,0,actions)
     x0scaleinv=1.0/x0scale
     x1scaleinv=1.0/x1scale
     rewards = calcReward(obs, x0scaleinv, x1scaleinv, setpoint)
