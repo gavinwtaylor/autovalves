@@ -46,17 +46,20 @@ if __name__ == '__main__':
   workdir=os.getenv("WORKDIR")
   loglist=glob.glob(workdir+"/autovalves/learner/logs/*") #all of the log files in the logs directory
   for l in loglist:  
+     if 'rank' in l:
+       loglist.remove(l)
+       continue
      mname= (ntpath.basename(l)[3:]).split('.') 
      hname = workdir+"/autovalves/learner/hdf5/"+ mname[0]+".hdf5"
      if(os.path.isfile(hname)):
        loglist.remove(l) #only want to evaluate log files that haven't beeen evaluated yet
   fcount = len(loglist) 
   #divide up log list to each of the processes
-  startIndex =rank*(fcount//(size//2))+min(rank,(fcount%(size//2))) 
-  endIndex = ((rank+1)*(fcount//(size//2)))+min(rank,(fcount%(size//2)))
-  if(fcount%(size//2)) > rank:
+  startIndex =rank*(fcount//size)+min(rank,(fcount%size)) 
+  endIndex = ((rank+1)*(fcount//size))+min(rank,(fcount%size))
+  if(fcount%size) > rank:
     endIndex+=1
-  
+  loglist=loglist[startIndex:endIndex]
   
   logger.configure(dir=workdir+"/autovalves/learner/evaluate_logs", format_strs=['stdout', 'log'], log_suffix=jobnumber)
   parser=argparse.ArgumentParser() 
@@ -132,7 +135,7 @@ if __name__ == '__main__':
           values=np.concatenate((values,eval_values[0:last_true]), axis=0)
           neglogpacs=np.concatenate((neglogpacs,eval_neglogpacs[0:last_true]), axis=0)
           epinfos=np.concatenate((epinfos,eval_epinfos[0:last_true]), axis=0)
-    actions=np.apply_along_axis(action_net_to_env,0,actions)
+    actions=np.apply_along_axis(action_net_to_env,1,actions)
     x0scaleinv=1.0/x0scale
     x1scaleinv=1.0/x1scale
     rewards = calcReward(obs, x0scaleinv, x1scaleinv, setpoint)
