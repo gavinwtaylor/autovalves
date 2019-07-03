@@ -15,13 +15,18 @@ from cstrEnv import *
 from baselines.ppo2.model import Model
 from baselines.common.policies import build_policy
 import tensorflow as tf
-from mpi4py import MPI
-from baselines.common.mpi_util import setup_mpi_gpus
 
-#setup MPI stuff
-comm=MPI.COMM_WORLD
-rank=comm.Get_rank()
-size=comm.Get_size()
+try:
+  #setup MPI stuff
+  from mpi4py import MPI
+  from baselines.common.mpi_util import setup_mpi_gpus
+  comm=MPI.COMM_WORLD
+  rank=comm.Get_rank()
+  size=comm.Get_size()
+except:
+  rank=0
+  size=1
+  comm=None
 
 def calcReward(states, x0scaleinv, x1scaleinv, setpoint):
     n=states.shape[0]
@@ -38,7 +43,8 @@ def calcReward(states, x0scaleinv, x1scaleinv, setpoint):
 
 
 if __name__ == '__main__':
-  setup_mpi_gpus() #prevents GPU hogging
+  if comm is not None:
+    setup_mpi_gpus() #prevents GPU hogging
   model_fn=Model 
   gamma=0.99 #hardcoded in these values
   lam=0.99
@@ -109,6 +115,7 @@ if __name__ == '__main__':
 
       f = h5py.File(workdir+"/autovalves/learner/hdf5/"+mname[0]+".hdf5","w") 
       while(count < int(args.numtrue)):
+        print(count)
          #evaluation metrics
         eval_obs, eval_returns, eval_masks, eval_actions, eval_values, eval_neglogpacs, eval_states, eval_epinfos =eval_runner.run()
    
