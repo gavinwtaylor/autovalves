@@ -65,7 +65,7 @@ static int controller(realtype t, N_Vector x, N_Vector xsp, controller_data* cda
 int main(void) {
 
   // sim settings
-  int NRuns = 100000;
+  int NRuns = 1000;
 
   // file settings
   string experimentnum = "01";
@@ -167,6 +167,7 @@ int main(void) {
 
     // initialize x in a circle surroudning the region of interest; 
     rad = (double(p)/double(NRuns)) * 2.0 * M_PI;
+    rad=2;
     NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(rad); // mol/m3
     NV_Ith_S(x, 1)   = 375 + x1scale * sin(rad); // deg K
 
