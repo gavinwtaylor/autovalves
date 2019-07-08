@@ -1,9 +1,9 @@
 import itertools
 import subprocess
 
-lrs = [1e-4, 1e-6, 1e-10]  #learning rate
+lrs = [1e-1, 1e-2, 1e-3, 1e-5]  #learning rate
 numiters = [25000000]    #timesteps
-entropy = [0,10]              #value for randomness
+entropy = [0,5]              #value for randomness
 value = [0.5,5]              #value coefficient
 layers = [3]               #number of layers within neural net
 perc = [64]                #width of neural net

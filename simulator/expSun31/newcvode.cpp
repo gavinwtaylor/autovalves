@@ -75,6 +75,7 @@ int main(void) {
   string workdir(getenv("WORKDIR"));
   string filename=workdir+"/autovalves/simulator/expSun31/" + experimentnum + "-run" + runnumber + ".h5";
   //H5File* file=NULL;
+  cout << filename << endl;
   H5File* file=new H5File(filename, H5F_ACC_EXCL);
 
   // casual variables
