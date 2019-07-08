@@ -50,17 +50,22 @@ if __name__ == '__main__':
   lam=0.99
   jobnumber=os.getenv("PBS_JOBID").split('.')[0]
   workdir=os.getenv("WORKDIR")
-  loglist=glob.glob(workdir+"/autovalves/learner/logs/*") #all of the log files in the logs directory
-  for l in loglist:  
+  loglistBig=glob.glob(workdir+"/autovalves/learner/logs/*") #all of the log files in the logs directory
+  loglist=[]
+  for l in loglistBig:  
      if 'rank' in l:
-       loglist.remove(l)
        continue
      mname= (ntpath.basename(l)[3:]).split('.') 
      hname = workdir+"/autovalves/learner/hdf5/"+ mname[0]+".hdf5"
      if(os.path.isfile(hname)):
-       loglist.remove(l) #only want to evaluate log files that haven't beeen evaluated yet
+       continue
+     if(not os.path.isfile(workdir+"/autovalves/learner/models/"+mname[0])):
+       continue
+       #loglist.remove(l) #only want to evaluate log files that haven't beeen evaluated yet
+     loglist.append(l)
   fcount = len(loglist) 
   #divide up log list to each of the processes
+  print(loglist)
   startIndex =rank*(fcount//size)+min(rank,(fcount%size)) 
   endIndex = ((rank+1)*(fcount//size))+min(rank,(fcount%size))
   if(fcount%size) > rank:
@@ -75,8 +80,13 @@ if __name__ == '__main__':
   
   env = DummyVecEnv([lambda:CSTREnvironment()])
   setpoint, x0scale, x1scale = env.envs[0].getrewardstuff() #info needed from environment
-  env = VecNormalize(env) 
+  #env = VecNormalize(env) 
+
   for name in loglist: #retrieving data from each of the log files
+    num_layers=None
+    layer_width=None
+    ent_coef=None
+    vf_coef=None
     with open(name) as f:
       for line in f:
         if "Number" in line and "Layers" in line:
@@ -91,6 +101,8 @@ if __name__ == '__main__':
         if "Value" in line:
           vf_coef=line.split()[-1] 
           vf_coef=float(vf_coef)
+    if num_layers is None:
+      continue
 
     #parameters needed such that the model can be rebuilt
     network = "mlp"
@@ -115,7 +127,6 @@ if __name__ == '__main__':
 
       f = h5py.File(workdir+"/autovalves/learner/hdf5/"+mname[0]+".hdf5","w") 
       while(count < int(args.numtrue)):
-        print(count)
          #evaluation metrics
         eval_obs, eval_returns, eval_masks, eval_actions, eval_values, eval_neglogpacs, eval_states, eval_epinfos =eval_runner.run()
    

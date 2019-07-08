@@ -1,0 +1,5 @@
+Logging to /gpfs/scratch/gvtaylor/autovalves/learner/logs
+2019-07-03 09:29:24.648780
+--------------------
+| dummy | 1        |
+--------------------

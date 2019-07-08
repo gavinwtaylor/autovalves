@@ -32,7 +32,7 @@ def train(lrnrt, timest, entr, valcoef, numlyrs, lyrsize, jobnumber, numevs):
     setup_mpi_gpus() #each process only sees one gpu
     env = DummyVecEnv([lambda:CSTREnvironment() for i in range(numevs)]) #used for multiple environments
 
-    env = VecNormalize(env)
+    #env = VecNormalize(env)
     policy = "mlp"
     model = ppo2.learn(network=policy, env=env,total_timesteps=timest,ent_coef=entr,lr=lrnrt,vf_coef=valcoef,log_interval=5, num_layers=numlyrs, num_hidden=lyrsize,comm=MPI.COMM_WORLD)
     if is_mpi_root: #only want one model saved

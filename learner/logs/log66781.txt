@@ -1,0 +1,61 @@
+Logging to /gpfs/scratch/gvtaylor/autovalves/learner/logs
+Job Number:  66781
+Learning Rate:  0.0001
+Timestep:  25000000
+Entropy:  10.0
+Value Coefficent:  5.0
+Number of Layers:  3
+Width of Layers:  64
+2019-07-03 09:22:53.419017
+2019-07-03 09:23:17.409932
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.45e+03  |
+| loss/approxkl           | 0.000151  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.84      |
+| loss/policy_loss        | -0.000982 |
+| loss/value_loss         | 3.96e+03  |
+| misc/explained_variance | 0.000104  |
+| misc/nupdates           | 1         |
+| misc/serial_timesteps   | 2.05e+03  |
+| misc/time_elapsed       | 14.1      |
+| misc/total_timesteps    | 2.05e+04  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-03 09:24:06.374559
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.75e+03 |
+| loss/approxkl           | 0.000719 |
+| loss/clipfrac           | 0.000494 |
+| loss/policy_entropy     | 2.85     |
+| loss/policy_loss        | -0.00299 |
+| loss/value_loss         | 875      |
+| misc/explained_variance | 2.18e-05 |
+| misc/nupdates           | 5        |
+| misc/serial_timesteps   | 1.02e+04 |
+| misc/time_elapsed       | 63.1     |
+| misc/total_timesteps    | 1.02e+05 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-03 09:25:02.687964
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.83e+03  |
+| loss/approxkl           | 0.000758  |
+| loss/clipfrac           | 0.000504  |
+| loss/policy_entropy     | 2.86      |
+| loss/policy_loss        | -0.00331  |
+| loss/value_loss         | 19        |
+| misc/explained_variance | -0.000295 |
+| misc/nupdates           | 10        |
+| misc/serial_timesteps   | 2.05e+04  |
+| misc/time_elapsed       | 119       |
+| misc/total_timesteps    | 2.05e+05  |
+---------------------------------------

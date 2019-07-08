@@ -1,0 +1,25 @@
+Logging to /gpfs/scratch/gvtaylor/autovalves/learner/logs
+Job Number:  66783
+Learning Rate:  1e-06
+Timestep:  25000000
+Entropy:  0.0
+Value Coefficent:  5.0
+Number of Layers:  3
+Width of Layers:  64
+2019-07-03 09:29:00.433877
+2019-07-03 09:29:24.648747
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.44e+03  |
+| loss/approxkl           | 1.75e-10  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.84      |
+| loss/policy_loss        | -1.29e-06 |
+| loss/value_loss         | 4.23e+03  |
+| misc/explained_variance | -8.6e-05  |
+| misc/nupdates           | 1         |
+| misc/serial_timesteps   | 2.05e+03  |
+| misc/time_elapsed       | 14.2      |
+| misc/total_timesteps    | 2.05e+04  |
+---------------------------------------
