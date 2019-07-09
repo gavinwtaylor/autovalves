@@ -71,6 +71,7 @@ if __name__ == '__main__':
   if(fcount%size) > rank:
     endIndex+=1
   loglist=loglist[startIndex:endIndex]
+  print(loglist)
   
   logger.configure(dir=workdir+"/autovalves/learner/evaluate_logs", format_strs=['stdout', 'log'], log_suffix=jobnumber)
   parser=argparse.ArgumentParser() 
@@ -116,7 +117,7 @@ if __name__ == '__main__':
     max_grad_norm=0.5
     with tf.Session(graph=tf.Graph()):
       policy=build_policy(env,network, num_layers=num_layers, num_hidden=layer_width)
-      model = model_fn(policy=policy, ob_space=ob_space, ac_space=ac_space, nbatch_act=nevs, nbatch_train=nbatch_train, nsteps=nsteps, ent_coef=ent_coef, vf_coef=vf_coef, max_grad_norm=max_grad_norm)
+      model = model_fn(policy=policy, ob_space=ob_space, ac_space=ac_space, nbatch_act=nevs, nbatch_train=nbatch_train, nsteps=nsteps, ent_coef=ent_coef, vf_coef=vf_coef, max_grad_norm=max_grad_norm,eval=True)
       mname= (ntpath.basename(name)[3:]).split('.')
       con_name = mname[0]
       print("Model name: "+con_name)
