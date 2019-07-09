@@ -41,13 +41,18 @@ def applyaverage(jobid,func):
 
 jobids=[ntpath.basename(fn).split('.')[0] for fn in glob.glob(learnerDir+'hdf5/*.hdf5')]
 jobids.remove('manystarts')
+jobids.remove('onestart')
 
 info=dict()
 for jobid in jobids:
   info[jobid]=readLog(jobid)
-  info[jobid]['result']=applyaverage(jobid,sortOn)
+  try:
+    info[jobid]['result']=applyaverage(jobid,sortOn)
+  except:
+    print('failed to load',jobid)
+    del info[jobid]
 info['orig']=dict()
-info['orig']['result']=applyaverage('manystarts',sortOn)
+info['orig']['result']=applyaverage('onestart',sortOn)
 
 sortedResults=sorted(info,key=lambda jobid: info[jobid]['result'])
 for result in sortedResults:
