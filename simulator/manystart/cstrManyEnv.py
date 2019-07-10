@@ -1,4 +1,4 @@
-import cstr
+import cstrMany
 import sys, traceback
 import os
 import gym
@@ -26,7 +26,7 @@ class CSTREnvironment(gym.Env, utils.EzPickle):
   observation_space and action_space are required
   '''
   def __init__(self):
-    self.observation_space = spaces.Box(np.array([0.1,310]), np.array([1, 440]))      
+    self.observation_space = spaces.Box(np.array([0.1,310]), np.array([1, 440]),np.array([0.1,310]),np.array([1,440]))      
     self.action_space = spaces.Box(np.array([0,0]), np.array([2, 20000])) 
     self.realEnv=cstr.CSTREnv()
 

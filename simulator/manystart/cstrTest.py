@@ -1,6 +1,6 @@
-import cstr
+import cstrMany
 
-a=cstr.CSTREnv()
+a=cstrMany.CSTREnv()
 print(a.step((.5,20)))
-a.reset()
+print(a.reset())
 print(a.step((.5,20)))

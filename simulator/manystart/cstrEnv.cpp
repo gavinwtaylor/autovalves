@@ -4,6 +4,7 @@
  * Constructor.  Defines initial state, setpoints, etc.  Depends upon reset()
  */
 CSTREnv::CSTREnv():u0(2,0),numsteps(0),x0scale(0.45),x1scale(65) {
+  srand(time(NULL));
   xsp=N_VNew_Serial(2);
   x=N_VNew_Serial(2);
   abstol=N_VNew_Serial(2);
@@ -46,7 +47,7 @@ boost::python::tuple CSTREnv::step(boost::python::tuple action){
   if(numsteps >= maxit)
     done = true;
 
-  boost::python::tuple state=boost::python::make_tuple(NV_Ith_S(x,0),NV_Ith_S(x,1));
+  boost::python::tuple state=boost::python::make_tuple(NV_Ith_S(x,0),NV_Ith_S(x,1),NV_Ith_S(xsp,0),NV_Ith_S(xsp,1));
   boost::python::tuple retVal=boost::python::make_tuple(state,reward,done);
   return retVal;
 }
@@ -75,19 +76,21 @@ boost::python::tuple CSTREnv::reset(){
 
   // initialize x in a circle surroudning the region of interestit** 
   // set rad to random number between 0 and 2 pi...would happen in initial set up and when you reset
-  //TODO*rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
-  double rad = 2;
+  //double rad = 2;
+  double rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
   NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(rad); // mol/m3
   NV_Ith_S(x, 1)   = 375 + x1scale * sin(rad); // deg K
 
   // new setpoint
   // STANDARD SETPOINT
-  NV_Ith_S(xsp, 0)   = 0.57; // mol/m3
-  NV_Ith_S(xsp, 1)   = 395.3; // deg K
+  rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
+  double radius=(double)rand()/RAND_MAX;
+  NV_Ith_S(xsp, 0)   = 0.55 + radius * x0scale * cos(rad); // mol/m3
+  NV_Ith_S(xsp, 1)   = 375 + radius * x1scale * sin(rad); // deg K
 
   // reinitialize the integrator --> **reset**
   CVodeReInit(cvode_mem, RCONST(0.0),x);
-  return boost::python::make_tuple(NV_Ith_S(x,0),NV_Ith_S(x,1));
+  return boost::python::make_tuple(NV_Ith_S(x,0),NV_Ith_S(x,1),NV_Ith_S(xsp,0),NV_Ith_S(xsp,1));
 }
 
 /* Destructor, deallocating memory when the python garbage collector cleans it up*/
@@ -152,7 +155,7 @@ static int cstrfun2(realtype t, N_Vector x, N_Vector xp, void *user_data) {
 
 /* Exposes the constructor, reset, and step functions for use as a Python module */
 using namespace boost::python;
-BOOST_PYTHON_MODULE(cstr){
+BOOST_PYTHON_MODULE(cstrMany){
   class_<CSTREnv>("CSTREnv")
     .def("reset", &CSTREnv::reset)
     .def("step", &CSTREnv::step)
