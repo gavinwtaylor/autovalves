@@ -50,28 +50,30 @@ if __name__ == '__main__':
   lam=0.99
   jobnumber=os.getenv("PBS_JOBID").split('.')[0]
   workdir=os.getenv("WORKDIR")
-  loglistBig=glob.glob(workdir+"/autovalves/learner/logs/*") #all of the log files in the logs directory
+  loglistBig=glob.iglob(workdir+"/autovalves/learner/logs/*") #all of the log files in the logs directory
   loglist=[]
+  models=[ntpath.basename(x) for x in glob.iglob(workdir+"/autovalves/learner/models/**/*",recursive=True)]
+  hdf5s=[ntpath.basename(x).split('.')[0] for x in glob.iglob(workdir+"/autovalves/learner/hdf5/**/*.hdf5",recursive=True)]
   for l in loglistBig:  
      if 'rank' in l:
        continue
-     mname= (ntpath.basename(l)[3:]).split('.') 
-     hname = workdir+"/autovalves/learner/hdf5/"+ mname[0]+".hdf5"
-     if(os.path.isfile(hname)):
+     mname= (ntpath.basename(l)[3:]).split('.')[0]
+     hname = workdir+"/autovalves/learner/hdf5/"+ mname+".hdf5"
+     if (mname in hdf5s):
        continue
-     if(not os.path.isfile(workdir+"/autovalves/learner/models/"+mname[0])):
+     if (mname not in models):
        continue
        #loglist.remove(l) #only want to evaluate log files that haven't beeen evaluated yet
      loglist.append(l)
   fcount = len(loglist) 
   #divide up log list to each of the processes
-  print(loglist)
+  print('all ranks:',loglist)
   startIndex =rank*(fcount//size)+min(rank,(fcount%size)) 
   endIndex = ((rank+1)*(fcount//size))+min(rank,(fcount%size))
   if(fcount%size) > rank:
     endIndex+=1
   loglist=loglist[startIndex:endIndex]
-  print(loglist)
+  print('this rank:',loglist)
   
   logger.configure(dir=workdir+"/autovalves/learner/evaluate_logs", format_strs=['stdout', 'log'], log_suffix=jobnumber)
   parser=argparse.ArgumentParser() 
@@ -84,6 +86,7 @@ if __name__ == '__main__':
   #env = VecNormalize(env) 
 
   for name in loglist: #retrieving data from each of the log files
+    print(name)
     num_layers=None
     layer_width=None
     ent_coef=None
@@ -126,7 +129,6 @@ if __name__ == '__main__':
       count = 0
       obs, returns, masks, actions, values, neglogpacs, states, epinfos = None, None, None, None, None, None,None, None 
 
-      f = h5py.File(workdir+"/autovalves/learner/hdf5/"+mname[0]+".hdf5","w") 
       while(count < int(args.numtrue)):
          #evaluation metrics
         eval_obs, eval_returns, eval_masks, eval_actions, eval_values, eval_neglogpacs, eval_states, eval_epinfos =eval_runner.run()
@@ -163,6 +165,7 @@ if __name__ == '__main__':
     thisone=0
     
     #create the hdf5 file with the states, actions, and rewards that correspond to a particular log file
+    f = h5py.File(workdir+"/autovalves/learner/hdf5/"+mname[0]+".hdf5","w") 
     for ind, j in enumerate(masks):
       if j == True:
         if(numruns == int(args.numtrue)):
