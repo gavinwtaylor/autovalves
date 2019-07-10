@@ -1,0 +1,4417 @@
+Logging to /gpfs/scratch/gvtaylor/autovalves/learner/logs
+Job Number:  67244
+Learning Rate:  0.0001
+Timestep:  25000000
+Entropy:  0.0
+Value Coefficent:  0.5
+Number of Layers:  3
+Width of Layers:  64
+2019-07-09 04:22:15.592569
+2019-07-09 04:23:19.321697
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.11e+03  |
+| loss/approxkl           | 0.000224  |
+| loss/clipfrac           | 3.05e-06  |
+| loss/policy_entropy     | 2.84      |
+| loss/policy_loss        | -0.000934 |
+| loss/value_loss         | 3.68e+03  |
+| misc/explained_variance | -0.00025  |
+| misc/nupdates           | 1         |
+| misc/serial_timesteps   | 2.05e+03  |
+| misc/time_elapsed       | 18.4      |
+| misc/total_timesteps    | 2.05e+04  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:24:07.286889
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.76e+03 |
+| loss/approxkl           | 0.000848 |
+| loss/clipfrac           | 0.000751 |
+| loss/policy_entropy     | 2.83     |
+| loss/policy_loss        | -0.00236 |
+| loss/value_loss         | 610      |
+| misc/explained_variance | 6.41e-05 |
+| misc/nupdates           | 5        |
+| misc/serial_timesteps   | 1.02e+04 |
+| misc/time_elapsed       | 66.4     |
+| misc/total_timesteps    | 1.02e+05 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:25:02.153000
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000599  |
+| loss/clipfrac           | 0.000104  |
+| loss/policy_entropy     | 2.82      |
+| loss/policy_loss        | -0.00171  |
+| loss/value_loss         | 6.43      |
+| misc/explained_variance | -2.75e-05 |
+| misc/nupdates           | 10        |
+| misc/serial_timesteps   | 2.05e+04  |
+| misc/time_elapsed       | 121       |
+| misc/total_timesteps    | 2.05e+05  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:25:56.731563
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.84e+03  |
+| loss/approxkl           | 3.38e-05  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.82      |
+| loss/policy_loss        | -9.62e-05 |
+| loss/value_loss         | 2.26      |
+| misc/explained_variance | 4.17e-07  |
+| misc/nupdates           | 15        |
+| misc/serial_timesteps   | 3.07e+04  |
+| misc/time_elapsed       | 176       |
+| misc/total_timesteps    | 3.07e+05  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:26:51.585302
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.84e+03  |
+| loss/approxkl           | 1.68e-05  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.82      |
+| loss/policy_loss        | -0.000154 |
+| loss/value_loss         | 3.3       |
+| misc/explained_variance | -7.34e-05 |
+| misc/nupdates           | 20        |
+| misc/serial_timesteps   | 4.1e+04   |
+| misc/time_elapsed       | 231       |
+| misc/total_timesteps    | 4.1e+05   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:27:46.396128
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000313  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.82      |
+| loss/policy_loss        | -0.000753 |
+| loss/value_loss         | 5.61      |
+| misc/explained_variance | -2e-05    |
+| misc/nupdates           | 25        |
+| misc/serial_timesteps   | 5.12e+04  |
+| misc/time_elapsed       | 285       |
+| misc/total_timesteps    | 5.12e+05  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:28:40.902869
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.000207 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.82     |
+| loss/policy_loss        | 0.000232 |
+| loss/value_loss         | 5.24     |
+| misc/explained_variance | 4.42e-05 |
+| misc/nupdates           | 30       |
+| misc/serial_timesteps   | 6.14e+04 |
+| misc/time_elapsed       | 340      |
+| misc/total_timesteps    | 6.14e+05 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:29:35.253221
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00102   |
+| loss/clipfrac           | 0.00106   |
+| loss/policy_entropy     | 2.81      |
+| loss/policy_loss        | -0.000308 |
+| loss/value_loss         | 2.65      |
+| misc/explained_variance | 1.8e-05   |
+| misc/nupdates           | 35        |
+| misc/serial_timesteps   | 7.17e+04  |
+| misc/time_elapsed       | 394       |
+| misc/total_timesteps    | 7.17e+05  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:30:29.912700
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.85e+03  |
+| loss/approxkl           | 0.0013    |
+| loss/clipfrac           | 0.00196   |
+| loss/policy_entropy     | 2.81      |
+| loss/policy_loss        | -0.000173 |
+| loss/value_loss         | 2.44      |
+| misc/explained_variance | 1.62e-05  |
+| misc/nupdates           | 40        |
+| misc/serial_timesteps   | 8.19e+04  |
+| misc/time_elapsed       | 449       |
+| misc/total_timesteps    | 8.19e+05  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:31:24.579481
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000185  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.8       |
+| loss/policy_loss        | -0.000374 |
+| loss/value_loss         | 2.53      |
+| misc/explained_variance | 4.02e-06  |
+| misc/nupdates           | 45        |
+| misc/serial_timesteps   | 9.22e+04  |
+| misc/time_elapsed       | 504       |
+| misc/total_timesteps    | 9.22e+05  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:32:19.621817
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.000478  |
+| loss/clipfrac           | 0.000162  |
+| loss/policy_entropy     | 2.8       |
+| loss/policy_loss        | -0.000388 |
+| loss/value_loss         | 2.47      |
+| misc/explained_variance | 4.14e-05  |
+| misc/nupdates           | 50        |
+| misc/serial_timesteps   | 1.02e+05  |
+| misc/time_elapsed       | 559       |
+| misc/total_timesteps    | 1.02e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:33:14.154403
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000897  |
+| loss/clipfrac           | 0.00179   |
+| loss/policy_entropy     | 2.79      |
+| loss/policy_loss        | -0.000765 |
+| loss/value_loss         | 2.33      |
+| misc/explained_variance | 5.43e-05  |
+| misc/nupdates           | 55        |
+| misc/serial_timesteps   | 1.13e+05  |
+| misc/time_elapsed       | 613       |
+| misc/total_timesteps    | 1.13e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:34:08.612720
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.85e+03  |
+| loss/approxkl           | 0.000436  |
+| loss/clipfrac           | 9.46e-05  |
+| loss/policy_entropy     | 2.79      |
+| loss/policy_loss        | -0.000412 |
+| loss/value_loss         | 2.59      |
+| misc/explained_variance | 0.000222  |
+| misc/nupdates           | 60        |
+| misc/serial_timesteps   | 1.23e+05  |
+| misc/time_elapsed       | 668       |
+| misc/total_timesteps    | 1.23e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:35:03.315292
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000252  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.78      |
+| loss/policy_loss        | -0.000573 |
+| loss/value_loss         | 2.44      |
+| misc/explained_variance | -7.79e-05 |
+| misc/nupdates           | 65        |
+| misc/serial_timesteps   | 1.33e+05  |
+| misc/time_elapsed       | 722       |
+| misc/total_timesteps    | 1.33e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:35:58.158799
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000156  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.78      |
+| loss/policy_loss        | -0.000144 |
+| loss/value_loss         | 2.31      |
+| misc/explained_variance | 1.12e-05  |
+| misc/nupdates           | 70        |
+| misc/serial_timesteps   | 1.43e+05  |
+| misc/time_elapsed       | 777       |
+| misc/total_timesteps    | 1.43e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:36:52.937670
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.85e+03 |
+| loss/approxkl           | 0.00059  |
+| loss/clipfrac           | 9.46e-05 |
+| loss/policy_entropy     | 2.78     |
+| loss/policy_loss        | -0.00039 |
+| loss/value_loss         | 2.21     |
+| misc/explained_variance | 0.000289 |
+| misc/nupdates           | 75       |
+| misc/serial_timesteps   | 1.54e+05 |
+| misc/time_elapsed       | 832      |
+| misc/total_timesteps    | 1.54e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:37:47.848098
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.00135  |
+| loss/clipfrac           | 0.00652  |
+| loss/policy_entropy     | 2.77     |
+| loss/policy_loss        | -0.00137 |
+| loss/value_loss         | 1.55     |
+| misc/explained_variance | -1.2e-05 |
+| misc/nupdates           | 80       |
+| misc/serial_timesteps   | 1.64e+05 |
+| misc/time_elapsed       | 887      |
+| misc/total_timesteps    | 1.64e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:38:42.307575
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00249   |
+| loss/clipfrac           | 0.019     |
+| loss/policy_entropy     | 2.76      |
+| loss/policy_loss        | -0.00121  |
+| loss/value_loss         | 2.32      |
+| misc/explained_variance | -9.18e-06 |
+| misc/nupdates           | 85        |
+| misc/serial_timesteps   | 1.74e+05  |
+| misc/time_elapsed       | 941       |
+| misc/total_timesteps    | 1.74e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:39:36.913969
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 4.33e-05  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.76      |
+| loss/policy_loss        | 7.87e-05  |
+| loss/value_loss         | 2.31      |
+| misc/explained_variance | -8.52e-06 |
+| misc/nupdates           | 90        |
+| misc/serial_timesteps   | 1.84e+05  |
+| misc/time_elapsed       | 996       |
+| misc/total_timesteps    | 1.84e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:40:31.308535
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000398  |
+| loss/clipfrac           | 0.000162  |
+| loss/policy_entropy     | 2.76      |
+| loss/policy_loss        | -0.000419 |
+| loss/value_loss         | 2.04      |
+| misc/explained_variance | -2.56e-06 |
+| misc/nupdates           | 95        |
+| misc/serial_timesteps   | 1.95e+05  |
+| misc/time_elapsed       | 1.05e+03  |
+| misc/total_timesteps    | 1.95e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:41:26.052487
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000284  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.76      |
+| loss/policy_loss        | 7.31e-05  |
+| loss/value_loss         | 2.09      |
+| misc/explained_variance | -3.61e-06 |
+| misc/nupdates           | 100       |
+| misc/serial_timesteps   | 2.05e+05  |
+| misc/time_elapsed       | 1.11e+03  |
+| misc/total_timesteps    | 2.05e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:42:20.570785
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.00138   |
+| loss/clipfrac           | 0.00458   |
+| loss/policy_entropy     | 2.75      |
+| loss/policy_loss        | -0.000768 |
+| loss/value_loss         | 2.19      |
+| misc/explained_variance | -3.7e-06  |
+| misc/nupdates           | 105       |
+| misc/serial_timesteps   | 2.15e+05  |
+| misc/time_elapsed       | 1.16e+03  |
+| misc/total_timesteps    | 2.15e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:43:15.326386
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.00144   |
+| loss/clipfrac           | 0.00934   |
+| loss/policy_entropy     | 2.75      |
+| loss/policy_loss        | -0.0013   |
+| loss/value_loss         | 2.9       |
+| misc/explained_variance | -8.05e-07 |
+| misc/nupdates           | 110       |
+| misc/serial_timesteps   | 2.25e+05  |
+| misc/time_elapsed       | 1.21e+03  |
+| misc/total_timesteps    | 2.25e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:44:09.878052
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00115   |
+| loss/clipfrac           | 0.00236   |
+| loss/policy_entropy     | 2.74      |
+| loss/policy_loss        | -0.000515 |
+| loss/value_loss         | 2.12      |
+| misc/explained_variance | -1.94e-06 |
+| misc/nupdates           | 115       |
+| misc/serial_timesteps   | 2.36e+05  |
+| misc/time_elapsed       | 1.27e+03  |
+| misc/total_timesteps    | 2.36e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:45:04.456954
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000736  |
+| loss/clipfrac           | 0.0014    |
+| loss/policy_entropy     | 2.74      |
+| loss/policy_loss        | -0.000743 |
+| loss/value_loss         | 2.45      |
+| misc/explained_variance | -1.13e-06 |
+| misc/nupdates           | 120       |
+| misc/serial_timesteps   | 2.46e+05  |
+| misc/time_elapsed       | 1.32e+03  |
+| misc/total_timesteps    | 2.46e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:45:58.790196
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000264  |
+| loss/clipfrac           | 1.22e-05  |
+| loss/policy_entropy     | 2.73      |
+| loss/policy_loss        | -0.000259 |
+| loss/value_loss         | 2.2       |
+| misc/explained_variance | -1.58e-06 |
+| misc/nupdates           | 125       |
+| misc/serial_timesteps   | 2.56e+05  |
+| misc/time_elapsed       | 1.38e+03  |
+| misc/total_timesteps    | 2.56e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:46:53.513612
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 2.85e-05  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.73      |
+| loss/policy_loss        | -1.83e-05 |
+| loss/value_loss         | 1.96      |
+| misc/explained_variance | -7.45e-07 |
+| misc/nupdates           | 130       |
+| misc/serial_timesteps   | 2.66e+05  |
+| misc/time_elapsed       | 1.43e+03  |
+| misc/total_timesteps    | 2.66e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:47:48.320539
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.85e+03  |
+| loss/approxkl           | 0.000385  |
+| loss/clipfrac           | 4.27e-05  |
+| loss/policy_entropy     | 2.73      |
+| loss/policy_loss        | -0.000381 |
+| loss/value_loss         | 2.05      |
+| misc/explained_variance | -1.1e-06  |
+| misc/nupdates           | 135       |
+| misc/serial_timesteps   | 2.76e+05  |
+| misc/time_elapsed       | 1.49e+03  |
+| misc/total_timesteps    | 2.76e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:48:42.879387
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.00221   |
+| loss/clipfrac           | 0.0123    |
+| loss/policy_entropy     | 2.72      |
+| loss/policy_loss        | -0.000617 |
+| loss/value_loss         | 2.27      |
+| misc/explained_variance | 5.96e-08  |
+| misc/nupdates           | 140       |
+| misc/serial_timesteps   | 2.87e+05  |
+| misc/time_elapsed       | 1.54e+03  |
+| misc/total_timesteps    | 2.87e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:49:37.582061
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 4.99e-05  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.71      |
+| loss/policy_loss        | -2.75e-05 |
+| loss/value_loss         | 2.11      |
+| misc/explained_variance | 0         |
+| misc/nupdates           | 145       |
+| misc/serial_timesteps   | 2.97e+05  |
+| misc/time_elapsed       | 1.6e+03   |
+| misc/total_timesteps    | 2.97e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:50:32.429782
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.85e+03  |
+| loss/approxkl           | 6.28e-05  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.71      |
+| loss/policy_loss        | -4.24e-05 |
+| loss/value_loss         | 2.41      |
+| misc/explained_variance | -1.79e-07 |
+| misc/nupdates           | 150       |
+| misc/serial_timesteps   | 3.07e+05  |
+| misc/time_elapsed       | 1.65e+03  |
+| misc/total_timesteps    | 3.07e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:51:26.918639
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 9.15e-05 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.7      |
+| loss/policy_loss        | 9.11e-05 |
+| loss/value_loss         | 2.03     |
+| misc/explained_variance | 2.29e-05 |
+| misc/nupdates           | 155      |
+| misc/serial_timesteps   | 3.17e+05 |
+| misc/time_elapsed       | 1.71e+03 |
+| misc/total_timesteps    | 3.17e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:52:21.244584
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.91e+03 |
+| loss/approxkl           | 0.00239  |
+| loss/clipfrac           | 0.0223   |
+| loss/policy_entropy     | 2.7      |
+| loss/policy_loss        | -0.00178 |
+| loss/value_loss         | 2.06     |
+| misc/explained_variance | 6.85e-07 |
+| misc/nupdates           | 160      |
+| misc/serial_timesteps   | 3.28e+05 |
+| misc/time_elapsed       | 1.76e+03 |
+| misc/total_timesteps    | 3.28e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:53:15.649356
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.00104   |
+| loss/clipfrac           | 0.00181   |
+| loss/policy_entropy     | 2.7       |
+| loss/policy_loss        | -0.000541 |
+| loss/value_loss         | 2.32      |
+| misc/explained_variance | 1.34e-07  |
+| misc/nupdates           | 165       |
+| misc/serial_timesteps   | 3.38e+05  |
+| misc/time_elapsed       | 1.81e+03  |
+| misc/total_timesteps    | 3.38e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:54:10.478966
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000581  |
+| loss/clipfrac           | 0.000427  |
+| loss/policy_entropy     | 2.69      |
+| loss/policy_loss        | -0.000534 |
+| loss/value_loss         | 2.63      |
+| misc/explained_variance | 7.15e-07  |
+| misc/nupdates           | 170       |
+| misc/serial_timesteps   | 3.48e+05  |
+| misc/time_elapsed       | 1.87e+03  |
+| misc/total_timesteps    | 3.48e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:55:05.299858
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000643  |
+| loss/clipfrac           | 5.49e-05  |
+| loss/policy_entropy     | 2.69      |
+| loss/policy_loss        | -9.65e-05 |
+| loss/value_loss         | 2.16      |
+| misc/explained_variance | 3.9e-06   |
+| misc/nupdates           | 175       |
+| misc/serial_timesteps   | 3.58e+05  |
+| misc/time_elapsed       | 1.92e+03  |
+| misc/total_timesteps    | 3.58e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:56:00.101162
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000776  |
+| loss/clipfrac           | 0.000204  |
+| loss/policy_entropy     | 2.69      |
+| loss/policy_loss        | -0.000161 |
+| loss/value_loss         | 2.1       |
+| misc/explained_variance | 5.25e-05  |
+| misc/nupdates           | 180       |
+| misc/serial_timesteps   | 3.69e+05  |
+| misc/time_elapsed       | 1.98e+03  |
+| misc/total_timesteps    | 3.69e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:56:55.172601
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000203  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.69      |
+| loss/policy_loss        | -2.76e-05 |
+| loss/value_loss         | 2.08      |
+| misc/explained_variance | -5.07e-07 |
+| misc/nupdates           | 185       |
+| misc/serial_timesteps   | 3.79e+05  |
+| misc/time_elapsed       | 2.03e+03  |
+| misc/total_timesteps    | 3.79e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:57:49.295648
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000101  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.68      |
+| loss/policy_loss        | -8.32e-05 |
+| loss/value_loss         | 2.16      |
+| misc/explained_variance | -1.31e-06 |
+| misc/nupdates           | 190       |
+| misc/serial_timesteps   | 3.89e+05  |
+| misc/time_elapsed       | 2.09e+03  |
+| misc/total_timesteps    | 3.89e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:58:44.447170
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.85e+03  |
+| loss/approxkl           | 0.000875  |
+| loss/clipfrac           | 0.00243   |
+| loss/policy_entropy     | 2.68      |
+| loss/policy_loss        | -0.000761 |
+| loss/value_loss         | 2.43      |
+| misc/explained_variance | 2.98e-07  |
+| misc/nupdates           | 195       |
+| misc/serial_timesteps   | 3.99e+05  |
+| misc/time_elapsed       | 2.14e+03  |
+| misc/total_timesteps    | 3.99e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 04:59:39.371001
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.00111   |
+| loss/clipfrac           | 0.00114   |
+| loss/policy_entropy     | 2.67      |
+| loss/policy_loss        | -0.000239 |
+| loss/value_loss         | 2.33      |
+| misc/explained_variance | -7.45e-08 |
+| misc/nupdates           | 200       |
+| misc/serial_timesteps   | 4.1e+05   |
+| misc/time_elapsed       | 2.2e+03   |
+| misc/total_timesteps    | 4.1e+06   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:00:34.215106
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.00102  |
+| loss/clipfrac           | 0.000562 |
+| loss/policy_entropy     | 2.67     |
+| loss/policy_loss        | 5.64e-05 |
+| loss/value_loss         | 2.28     |
+| misc/explained_variance | 0        |
+| misc/nupdates           | 205      |
+| misc/serial_timesteps   | 4.2e+05  |
+| misc/time_elapsed       | 2.25e+03 |
+| misc/total_timesteps    | 4.2e+06  |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:01:28.872513
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.00325   |
+| loss/clipfrac           | 0.0333    |
+| loss/policy_entropy     | 2.66      |
+| loss/policy_loss        | -0.00183  |
+| loss/value_loss         | 1.51      |
+| misc/explained_variance | -1.79e-07 |
+| misc/nupdates           | 210       |
+| misc/serial_timesteps   | 4.3e+05   |
+| misc/time_elapsed       | 2.31e+03  |
+| misc/total_timesteps    | 4.3e+06   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:02:23.351845
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000789  |
+| loss/clipfrac           | 0.00129   |
+| loss/policy_entropy     | 2.66      |
+| loss/policy_loss        | -0.000636 |
+| loss/value_loss         | 2.52      |
+| misc/explained_variance | 4.47e-08  |
+| misc/nupdates           | 215       |
+| misc/serial_timesteps   | 4.4e+05   |
+| misc/time_elapsed       | 2.36e+03  |
+| misc/total_timesteps    | 4.4e+06   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:03:17.729729
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00102   |
+| loss/clipfrac           | 0.000793  |
+| loss/policy_entropy     | 2.65      |
+| loss/policy_loss        | -0.000187 |
+| loss/value_loss         | 2.13      |
+| misc/explained_variance | 2.98e-08  |
+| misc/nupdates           | 220       |
+| misc/serial_timesteps   | 4.51e+05  |
+| misc/time_elapsed       | 2.42e+03  |
+| misc/total_timesteps    | 4.51e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:04:12.197379
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.86e+03 |
+| loss/approxkl           | 0.000148 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.65     |
+| loss/policy_loss        | 3.19e-05 |
+| loss/value_loss         | 1.69     |
+| misc/explained_variance | 0        |
+| misc/nupdates           | 225      |
+| misc/serial_timesteps   | 4.61e+05 |
+| misc/time_elapsed       | 2.47e+03 |
+| misc/total_timesteps    | 4.61e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:05:06.642804
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.00111   |
+| loss/clipfrac           | 0.00442   |
+| loss/policy_entropy     | 2.65      |
+| loss/policy_loss        | -0.000974 |
+| loss/value_loss         | 2.55      |
+| misc/explained_variance | 1.49e-07  |
+| misc/nupdates           | 230       |
+| misc/serial_timesteps   | 4.71e+05  |
+| misc/time_elapsed       | 2.53e+03  |
+| misc/total_timesteps    | 4.71e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:06:00.527586
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.9e+03  |
+| loss/approxkl           | 0.00177  |
+| loss/clipfrac           | 0.00963  |
+| loss/policy_entropy     | 2.64     |
+| loss/policy_loss        | -0.00102 |
+| loss/value_loss         | 2.09     |
+| misc/explained_variance | 1.04e-07 |
+| misc/nupdates           | 235      |
+| misc/serial_timesteps   | 4.81e+05 |
+| misc/time_elapsed       | 2.58e+03 |
+| misc/total_timesteps    | 4.81e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:06:54.901878
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.00144   |
+| loss/clipfrac           | 0.00271   |
+| loss/policy_entropy     | 2.64      |
+| loss/policy_loss        | -7.54e-05 |
+| loss/value_loss         | 2.34      |
+| misc/explained_variance | 2.68e-07  |
+| misc/nupdates           | 240       |
+| misc/serial_timesteps   | 4.92e+05  |
+| misc/time_elapsed       | 2.63e+03  |
+| misc/total_timesteps    | 4.92e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:07:48.992803
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.90e+03 |
+| loss/approxkl           | 2.71e-05 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.64     |
+| loss/policy_loss        | 5.34e-05 |
+| loss/value_loss         | 2.36     |
+| misc/explained_variance | 1.49e-08 |
+| misc/nupdates           | 245      |
+| misc/serial_timesteps   | 5.02e+05 |
+| misc/time_elapsed       | 2.69e+03 |
+| misc/total_timesteps    | 5.02e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:08:43.540023
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000274  |
+| loss/clipfrac           | 6.1e-06   |
+| loss/policy_entropy     | 2.63      |
+| loss/policy_loss        | -0.000279 |
+| loss/value_loss         | 2.41      |
+| misc/explained_variance | 1.34e-07  |
+| misc/nupdates           | 250       |
+| misc/serial_timesteps   | 5.12e+05  |
+| misc/time_elapsed       | 2.74e+03  |
+| misc/total_timesteps    | 5.12e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:09:38.040083
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.000728  |
+| loss/clipfrac           | 0.000128  |
+| loss/policy_entropy     | 2.63      |
+| loss/policy_loss        | -6.01e-05 |
+| loss/value_loss         | 2.31      |
+| misc/explained_variance | 2.68e-07  |
+| misc/nupdates           | 255       |
+| misc/serial_timesteps   | 5.22e+05  |
+| misc/time_elapsed       | 2.8e+03   |
+| misc/total_timesteps    | 5.22e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:10:32.767685
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00143   |
+| loss/clipfrac           | 0.00612   |
+| loss/policy_entropy     | 2.63      |
+| loss/policy_loss        | -0.000865 |
+| loss/value_loss         | 2.33      |
+| misc/explained_variance | 2.53e-07  |
+| misc/nupdates           | 260       |
+| misc/serial_timesteps   | 5.32e+05  |
+| misc/time_elapsed       | 2.85e+03  |
+| misc/total_timesteps    | 5.32e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:11:27.603751
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.000726 |
+| loss/clipfrac           | 0.00106  |
+| loss/policy_entropy     | 2.62     |
+| loss/policy_loss        | -0.00107 |
+| loss/value_loss         | 3        |
+| misc/explained_variance | 1.34e-07 |
+| misc/nupdates           | 265      |
+| misc/serial_timesteps   | 5.43e+05 |
+| misc/time_elapsed       | 2.91e+03 |
+| misc/total_timesteps    | 5.43e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:12:22.433699
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.00068   |
+| loss/clipfrac           | 7.02e-05  |
+| loss/policy_entropy     | 2.62      |
+| loss/policy_loss        | -3.64e-05 |
+| loss/value_loss         | 2         |
+| misc/explained_variance | 2.38e-07  |
+| misc/nupdates           | 270       |
+| misc/serial_timesteps   | 5.53e+05  |
+| misc/time_elapsed       | 2.96e+03  |
+| misc/total_timesteps    | 5.53e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:13:17.123687
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.83e+03  |
+| loss/approxkl           | 0.00051   |
+| loss/clipfrac           | 4.58e-05  |
+| loss/policy_entropy     | 2.62      |
+| loss/policy_loss        | -0.000258 |
+| loss/value_loss         | 1.57      |
+| misc/explained_variance | 5.07e-07  |
+| misc/nupdates           | 275       |
+| misc/serial_timesteps   | 5.63e+05  |
+| misc/time_elapsed       | 3.02e+03  |
+| misc/total_timesteps    | 5.63e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:14:11.702862
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000203 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.61     |
+| loss/policy_loss        | 0.00022  |
+| loss/value_loss         | 2.14     |
+| misc/explained_variance | 4.62e-07 |
+| misc/nupdates           | 280      |
+| misc/serial_timesteps   | 5.73e+05 |
+| misc/time_elapsed       | 3.07e+03 |
+| misc/total_timesteps    | 5.73e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:15:06.673822
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.84e+03 |
+| loss/approxkl           | 8.13e-05 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.61     |
+| loss/policy_loss        | 0.000119 |
+| loss/value_loss         | 2.33     |
+| misc/explained_variance | 5.36e-07 |
+| misc/nupdates           | 285      |
+| misc/serial_timesteps   | 5.84e+05 |
+| misc/time_elapsed       | 3.13e+03 |
+| misc/total_timesteps    | 5.84e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:16:01.172345
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000207 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.6      |
+| loss/policy_loss        | 0.000254 |
+| loss/value_loss         | 1.6      |
+| misc/explained_variance | 3.87e-07 |
+| misc/nupdates           | 290      |
+| misc/serial_timesteps   | 5.94e+05 |
+| misc/time_elapsed       | 3.18e+03 |
+| misc/total_timesteps    | 5.94e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:16:55.569429
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.000163  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.6       |
+| loss/policy_loss        | -0.000156 |
+| loss/value_loss         | 2.43      |
+| misc/explained_variance | 8.79e-07  |
+| misc/nupdates           | 295       |
+| misc/serial_timesteps   | 6.04e+05  |
+| misc/time_elapsed       | 3.23e+03  |
+| misc/total_timesteps    | 6.04e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:17:49.977659
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000144  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.59      |
+| loss/policy_loss        | -0.000429 |
+| loss/value_loss         | 2.31      |
+| misc/explained_variance | 4.17e-07  |
+| misc/nupdates           | 300       |
+| misc/serial_timesteps   | 6.14e+05  |
+| misc/time_elapsed       | 3.29e+03  |
+| misc/total_timesteps    | 6.14e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:18:44.785756
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.9e+03  |
+| loss/approxkl           | 0.00146  |
+| loss/clipfrac           | 0.0084   |
+| loss/policy_entropy     | 2.59     |
+| loss/policy_loss        | -0.00112 |
+| loss/value_loss         | 2.43     |
+| misc/explained_variance | 5.07e-07 |
+| misc/nupdates           | 305      |
+| misc/serial_timesteps   | 6.25e+05 |
+| misc/time_elapsed       | 3.34e+03 |
+| misc/total_timesteps    | 6.25e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:19:39.304581
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.86e+03 |
+| loss/approxkl           | 0.000245 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.58     |
+| loss/policy_loss        | 0.000225 |
+| loss/value_loss         | 2.45     |
+| misc/explained_variance | 3.13e-07 |
+| misc/nupdates           | 310      |
+| misc/serial_timesteps   | 6.35e+05 |
+| misc/time_elapsed       | 3.4e+03  |
+| misc/total_timesteps    | 6.35e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:20:34.051099
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.85e+03  |
+| loss/approxkl           | 0.000394  |
+| loss/clipfrac           | 6.1e-06   |
+| loss/policy_entropy     | 2.58      |
+| loss/policy_loss        | -0.000226 |
+| loss/value_loss         | 2.18      |
+| misc/explained_variance | 7.36e-06  |
+| misc/nupdates           | 315       |
+| misc/serial_timesteps   | 6.45e+05  |
+| misc/time_elapsed       | 3.45e+03  |
+| misc/total_timesteps    | 6.45e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:21:28.316985
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000321  |
+| loss/clipfrac           | 2.14e-05  |
+| loss/policy_entropy     | 2.58      |
+| loss/policy_loss        | -0.000597 |
+| loss/value_loss         | 3.01      |
+| misc/explained_variance | 1.49e-07  |
+| misc/nupdates           | 320       |
+| misc/serial_timesteps   | 6.55e+05  |
+| misc/time_elapsed       | 3.51e+03  |
+| misc/total_timesteps    | 6.55e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:22:22.690525
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.000682  |
+| loss/clipfrac           | 5.19e-05  |
+| loss/policy_entropy     | 2.58      |
+| loss/policy_loss        | -4.33e-06 |
+| loss/value_loss         | 2.16      |
+| misc/explained_variance | 1.04e-07  |
+| misc/nupdates           | 325       |
+| misc/serial_timesteps   | 6.66e+05  |
+| misc/time_elapsed       | 3.56e+03  |
+| misc/total_timesteps    | 6.66e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:23:17.531296
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.00038   |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.57      |
+| loss/policy_loss        | -7.99e-05 |
+| loss/value_loss         | 2.2       |
+| misc/explained_variance | 8.94e-08  |
+| misc/nupdates           | 330       |
+| misc/serial_timesteps   | 6.76e+05  |
+| misc/time_elapsed       | 3.62e+03  |
+| misc/total_timesteps    | 6.76e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:24:12.574486
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00217   |
+| loss/clipfrac           | 0.0121    |
+| loss/policy_entropy     | 2.57      |
+| loss/policy_loss        | -0.000682 |
+| loss/value_loss         | 2.26      |
+| misc/explained_variance | 1.04e-07  |
+| misc/nupdates           | 335       |
+| misc/serial_timesteps   | 6.86e+05  |
+| misc/time_elapsed       | 3.67e+03  |
+| misc/total_timesteps    | 6.86e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:25:07.208116
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.92e+03  |
+| loss/approxkl           | 0.000333  |
+| loss/clipfrac           | 1.22e-05  |
+| loss/policy_entropy     | 2.56      |
+| loss/policy_loss        | -0.000974 |
+| loss/value_loss         | 2.21      |
+| misc/explained_variance | 1.34e-07  |
+| misc/nupdates           | 340       |
+| misc/serial_timesteps   | 6.96e+05  |
+| misc/time_elapsed       | 3.73e+03  |
+| misc/total_timesteps    | 6.96e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:26:01.248977
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000519  |
+| loss/clipfrac           | 0.000568  |
+| loss/policy_entropy     | 2.56      |
+| loss/policy_loss        | -0.000507 |
+| loss/value_loss         | 2.64      |
+| misc/explained_variance | 5.96e-08  |
+| misc/nupdates           | 345       |
+| misc/serial_timesteps   | 7.07e+05  |
+| misc/time_elapsed       | 3.78e+03  |
+| misc/total_timesteps    | 7.07e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:26:55.829056
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.000283 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.56     |
+| loss/policy_loss        | 0.000225 |
+| loss/value_loss         | 2.04     |
+| misc/explained_variance | 2.38e-07 |
+| misc/nupdates           | 350      |
+| misc/serial_timesteps   | 7.17e+05 |
+| misc/time_elapsed       | 3.83e+03 |
+| misc/total_timesteps    | 7.17e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:27:50.957776
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.00208   |
+| loss/clipfrac           | 0.0183    |
+| loss/policy_entropy     | 2.55      |
+| loss/policy_loss        | -0.00164  |
+| loss/value_loss         | 1.75      |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 355       |
+| misc/serial_timesteps   | 7.27e+05  |
+| misc/time_elapsed       | 3.89e+03  |
+| misc/total_timesteps    | 7.27e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:28:45.384092
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00159   |
+| loss/clipfrac           | 0.0064    |
+| loss/policy_entropy     | 2.54      |
+| loss/policy_loss        | -0.000698 |
+| loss/value_loss         | 1.96      |
+| misc/explained_variance | 1.79e-07  |
+| misc/nupdates           | 360       |
+| misc/serial_timesteps   | 7.37e+05  |
+| misc/time_elapsed       | 3.94e+03  |
+| misc/total_timesteps    | 7.37e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:29:40.414474
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000121  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.54      |
+| loss/policy_loss        | -0.000212 |
+| loss/value_loss         | 2.33      |
+| misc/explained_variance | 2.38e-07  |
+| misc/nupdates           | 365       |
+| misc/serial_timesteps   | 7.48e+05  |
+| misc/time_elapsed       | 4e+03     |
+| misc/total_timesteps    | 7.48e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:30:35.344641
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.9e+03  |
+| loss/approxkl           | 0.00168  |
+| loss/clipfrac           | 0.0125   |
+| loss/policy_entropy     | 2.53     |
+| loss/policy_loss        | -0.00145 |
+| loss/value_loss         | 2.21     |
+| misc/explained_variance | 8.94e-08 |
+| misc/nupdates           | 370      |
+| misc/serial_timesteps   | 7.58e+05 |
+| misc/time_elapsed       | 4.05e+03 |
+| misc/total_timesteps    | 7.58e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:31:29.987672
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.00216  |
+| loss/clipfrac           | 0.0149   |
+| loss/policy_entropy     | 2.53     |
+| loss/policy_loss        | -0.00107 |
+| loss/value_loss         | 2.05     |
+| misc/explained_variance | 2.68e-07 |
+| misc/nupdates           | 375      |
+| misc/serial_timesteps   | 7.68e+05 |
+| misc/time_elapsed       | 4.11e+03 |
+| misc/total_timesteps    | 7.68e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:32:24.908897
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.00107  |
+| loss/clipfrac           | 0.000528 |
+| loss/policy_entropy     | 2.53     |
+| loss/policy_loss        | 2.9e-05  |
+| loss/value_loss         | 2.2      |
+| misc/explained_variance | 4.62e-07 |
+| misc/nupdates           | 380      |
+| misc/serial_timesteps   | 7.78e+05 |
+| misc/time_elapsed       | 4.16e+03 |
+| misc/total_timesteps    | 7.78e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:33:19.746559
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.86e+03 |
+| loss/approxkl           | 0.000392 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.52     |
+| loss/policy_loss        | 0.000165 |
+| loss/value_loss         | 2.2      |
+| misc/explained_variance | 1.49e-08 |
+| misc/nupdates           | 385      |
+| misc/serial_timesteps   | 7.88e+05 |
+| misc/time_elapsed       | 4.22e+03 |
+| misc/total_timesteps    | 7.88e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:34:14.218694
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.89e+03 |
+| loss/approxkl           | 0.000229 |
+| loss/clipfrac           | 3.05e-06 |
+| loss/policy_entropy     | 2.52     |
+| loss/policy_loss        | -0.00028 |
+| loss/value_loss         | 2.2      |
+| misc/explained_variance | 4.47e-07 |
+| misc/nupdates           | 390      |
+| misc/serial_timesteps   | 7.99e+05 |
+| misc/time_elapsed       | 4.27e+03 |
+| misc/total_timesteps    | 7.99e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:35:08.912951
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.86e+03 |
+| loss/approxkl           | 0.000425 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.51     |
+| loss/policy_loss        | 9.49e-05 |
+| loss/value_loss         | 2.39     |
+| misc/explained_variance | 2.09e-07 |
+| misc/nupdates           | 395      |
+| misc/serial_timesteps   | 8.09e+05 |
+| misc/time_elapsed       | 4.33e+03 |
+| misc/total_timesteps    | 8.09e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:36:03.592267
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.86e+03 |
+| loss/approxkl           | 0.00059  |
+| loss/clipfrac           | 9.16e-06 |
+| loss/policy_entropy     | 2.51     |
+| loss/policy_loss        | 0.000208 |
+| loss/value_loss         | 2.13     |
+| misc/explained_variance | 2.09e-07 |
+| misc/nupdates           | 400      |
+| misc/serial_timesteps   | 8.19e+05 |
+| misc/time_elapsed       | 4.38e+03 |
+| misc/total_timesteps    | 8.19e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:36:58.280339
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.0005    |
+| loss/clipfrac           | 0.000336  |
+| loss/policy_entropy     | 2.51      |
+| loss/policy_loss        | -0.000786 |
+| loss/value_loss         | 2         |
+| misc/explained_variance | 6.41e-07  |
+| misc/nupdates           | 405       |
+| misc/serial_timesteps   | 8.29e+05  |
+| misc/time_elapsed       | 4.44e+03  |
+| misc/total_timesteps    | 8.29e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:37:53.008740
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.00251  |
+| loss/clipfrac           | 0.0191   |
+| loss/policy_entropy     | 2.51     |
+| loss/policy_loss        | -0.00109 |
+| loss/value_loss         | 2.03     |
+| misc/explained_variance | 3.73e-07 |
+| misc/nupdates           | 410      |
+| misc/serial_timesteps   | 8.4e+05  |
+| misc/time_elapsed       | 4.49e+03 |
+| misc/total_timesteps    | 8.4e+06  |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:38:47.731076
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.84e+03 |
+| loss/approxkl           | 3.19e-05 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.5      |
+| loss/policy_loss        | 5.38e-05 |
+| loss/value_loss         | 2.32     |
+| misc/explained_variance | 4.47e-07 |
+| misc/nupdates           | 415      |
+| misc/serial_timesteps   | 8.5e+05  |
+| misc/time_elapsed       | 4.55e+03 |
+| misc/total_timesteps    | 8.5e+06  |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:39:42.378249
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.00317  |
+| loss/clipfrac           | 0.0324   |
+| loss/policy_entropy     | 2.5      |
+| loss/policy_loss        | -0.00175 |
+| loss/value_loss         | 1.41     |
+| misc/explained_variance | 1.64e-07 |
+| misc/nupdates           | 420      |
+| misc/serial_timesteps   | 8.6e+05  |
+| misc/time_elapsed       | 4.6e+03  |
+| misc/total_timesteps    | 8.6e+06  |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:40:37.086590
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000431 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.49     |
+| loss/policy_loss        | 0.000284 |
+| loss/value_loss         | 2.21     |
+| misc/explained_variance | 1.49e-07 |
+| misc/nupdates           | 425      |
+| misc/serial_timesteps   | 8.7e+05  |
+| misc/time_elapsed       | 4.66e+03 |
+| misc/total_timesteps    | 8.7e+06  |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:41:32.003731
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000806 |
+| loss/clipfrac           | 0.000107 |
+| loss/policy_entropy     | 2.49     |
+| loss/policy_loss        | 0.000122 |
+| loss/value_loss         | 2.36     |
+| misc/explained_variance | 2.38e-07 |
+| misc/nupdates           | 430      |
+| misc/serial_timesteps   | 8.81e+05 |
+| misc/time_elapsed       | 4.71e+03 |
+| misc/total_timesteps    | 8.81e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:42:26.146923
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.000256 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.48     |
+| loss/policy_loss        | 0.000217 |
+| loss/value_loss         | 1.74     |
+| misc/explained_variance | 4.32e-07 |
+| misc/nupdates           | 435      |
+| misc/serial_timesteps   | 8.91e+05 |
+| misc/time_elapsed       | 4.77e+03 |
+| misc/total_timesteps    | 8.91e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:43:20.726894
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.00107   |
+| loss/clipfrac           | 0.00439   |
+| loss/policy_entropy     | 2.48      |
+| loss/policy_loss        | -0.000898 |
+| loss/value_loss         | 2.74      |
+| misc/explained_variance | 7.75e-07  |
+| misc/nupdates           | 440       |
+| misc/serial_timesteps   | 9.01e+05  |
+| misc/time_elapsed       | 4.82e+03  |
+| misc/total_timesteps    | 9.01e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:44:15.216735
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.00118   |
+| loss/clipfrac           | 0.00285   |
+| loss/policy_entropy     | 2.48      |
+| loss/policy_loss        | -0.000613 |
+| loss/value_loss         | 2         |
+| misc/explained_variance | 2.8e-06   |
+| misc/nupdates           | 445       |
+| misc/serial_timesteps   | 9.11e+05  |
+| misc/time_elapsed       | 4.87e+03  |
+| misc/total_timesteps    | 9.11e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:45:09.979672
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000201  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.47      |
+| loss/policy_loss        | -0.000227 |
+| loss/value_loss         | 2.16      |
+| misc/explained_variance | 5.78e-06  |
+| misc/nupdates           | 450       |
+| misc/serial_timesteps   | 9.22e+05  |
+| misc/time_elapsed       | 4.93e+03  |
+| misc/total_timesteps    | 9.22e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:46:05.168662
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.00101   |
+| loss/clipfrac           | 0.00288   |
+| loss/policy_entropy     | 2.46      |
+| loss/policy_loss        | -0.000751 |
+| loss/value_loss         | 2.74      |
+| misc/explained_variance | 0.000236  |
+| misc/nupdates           | 455       |
+| misc/serial_timesteps   | 9.32e+05  |
+| misc/time_elapsed       | 4.98e+03  |
+| misc/total_timesteps    | 9.32e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:46:59.720334
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000758 |
+| loss/clipfrac           | 0.00011  |
+| loss/policy_entropy     | 2.46     |
+| loss/policy_loss        | -0.00011 |
+| loss/value_loss         | 2.12     |
+| misc/explained_variance | 1.49e-07 |
+| misc/nupdates           | 460      |
+| misc/serial_timesteps   | 9.42e+05 |
+| misc/time_elapsed       | 5.04e+03 |
+| misc/total_timesteps    | 9.42e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:47:54.188440
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000689  |
+| loss/clipfrac           | 3.36e-05  |
+| loss/policy_entropy     | 2.46      |
+| loss/policy_loss        | -9.32e-05 |
+| loss/value_loss         | 2.07      |
+| misc/explained_variance | -4.17e-07 |
+| misc/nupdates           | 465       |
+| misc/serial_timesteps   | 9.52e+05  |
+| misc/time_elapsed       | 5.09e+03  |
+| misc/total_timesteps    | 9.52e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:48:49.333259
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000773 |
+| loss/clipfrac           | 3.05e-05 |
+| loss/policy_entropy     | 2.45     |
+| loss/policy_loss        | 0.000165 |
+| loss/value_loss         | 1.95     |
+| misc/explained_variance | 1.79e-07 |
+| misc/nupdates           | 470      |
+| misc/serial_timesteps   | 9.63e+05 |
+| misc/time_elapsed       | 5.15e+03 |
+| misc/total_timesteps    | 9.63e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:49:43.571088
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.89e+03 |
+| loss/approxkl           | 0.000555 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.44     |
+| loss/policy_loss        | 0.000165 |
+| loss/value_loss         | 1.94     |
+| misc/explained_variance | 1.34e-07 |
+| misc/nupdates           | 475      |
+| misc/serial_timesteps   | 9.73e+05 |
+| misc/time_elapsed       | 5.2e+03  |
+| misc/total_timesteps    | 9.73e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:50:38.383923
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.83e+03 |
+| loss/approxkl           | 0.000928 |
+| loss/clipfrac           | 0.00129  |
+| loss/policy_entropy     | 2.44     |
+| loss/policy_loss        | -0.00134 |
+| loss/value_loss         | 2.04     |
+| misc/explained_variance | 3.43e-07 |
+| misc/nupdates           | 480      |
+| misc/serial_timesteps   | 9.83e+05 |
+| misc/time_elapsed       | 5.26e+03 |
+| misc/total_timesteps    | 9.83e+06 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:51:33.502018
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.00057   |
+| loss/clipfrac           | 0.000357  |
+| loss/policy_entropy     | 2.43      |
+| loss/policy_loss        | -0.000805 |
+| loss/value_loss         | 1.65      |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 485       |
+| misc/serial_timesteps   | 9.93e+05  |
+| misc/time_elapsed       | 5.31e+03  |
+| misc/total_timesteps    | 9.93e+06  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:52:27.887672
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000121 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.43     |
+| loss/policy_loss        | 9.61e-05 |
+| loss/value_loss         | 2.2      |
+| misc/explained_variance | 1.49e-07 |
+| misc/nupdates           | 490      |
+| misc/serial_timesteps   | 1e+06    |
+| misc/time_elapsed       | 5.37e+03 |
+| misc/total_timesteps    | 1e+07    |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:53:22.816333
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.0016    |
+| loss/clipfrac           | 0.00735   |
+| loss/policy_entropy     | 2.42      |
+| loss/policy_loss        | -0.000931 |
+| loss/value_loss         | 2.14      |
+| misc/explained_variance | 1.79e-07  |
+| misc/nupdates           | 495       |
+| misc/serial_timesteps   | 1.01e+06  |
+| misc/time_elapsed       | 5.42e+03  |
+| misc/total_timesteps    | 1.01e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:54:17.684531
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.83e+03 |
+| loss/approxkl           | 0.000759 |
+| loss/clipfrac           | 3.66e-05 |
+| loss/policy_entropy     | 2.42     |
+| loss/policy_loss        | 0.000123 |
+| loss/value_loss         | 1.43     |
+| misc/explained_variance | 8.94e-08 |
+| misc/nupdates           | 500      |
+| misc/serial_timesteps   | 1.02e+06 |
+| misc/time_elapsed       | 5.48e+03 |
+| misc/total_timesteps    | 1.02e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:55:12.564400
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.000103 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.41     |
+| loss/policy_loss        | 0.00015  |
+| loss/value_loss         | 2.35     |
+| misc/explained_variance | 2.98e-08 |
+| misc/nupdates           | 505      |
+| misc/serial_timesteps   | 1.03e+06 |
+| misc/time_elapsed       | 5.53e+03 |
+| misc/total_timesteps    | 1.03e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:56:07.128481
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00108   |
+| loss/clipfrac           | 0.00263   |
+| loss/policy_entropy     | 2.41      |
+| loss/policy_loss        | -0.000948 |
+| loss/value_loss         | 2.04      |
+| misc/explained_variance | 3.13e-07  |
+| misc/nupdates           | 510       |
+| misc/serial_timesteps   | 1.04e+06  |
+| misc/time_elapsed       | 5.59e+03  |
+| misc/total_timesteps    | 1.04e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:57:01.823345
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00323   |
+| loss/clipfrac           | 0.0329    |
+| loss/policy_entropy     | 2.41      |
+| loss/policy_loss        | -0.00152  |
+| loss/value_loss         | 2.64      |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 515       |
+| misc/serial_timesteps   | 1.05e+06  |
+| misc/time_elapsed       | 5.64e+03  |
+| misc/total_timesteps    | 1.05e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:57:56.509035
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.000416  |
+| loss/clipfrac           | 0.00011   |
+| loss/policy_entropy     | 2.4       |
+| loss/policy_loss        | -0.000405 |
+| loss/value_loss         | 2.37      |
+| misc/explained_variance | 2.98e-08  |
+| misc/nupdates           | 520       |
+| misc/serial_timesteps   | 1.06e+06  |
+| misc/time_elapsed       | 5.7e+03   |
+| misc/total_timesteps    | 1.06e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:58:51.008407
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.9e+03  |
+| loss/approxkl           | 0.000504 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.39     |
+| loss/policy_loss        | 6.3e-05  |
+| loss/value_loss         | 1.99     |
+| misc/explained_variance | 1.04e-07 |
+| misc/nupdates           | 525      |
+| misc/serial_timesteps   | 1.08e+06 |
+| misc/time_elapsed       | 5.75e+03 |
+| misc/total_timesteps    | 1.08e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 05:59:45.750917
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.00116   |
+| loss/clipfrac           | 0.00432   |
+| loss/policy_entropy     | 2.38      |
+| loss/policy_loss        | -0.000819 |
+| loss/value_loss         | 1.99      |
+| misc/explained_variance | 1.04e-07  |
+| misc/nupdates           | 530       |
+| misc/serial_timesteps   | 1.09e+06  |
+| misc/time_elapsed       | 5.8e+03   |
+| misc/total_timesteps    | 1.09e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:00:40.148707
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00105   |
+| loss/clipfrac           | 0.00394   |
+| loss/policy_entropy     | 2.38      |
+| loss/policy_loss        | -0.000767 |
+| loss/value_loss         | 2.47      |
+| misc/explained_variance | 0         |
+| misc/nupdates           | 535       |
+| misc/serial_timesteps   | 1.1e+06   |
+| misc/time_elapsed       | 5.86e+03  |
+| misc/total_timesteps    | 1.1e+07   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:01:34.626206
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.00114   |
+| loss/clipfrac           | 0.00175   |
+| loss/policy_entropy     | 2.37      |
+| loss/policy_loss        | -0.000381 |
+| loss/value_loss         | 2.03      |
+| misc/explained_variance | 4.47e-08  |
+| misc/nupdates           | 540       |
+| misc/serial_timesteps   | 1.11e+06  |
+| misc/time_elapsed       | 5.91e+03  |
+| misc/total_timesteps    | 1.11e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:02:28.909436
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.89e+03 |
+| loss/approxkl           | 0.000685 |
+| loss/clipfrac           | 9.16e-06 |
+| loss/policy_entropy     | 2.37     |
+| loss/policy_loss        | 0.000225 |
+| loss/value_loss         | 2.1      |
+| misc/explained_variance | 1.79e-07 |
+| misc/nupdates           | 545      |
+| misc/serial_timesteps   | 1.12e+06 |
+| misc/time_elapsed       | 5.97e+03 |
+| misc/total_timesteps    | 1.12e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:03:23.402582
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.85e+03  |
+| loss/approxkl           | 0.000149  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.36      |
+| loss/policy_loss        | -0.000224 |
+| loss/value_loss         | 1.66      |
+| misc/explained_variance | 1.49e-08  |
+| misc/nupdates           | 550       |
+| misc/serial_timesteps   | 1.13e+06  |
+| misc/time_elapsed       | 6.02e+03  |
+| misc/total_timesteps    | 1.13e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:04:17.745671
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.000181  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.36      |
+| loss/policy_loss        | -0.000126 |
+| loss/value_loss         | 2.15      |
+| misc/explained_variance | 3.58e-07  |
+| misc/nupdates           | 555       |
+| misc/serial_timesteps   | 1.14e+06  |
+| misc/time_elapsed       | 6.08e+03  |
+| misc/total_timesteps    | 1.14e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:05:12.308515
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.91e+03 |
+| loss/approxkl           | 0.000662 |
+| loss/clipfrac           | 6.1e-06  |
+| loss/policy_entropy     | 2.36     |
+| loss/policy_loss        | 0.000212 |
+| loss/value_loss         | 1.86     |
+| misc/explained_variance | 1.64e-07 |
+| misc/nupdates           | 560      |
+| misc/serial_timesteps   | 1.15e+06 |
+| misc/time_elapsed       | 6.13e+03 |
+| misc/total_timesteps    | 1.15e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:06:07.172728
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000893 |
+| loss/clipfrac           | 0.000494 |
+| loss/policy_entropy     | 2.35     |
+| loss/policy_loss        | -0.00035 |
+| loss/value_loss         | 1.17     |
+| misc/explained_variance | 2.53e-07 |
+| misc/nupdates           | 565      |
+| misc/serial_timesteps   | 1.16e+06 |
+| misc/time_elapsed       | 6.19e+03 |
+| misc/total_timesteps    | 1.16e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:07:01.204393
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.9e+03  |
+| loss/approxkl           | 0.000124 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.35     |
+| loss/policy_loss        | 0.000305 |
+| loss/value_loss         | 2.02     |
+| misc/explained_variance | 2.24e-07 |
+| misc/nupdates           | 570      |
+| misc/serial_timesteps   | 1.17e+06 |
+| misc/time_elapsed       | 6.24e+03 |
+| misc/total_timesteps    | 1.17e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:07:55.496890
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000311  |
+| loss/clipfrac           | 5.49e-05  |
+| loss/policy_entropy     | 2.34      |
+| loss/policy_loss        | -0.000276 |
+| loss/value_loss         | 2.57      |
+| misc/explained_variance | 2.98e-08  |
+| misc/nupdates           | 575       |
+| misc/serial_timesteps   | 1.18e+06  |
+| misc/time_elapsed       | 6.29e+03  |
+| misc/total_timesteps    | 1.18e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:08:49.972528
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.89e+03 |
+| loss/approxkl           | 9.73e-05 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.34     |
+| loss/policy_loss        | 0.000141 |
+| loss/value_loss         | 1.83     |
+| misc/explained_variance | 3.28e-07 |
+| misc/nupdates           | 580      |
+| misc/serial_timesteps   | 1.19e+06 |
+| misc/time_elapsed       | 6.35e+03 |
+| misc/total_timesteps    | 1.19e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:09:44.570665
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00119   |
+| loss/clipfrac           | 0.00459   |
+| loss/policy_entropy     | 2.33      |
+| loss/policy_loss        | -0.000719 |
+| loss/value_loss         | 2.47      |
+| misc/explained_variance | 7.45e-08  |
+| misc/nupdates           | 585       |
+| misc/serial_timesteps   | 1.2e+06   |
+| misc/time_elapsed       | 6.4e+03   |
+| misc/total_timesteps    | 1.2e+07   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:10:39.453316
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.84e+03  |
+| loss/approxkl           | 0.00118   |
+| loss/clipfrac           | 0.00266   |
+| loss/policy_entropy     | 2.33      |
+| loss/policy_loss        | -0.000582 |
+| loss/value_loss         | 2.05      |
+| misc/explained_variance | -3.87e-07 |
+| misc/nupdates           | 590       |
+| misc/serial_timesteps   | 1.21e+06  |
+| misc/time_elapsed       | 6.46e+03  |
+| misc/total_timesteps    | 1.21e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:11:34.015939
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.9e+03  |
+| loss/approxkl           | 0.00202  |
+| loss/clipfrac           | 0.013    |
+| loss/policy_entropy     | 2.32     |
+| loss/policy_loss        | -0.00103 |
+| loss/value_loss         | 1.94     |
+| misc/explained_variance | 3.73e-07 |
+| misc/nupdates           | 595      |
+| misc/serial_timesteps   | 1.22e+06 |
+| misc/time_elapsed       | 6.51e+03 |
+| misc/total_timesteps    | 1.22e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:12:28.025124
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000172  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.32      |
+| loss/policy_loss        | -7.66e-06 |
+| loss/value_loss         | 2.32      |
+| misc/explained_variance | 1.79e-07  |
+| misc/nupdates           | 600       |
+| misc/serial_timesteps   | 1.23e+06  |
+| misc/time_elapsed       | 6.57e+03  |
+| misc/total_timesteps    | 1.23e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:13:22.392801
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.00105   |
+| loss/clipfrac           | 0.00377   |
+| loss/policy_entropy     | 2.31      |
+| loss/policy_loss        | -0.000755 |
+| loss/value_loss         | 2.37      |
+| misc/explained_variance | 8.94e-08  |
+| misc/nupdates           | 605       |
+| misc/serial_timesteps   | 1.24e+06  |
+| misc/time_elapsed       | 6.62e+03  |
+| misc/total_timesteps    | 1.24e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:14:16.583788
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000104 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.31     |
+| loss/policy_loss        | 0.000115 |
+| loss/value_loss         | 2.13     |
+| misc/explained_variance | 2.24e-07 |
+| misc/nupdates           | 610      |
+| misc/serial_timesteps   | 1.25e+06 |
+| misc/time_elapsed       | 6.68e+03 |
+| misc/total_timesteps    | 1.25e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:15:11.242899
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.83e+03 |
+| loss/approxkl           | 0.000965 |
+| loss/clipfrac           | 0.000378 |
+| loss/policy_entropy     | 2.3      |
+| loss/policy_loss        | 3.22e-05 |
+| loss/value_loss         | 1.63     |
+| misc/explained_variance | 2.68e-07 |
+| misc/nupdates           | 615      |
+| misc/serial_timesteps   | 1.26e+06 |
+| misc/time_elapsed       | 6.73e+03 |
+| misc/total_timesteps    | 1.26e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:16:06.162825
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.84e+03  |
+| loss/approxkl           | 0.000362  |
+| loss/clipfrac           | 9.16e-06  |
+| loss/policy_entropy     | 2.3       |
+| loss/policy_loss        | -0.000714 |
+| loss/value_loss         | 2.09      |
+| misc/explained_variance | 3.58e-07  |
+| misc/nupdates           | 620       |
+| misc/serial_timesteps   | 1.27e+06  |
+| misc/time_elapsed       | 6.79e+03  |
+| misc/total_timesteps    | 1.27e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:17:00.557501
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000957  |
+| loss/clipfrac           | 0.00339   |
+| loss/policy_entropy     | 2.3       |
+| loss/policy_loss        | -0.000772 |
+| loss/value_loss         | 2.32      |
+| misc/explained_variance | 3.87e-07  |
+| misc/nupdates           | 625       |
+| misc/serial_timesteps   | 1.28e+06  |
+| misc/time_elapsed       | 6.84e+03  |
+| misc/total_timesteps    | 1.28e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:17:55.486343
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.84e+03  |
+| loss/approxkl           | 0.00124   |
+| loss/clipfrac           | 0.002     |
+| loss/policy_entropy     | 2.29      |
+| loss/policy_loss        | -0.000361 |
+| loss/value_loss         | 1.43      |
+| misc/explained_variance | 4.92e-07  |
+| misc/nupdates           | 630       |
+| misc/serial_timesteps   | 1.29e+06  |
+| misc/time_elapsed       | 6.89e+03  |
+| misc/total_timesteps    | 1.29e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:18:50.625067
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.85e+03  |
+| loss/approxkl           | 0.000139  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.29      |
+| loss/policy_loss        | -0.000104 |
+| loss/value_loss         | 1.93      |
+| misc/explained_variance | 2.72e-05  |
+| misc/nupdates           | 635       |
+| misc/serial_timesteps   | 1.3e+06   |
+| misc/time_elapsed       | 6.95e+03  |
+| misc/total_timesteps    | 1.3e+07   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:19:45.212332
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.000205  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.29      |
+| loss/policy_loss        | -7.35e-05 |
+| loss/value_loss         | 2.21      |
+| misc/explained_variance | 8.94e-08  |
+| misc/nupdates           | 640       |
+| misc/serial_timesteps   | 1.31e+06  |
+| misc/time_elapsed       | 7e+03     |
+| misc/total_timesteps    | 1.31e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:20:39.804164
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000572  |
+| loss/clipfrac           | 0.000656  |
+| loss/policy_entropy     | 2.29      |
+| loss/policy_loss        | -0.000497 |
+| loss/value_loss         | 1.96      |
+| misc/explained_variance | 2.38e-07  |
+| misc/nupdates           | 645       |
+| misc/serial_timesteps   | 1.32e+06  |
+| misc/time_elapsed       | 7.06e+03  |
+| misc/total_timesteps    | 1.32e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:21:34.348368
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00147   |
+| loss/clipfrac           | 0.00726   |
+| loss/policy_entropy     | 2.28      |
+| loss/policy_loss        | -0.000865 |
+| loss/value_loss         | 1.88      |
+| misc/explained_variance | 1.94e-07  |
+| misc/nupdates           | 650       |
+| misc/serial_timesteps   | 1.33e+06  |
+| misc/time_elapsed       | 7.11e+03  |
+| misc/total_timesteps    | 1.33e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:22:28.508478
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.92e+03  |
+| loss/approxkl           | 0.00149   |
+| loss/clipfrac           | 0.00854   |
+| loss/policy_entropy     | 2.28      |
+| loss/policy_loss        | -0.000933 |
+| loss/value_loss         | 2.75      |
+| misc/explained_variance | 1.79e-07  |
+| misc/nupdates           | 655       |
+| misc/serial_timesteps   | 1.34e+06  |
+| misc/time_elapsed       | 7.17e+03  |
+| misc/total_timesteps    | 1.34e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:23:23.386733
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.89e+03 |
+| loss/approxkl           | 0.000296 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.27     |
+| loss/policy_loss        | 0.000343 |
+| loss/value_loss         | 2.31     |
+| misc/explained_variance | 2.09e-07 |
+| misc/nupdates           | 660      |
+| misc/serial_timesteps   | 1.35e+06 |
+| misc/time_elapsed       | 7.22e+03 |
+| misc/total_timesteps    | 1.35e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:24:18.232168
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.84e+03  |
+| loss/approxkl           | 0.000128  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.26      |
+| loss/policy_loss        | -6.47e-05 |
+| loss/value_loss         | 2.05      |
+| misc/explained_variance | 3.87e-07  |
+| misc/nupdates           | 665       |
+| misc/serial_timesteps   | 1.36e+06  |
+| misc/time_elapsed       | 7.28e+03  |
+| misc/total_timesteps    | 1.36e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:25:12.859120
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.86e+03 |
+| loss/approxkl           | 0.00202  |
+| loss/clipfrac           | 0.0169   |
+| loss/policy_entropy     | 2.26     |
+| loss/policy_loss        | -0.00143 |
+| loss/value_loss         | 2.59     |
+| misc/explained_variance | 3.28e-07 |
+| misc/nupdates           | 670      |
+| misc/serial_timesteps   | 1.37e+06 |
+| misc/time_elapsed       | 7.33e+03 |
+| misc/total_timesteps    | 1.37e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:26:07.202550
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.91e+03  |
+| loss/approxkl           | 0.000286  |
+| loss/clipfrac           | 6.1e-06   |
+| loss/policy_entropy     | 2.25      |
+| loss/policy_loss        | -6.19e-05 |
+| loss/value_loss         | 2.48      |
+| misc/explained_variance | 9.69e-07  |
+| misc/nupdates           | 675       |
+| misc/serial_timesteps   | 1.38e+06  |
+| misc/time_elapsed       | 7.39e+03  |
+| misc/total_timesteps    | 1.38e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:27:01.601160
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.89e+03 |
+| loss/approxkl           | 0.000147 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.25     |
+| loss/policy_loss        | 0.000131 |
+| loss/value_loss         | 1.71     |
+| misc/explained_variance | 9.09e-07 |
+| misc/nupdates           | 680      |
+| misc/serial_timesteps   | 1.39e+06 |
+| misc/time_elapsed       | 7.44e+03 |
+| misc/total_timesteps    | 1.39e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:27:55.855026
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.000789  |
+| loss/clipfrac           | 0.00135   |
+| loss/policy_entropy     | 2.25      |
+| loss/policy_loss        | -0.00051  |
+| loss/value_loss         | 2.18      |
+| misc/explained_variance | -2.15e-06 |
+| misc/nupdates           | 685       |
+| misc/serial_timesteps   | 1.4e+06   |
+| misc/time_elapsed       | 7.49e+03  |
+| misc/total_timesteps    | 1.4e+07   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:28:50.179026
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00104   |
+| loss/clipfrac           | 0.00103   |
+| loss/policy_entropy     | 2.24      |
+| loss/policy_loss        | -0.000235 |
+| loss/value_loss         | 2.08      |
+| misc/explained_variance | -4.47e-07 |
+| misc/nupdates           | 690       |
+| misc/serial_timesteps   | 1.41e+06  |
+| misc/time_elapsed       | 7.55e+03  |
+| misc/total_timesteps    | 1.41e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:29:44.712368
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.91e+03  |
+| loss/approxkl           | 0.00099   |
+| loss/clipfrac           | 0.00376   |
+| loss/policy_entropy     | 2.23      |
+| loss/policy_loss        | -0.00107  |
+| loss/value_loss         | 1.33      |
+| misc/explained_variance | -4.47e-07 |
+| misc/nupdates           | 695       |
+| misc/serial_timesteps   | 1.42e+06  |
+| misc/time_elapsed       | 7.6e+03   |
+| misc/total_timesteps    | 1.42e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:30:39.451564
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.000763  |
+| loss/clipfrac           | 0.00128   |
+| loss/policy_entropy     | 2.23      |
+| loss/policy_loss        | -0.000509 |
+| loss/value_loss         | 2.33      |
+| misc/explained_variance | -1.79e-07 |
+| misc/nupdates           | 700       |
+| misc/serial_timesteps   | 1.43e+06  |
+| misc/time_elapsed       | 7.66e+03  |
+| misc/total_timesteps    | 1.43e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:31:34.077431
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000566  |
+| loss/clipfrac           | 0.000278  |
+| loss/policy_entropy     | 2.22      |
+| loss/policy_loss        | -0.000786 |
+| loss/value_loss         | 2.03      |
+| misc/explained_variance | 4.47e-08  |
+| misc/nupdates           | 705       |
+| misc/serial_timesteps   | 1.44e+06  |
+| misc/time_elapsed       | 7.71e+03  |
+| misc/total_timesteps    | 1.44e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:32:28.597853
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.00115   |
+| loss/clipfrac           | 0.00443   |
+| loss/policy_entropy     | 2.22      |
+| loss/policy_loss        | -0.000815 |
+| loss/value_loss         | 1.6       |
+| misc/explained_variance | 2.98e-08  |
+| misc/nupdates           | 710       |
+| misc/serial_timesteps   | 1.45e+06  |
+| misc/time_elapsed       | 7.77e+03  |
+| misc/total_timesteps    | 1.45e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:33:23.841588
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.84e+03  |
+| loss/approxkl           | 0.000323  |
+| loss/clipfrac           | 7.32e-05  |
+| loss/policy_entropy     | 2.21      |
+| loss/policy_loss        | -0.000322 |
+| loss/value_loss         | 2.01      |
+| misc/explained_variance | -8.94e-08 |
+| misc/nupdates           | 715       |
+| misc/serial_timesteps   | 1.46e+06  |
+| misc/time_elapsed       | 7.82e+03  |
+| misc/total_timesteps    | 1.46e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:34:18.142530
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000688 |
+| loss/clipfrac           | 3.05e-05 |
+| loss/policy_entropy     | 2.21     |
+| loss/policy_loss        | 0.000118 |
+| loss/value_loss         | 2.08     |
+| misc/explained_variance | 2.98e-08 |
+| misc/nupdates           | 720      |
+| misc/serial_timesteps   | 1.47e+06 |
+| misc/time_elapsed       | 7.88e+03 |
+| misc/total_timesteps    | 1.47e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:35:12.687800
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.0026   |
+| loss/clipfrac           | 0.0242   |
+| loss/policy_entropy     | 2.2      |
+| loss/policy_loss        | -0.00125 |
+| loss/value_loss         | 2.47     |
+| misc/explained_variance | 4.47e-08 |
+| misc/nupdates           | 725      |
+| misc/serial_timesteps   | 1.48e+06 |
+| misc/time_elapsed       | 7.93e+03 |
+| misc/total_timesteps    | 1.48e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:36:07.423530
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00163   |
+| loss/clipfrac           | 0.0103    |
+| loss/policy_entropy     | 2.2       |
+| loss/policy_loss        | -0.000927 |
+| loss/value_loss         | 2.59      |
+| misc/explained_variance | 7.45e-08  |
+| misc/nupdates           | 730       |
+| misc/serial_timesteps   | 1.5e+06   |
+| misc/time_elapsed       | 7.99e+03  |
+| misc/total_timesteps    | 1.5e+07   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:37:02.354847
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000335 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.19     |
+| loss/policy_loss        | 0.000194 |
+| loss/value_loss         | 2.13     |
+| misc/explained_variance | 3.28e-07 |
+| misc/nupdates           | 735      |
+| misc/serial_timesteps   | 1.51e+06 |
+| misc/time_elapsed       | 8.04e+03 |
+| misc/total_timesteps    | 1.51e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:37:57.224821
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000502  |
+| loss/clipfrac           | 0.0004    |
+| loss/policy_entropy     | 2.19      |
+| loss/policy_loss        | -0.000439 |
+| loss/value_loss         | 2.08      |
+| misc/explained_variance | 3.87e-07  |
+| misc/nupdates           | 740       |
+| misc/serial_timesteps   | 1.52e+06  |
+| misc/time_elapsed       | 8.1e+03   |
+| misc/total_timesteps    | 1.52e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:38:51.568121
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.00135   |
+| loss/clipfrac           | 0.0054    |
+| loss/policy_entropy     | 2.19      |
+| loss/policy_loss        | -0.000766 |
+| loss/value_loss         | 2.28      |
+| misc/explained_variance | 3.13e-07  |
+| misc/nupdates           | 745       |
+| misc/serial_timesteps   | 1.53e+06  |
+| misc/time_elapsed       | 8.15e+03  |
+| misc/total_timesteps    | 1.53e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:39:45.852763
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.93e+03  |
+| loss/approxkl           | 0.000737  |
+| loss/clipfrac           | 0.000192  |
+| loss/policy_entropy     | 2.18      |
+| loss/policy_loss        | -0.000193 |
+| loss/value_loss         | 2         |
+| misc/explained_variance | 4.77e-07  |
+| misc/nupdates           | 750       |
+| misc/serial_timesteps   | 1.54e+06  |
+| misc/time_elapsed       | 8.2e+03   |
+| misc/total_timesteps    | 1.54e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:40:40.469051
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000116  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.18      |
+| loss/policy_loss        | 0.000128  |
+| loss/value_loss         | 2.06      |
+| misc/explained_variance | -3.87e-07 |
+| misc/nupdates           | 755       |
+| misc/serial_timesteps   | 1.55e+06  |
+| misc/time_elapsed       | 8.26e+03  |
+| misc/total_timesteps    | 1.55e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:41:35.522799
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 4.71e-05  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 2.17      |
+| loss/policy_loss        | 6.54e-05  |
+| loss/value_loss         | 1.4       |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 760       |
+| misc/serial_timesteps   | 1.56e+06  |
+| misc/time_elapsed       | 8.31e+03  |
+| misc/total_timesteps    | 1.56e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:42:30.388677
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.86e+03 |
+| loss/approxkl           | 8.28e-05 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.17     |
+| loss/policy_loss        | 3.45e-05 |
+| loss/value_loss         | 2.03     |
+| misc/explained_variance | 8.34e-07 |
+| misc/nupdates           | 765      |
+| misc/serial_timesteps   | 1.57e+06 |
+| misc/time_elapsed       | 8.37e+03 |
+| misc/total_timesteps    | 1.57e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:43:25.159430
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.000806  |
+| loss/clipfrac           | 0.00218   |
+| loss/policy_entropy     | 2.16      |
+| loss/policy_loss        | -0.000575 |
+| loss/value_loss         | 2.26      |
+| misc/explained_variance | -8.34e-07 |
+| misc/nupdates           | 770       |
+| misc/serial_timesteps   | 1.58e+06  |
+| misc/time_elapsed       | 8.42e+03  |
+| misc/total_timesteps    | 1.58e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:44:19.997596
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000912  |
+| loss/clipfrac           | 0.00173   |
+| loss/policy_entropy     | 2.17      |
+| loss/policy_loss        | -0.000478 |
+| loss/value_loss         | 1.23      |
+| misc/explained_variance | -2.38e-07 |
+| misc/nupdates           | 775       |
+| misc/serial_timesteps   | 1.59e+06  |
+| misc/time_elapsed       | 8.48e+03  |
+| misc/total_timesteps    | 1.59e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:45:14.308050
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.000577  |
+| loss/clipfrac           | 0.000388  |
+| loss/policy_entropy     | 2.16      |
+| loss/policy_loss        | -0.000297 |
+| loss/value_loss         | 1.96      |
+| misc/explained_variance | -1.28e-06 |
+| misc/nupdates           | 780       |
+| misc/serial_timesteps   | 1.6e+06   |
+| misc/time_elapsed       | 8.53e+03  |
+| misc/total_timesteps    | 1.6e+07   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:46:09.331345
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.81e+03  |
+| loss/approxkl           | 0.00161   |
+| loss/clipfrac           | 0.00905   |
+| loss/policy_entropy     | 2.16      |
+| loss/policy_loss        | -0.000805 |
+| loss/value_loss         | 2.29      |
+| misc/explained_variance | -1.49e-07 |
+| misc/nupdates           | 785       |
+| misc/serial_timesteps   | 1.61e+06  |
+| misc/time_elapsed       | 8.59e+03  |
+| misc/total_timesteps    | 1.61e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:47:03.669620
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.000868  |
+| loss/clipfrac           | 0.00274   |
+| loss/policy_entropy     | 2.15      |
+| loss/policy_loss        | -0.000839 |
+| loss/value_loss         | 2.76      |
+| misc/explained_variance | 8.94e-08  |
+| misc/nupdates           | 790       |
+| misc/serial_timesteps   | 1.62e+06  |
+| misc/time_elapsed       | 8.64e+03  |
+| misc/total_timesteps    | 1.62e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:47:58.164157
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000155 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.15     |
+| loss/policy_loss        | 0.00011  |
+| loss/value_loss         | 2.02     |
+| misc/explained_variance | 2.98e-07 |
+| misc/nupdates           | 795      |
+| misc/serial_timesteps   | 1.63e+06 |
+| misc/time_elapsed       | 8.7e+03  |
+| misc/total_timesteps    | 1.63e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:48:53.059779
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.85e+03  |
+| loss/approxkl           | 0.00101   |
+| loss/clipfrac           | 0.000534  |
+| loss/policy_entropy     | 2.14      |
+| loss/policy_loss        | -3.37e-05 |
+| loss/value_loss         | 2.03      |
+| misc/explained_variance | 2.09e-07  |
+| misc/nupdates           | 800       |
+| misc/serial_timesteps   | 1.64e+06  |
+| misc/time_elapsed       | 8.75e+03  |
+| misc/total_timesteps    | 1.64e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:49:47.727225
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.84e+03  |
+| loss/approxkl           | 0.000218  |
+| loss/clipfrac           | 3.05e-06  |
+| loss/policy_entropy     | 2.14      |
+| loss/policy_loss        | -0.000245 |
+| loss/value_loss         | 2.04      |
+| misc/explained_variance | 1.49e-07  |
+| misc/nupdates           | 805       |
+| misc/serial_timesteps   | 1.65e+06  |
+| misc/time_elapsed       | 8.81e+03  |
+| misc/total_timesteps    | 1.65e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:50:42.455262
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000822  |
+| loss/clipfrac           | 0.000418  |
+| loss/policy_entropy     | 2.13      |
+| loss/policy_loss        | -0.000203 |
+| loss/value_loss         | 2         |
+| misc/explained_variance | 6.56e-07  |
+| misc/nupdates           | 810       |
+| misc/serial_timesteps   | 1.66e+06  |
+| misc/time_elapsed       | 8.86e+03  |
+| misc/total_timesteps    | 1.66e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:51:37.569223
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.00172   |
+| loss/clipfrac           | 0.0126    |
+| loss/policy_entropy     | 2.13      |
+| loss/policy_loss        | -0.000918 |
+| loss/value_loss         | 2.32      |
+| misc/explained_variance | 2.24e-07  |
+| misc/nupdates           | 815       |
+| misc/serial_timesteps   | 1.67e+06  |
+| misc/time_elapsed       | 8.92e+03  |
+| misc/total_timesteps    | 1.67e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:52:32.138213
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.000563  |
+| loss/clipfrac           | 4.58e-05  |
+| loss/policy_entropy     | 2.12      |
+| loss/policy_loss        | -9.64e-05 |
+| loss/value_loss         | 1.89      |
+| misc/explained_variance | 4.77e-07  |
+| misc/nupdates           | 820       |
+| misc/serial_timesteps   | 1.68e+06  |
+| misc/time_elapsed       | 8.97e+03  |
+| misc/total_timesteps    | 1.68e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:53:26.969167
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.0012    |
+| loss/clipfrac           | 0.00722   |
+| loss/policy_entropy     | 2.12      |
+| loss/policy_loss        | -0.000854 |
+| loss/value_loss         | 1.48      |
+| misc/explained_variance | 5.36e-07  |
+| misc/nupdates           | 825       |
+| misc/serial_timesteps   | 1.69e+06  |
+| misc/time_elapsed       | 9.03e+03  |
+| misc/total_timesteps    | 1.69e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:54:21.562938
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.9e+03  |
+| loss/approxkl           | 0.000198 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.11     |
+| loss/policy_loss        | -0.00011 |
+| loss/value_loss         | 1.98     |
+| misc/explained_variance | 1.37e-06 |
+| misc/nupdates           | 830      |
+| misc/serial_timesteps   | 1.7e+06  |
+| misc/time_elapsed       | 9.08e+03 |
+| misc/total_timesteps    | 1.7e+07  |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:55:15.971990
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.85e+03  |
+| loss/approxkl           | 0.000852  |
+| loss/clipfrac           | 0.000497  |
+| loss/policy_entropy     | 2.11      |
+| loss/policy_loss        | -0.000188 |
+| loss/value_loss         | 1.98      |
+| misc/explained_variance | 9.43e-05  |
+| misc/nupdates           | 835       |
+| misc/serial_timesteps   | 1.71e+06  |
+| misc/time_elapsed       | 9.14e+03  |
+| misc/total_timesteps    | 1.71e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:56:10.936190
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.000774 |
+| loss/clipfrac           | 3.36e-05 |
+| loss/policy_entropy     | 2.11     |
+| loss/policy_loss        | 0.000485 |
+| loss/value_loss         | 1.31     |
+| misc/explained_variance | 1.19e-07 |
+| misc/nupdates           | 840      |
+| misc/serial_timesteps   | 1.72e+06 |
+| misc/time_elapsed       | 9.19e+03 |
+| misc/total_timesteps    | 1.72e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:57:05.697787
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.00136   |
+| loss/clipfrac           | 0.00457   |
+| loss/policy_entropy     | 2.1       |
+| loss/policy_loss        | -0.000513 |
+| loss/value_loss         | 1.95      |
+| misc/explained_variance | 0         |
+| misc/nupdates           | 845       |
+| misc/serial_timesteps   | 1.73e+06  |
+| misc/time_elapsed       | 9.24e+03  |
+| misc/total_timesteps    | 1.73e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:58:00.115294
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.000956  |
+| loss/clipfrac           | 0.0037    |
+| loss/policy_entropy     | 2.1       |
+| loss/policy_loss        | -0.000942 |
+| loss/value_loss         | 1.8       |
+| misc/explained_variance | -1.49e-07 |
+| misc/nupdates           | 850       |
+| misc/serial_timesteps   | 1.74e+06  |
+| misc/time_elapsed       | 9.3e+03   |
+| misc/total_timesteps    | 1.74e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:58:54.634163
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.89e+03 |
+| loss/approxkl           | 0.0026   |
+| loss/clipfrac           | 0.0242   |
+| loss/policy_entropy     | 2.09     |
+| loss/policy_loss        | -0.00132 |
+| loss/value_loss         | 2.6      |
+| misc/explained_variance | 0        |
+| misc/nupdates           | 855      |
+| misc/serial_timesteps   | 1.75e+06 |
+| misc/time_elapsed       | 9.35e+03 |
+| misc/total_timesteps    | 1.75e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 06:59:49.257995
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00128   |
+| loss/clipfrac           | 0.00192   |
+| loss/policy_entropy     | 2.09      |
+| loss/policy_loss        | -0.000138 |
+| loss/value_loss         | 2.01      |
+| misc/explained_variance | 5.96e-08  |
+| misc/nupdates           | 860       |
+| misc/serial_timesteps   | 1.76e+06  |
+| misc/time_elapsed       | 9.41e+03  |
+| misc/total_timesteps    | 1.76e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:00:44.042343
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000946  |
+| loss/clipfrac           | 0.00158   |
+| loss/policy_entropy     | 2.09      |
+| loss/policy_loss        | -0.000894 |
+| loss/value_loss         | 1.96      |
+| misc/explained_variance | 5.96e-08  |
+| misc/nupdates           | 865       |
+| misc/serial_timesteps   | 1.77e+06  |
+| misc/time_elapsed       | 9.46e+03  |
+| misc/total_timesteps    | 1.77e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:01:38.451170
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.00212   |
+| loss/clipfrac           | 0.0128    |
+| loss/policy_entropy     | 2.08      |
+| loss/policy_loss        | -0.000635 |
+| loss/value_loss         | 2.21      |
+| misc/explained_variance | 5.96e-08  |
+| misc/nupdates           | 870       |
+| misc/serial_timesteps   | 1.78e+06  |
+| misc/time_elapsed       | 9.52e+03  |
+| misc/total_timesteps    | 1.78e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:02:33.362958
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.0015    |
+| loss/clipfrac           | 0.00649   |
+| loss/policy_entropy     | 2.08      |
+| loss/policy_loss        | -0.000658 |
+| loss/value_loss         | 1.7       |
+| misc/explained_variance | 2.98e-08  |
+| misc/nupdates           | 875       |
+| misc/serial_timesteps   | 1.79e+06  |
+| misc/time_elapsed       | 9.57e+03  |
+| misc/total_timesteps    | 1.79e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:03:28.344144
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.00102   |
+| loss/clipfrac           | 0.00224   |
+| loss/policy_entropy     | 2.08      |
+| loss/policy_loss        | -0.000424 |
+| loss/value_loss         | 2.23      |
+| misc/explained_variance | 8.94e-08  |
+| misc/nupdates           | 880       |
+| misc/serial_timesteps   | 1.8e+06   |
+| misc/time_elapsed       | 9.63e+03  |
+| misc/total_timesteps    | 1.8e+07   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:04:22.333737
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000806  |
+| loss/clipfrac           | 0.000522  |
+| loss/policy_entropy     | 2.07      |
+| loss/policy_loss        | -0.000275 |
+| loss/value_loss         | 1.78      |
+| misc/explained_variance | 1.49e-08  |
+| misc/nupdates           | 885       |
+| misc/serial_timesteps   | 1.81e+06  |
+| misc/time_elapsed       | 9.68e+03  |
+| misc/total_timesteps    | 1.81e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:05:16.961548
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.00109   |
+| loss/clipfrac           | 0.00558   |
+| loss/policy_entropy     | 2.06      |
+| loss/policy_loss        | -0.000704 |
+| loss/value_loss         | 1.49      |
+| misc/explained_variance | 4.47e-08  |
+| misc/nupdates           | 890       |
+| misc/serial_timesteps   | 1.82e+06  |
+| misc/time_elapsed       | 9.74e+03  |
+| misc/total_timesteps    | 1.82e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:06:11.545271
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.000132 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.06     |
+| loss/policy_loss        | 0.000126 |
+| loss/value_loss         | 1.89     |
+| misc/explained_variance | 0        |
+| misc/nupdates           | 895      |
+| misc/serial_timesteps   | 1.83e+06 |
+| misc/time_elapsed       | 9.79e+03 |
+| misc/total_timesteps    | 1.83e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:07:05.644258
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.000491  |
+| loss/clipfrac           | 0.000314  |
+| loss/policy_entropy     | 2.05      |
+| loss/policy_loss        | -0.000361 |
+| loss/value_loss         | 1.99      |
+| misc/explained_variance | 1.34e-07  |
+| misc/nupdates           | 900       |
+| misc/serial_timesteps   | 1.84e+06  |
+| misc/time_elapsed       | 9.84e+03  |
+| misc/total_timesteps    | 1.84e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:07:59.725769
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00048   |
+| loss/clipfrac           | 3.05e-06  |
+| loss/policy_entropy     | 2.04      |
+| loss/policy_loss        | -4.34e-05 |
+| loss/value_loss         | 1.24      |
+| misc/explained_variance | 1.49e-08  |
+| misc/nupdates           | 905       |
+| misc/serial_timesteps   | 1.85e+06  |
+| misc/time_elapsed       | 9.9e+03   |
+| misc/total_timesteps    | 1.85e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:08:54.062546
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.91e+03 |
+| loss/approxkl           | 0.00164  |
+| loss/clipfrac           | 0.00539  |
+| loss/policy_entropy     | 2.04     |
+| loss/policy_loss        | -0.00036 |
+| loss/value_loss         | 1.9      |
+| misc/explained_variance | 2.09e-07 |
+| misc/nupdates           | 910      |
+| misc/serial_timesteps   | 1.86e+06 |
+| misc/time_elapsed       | 9.95e+03 |
+| misc/total_timesteps    | 1.86e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:09:48.315954
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000919  |
+| loss/clipfrac           | 0.00374   |
+| loss/policy_entropy     | 2.03      |
+| loss/policy_loss        | -0.000655 |
+| loss/value_loss         | 1.89      |
+| misc/explained_variance | 2.98e-08  |
+| misc/nupdates           | 915       |
+| misc/serial_timesteps   | 1.87e+06  |
+| misc/time_elapsed       | 1e+04     |
+| misc/total_timesteps    | 1.87e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:10:43.141714
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00171   |
+| loss/clipfrac           | 0.0132    |
+| loss/policy_entropy     | 2.03      |
+| loss/policy_loss        | -0.00133  |
+| loss/value_loss         | 2.09      |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 920       |
+| misc/serial_timesteps   | 1.88e+06  |
+| misc/time_elapsed       | 1.01e+04  |
+| misc/total_timesteps    | 1.88e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:11:37.543542
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000434  |
+| loss/clipfrac           | 3.36e-05  |
+| loss/policy_entropy     | 2.02      |
+| loss/policy_loss        | -0.000635 |
+| loss/value_loss         | 2.16      |
+| misc/explained_variance | -5.96e-08 |
+| misc/nupdates           | 925       |
+| misc/serial_timesteps   | 1.89e+06  |
+| misc/time_elapsed       | 1.01e+04  |
+| misc/total_timesteps    | 1.89e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:12:31.663831
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.00014  |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2.02     |
+| loss/policy_loss        | 0.000129 |
+| loss/value_loss         | 2.01     |
+| misc/explained_variance | 2.98e-08 |
+| misc/nupdates           | 930      |
+| misc/serial_timesteps   | 1.9e+06  |
+| misc/time_elapsed       | 1.02e+04 |
+| misc/total_timesteps    | 1.9e+07  |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:13:26.140759
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.86e+03 |
+| loss/approxkl           | 0.0034   |
+| loss/clipfrac           | 0.0377   |
+| loss/policy_entropy     | 2.01     |
+| loss/policy_loss        | -0.00148 |
+| loss/value_loss         | 2.52     |
+| misc/explained_variance | 0        |
+| misc/nupdates           | 935      |
+| misc/serial_timesteps   | 1.91e+06 |
+| misc/time_elapsed       | 1.02e+04 |
+| misc/total_timesteps    | 1.91e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:14:20.266236
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.91e+03  |
+| loss/approxkl           | 0.000232  |
+| loss/clipfrac           | 3.05e-06  |
+| loss/policy_entropy     | 2.01      |
+| loss/policy_loss        | -0.000147 |
+| loss/value_loss         | 2.16      |
+| misc/explained_variance | 2.98e-08  |
+| misc/nupdates           | 940       |
+| misc/serial_timesteps   | 1.93e+06  |
+| misc/time_elapsed       | 1.03e+04  |
+| misc/total_timesteps    | 1.93e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:15:14.785609
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00147   |
+| loss/clipfrac           | 0.00932   |
+| loss/policy_entropy     | 2         |
+| loss/policy_loss        | -0.000787 |
+| loss/value_loss         | 2.17      |
+| misc/explained_variance | 2.98e-08  |
+| misc/nupdates           | 945       |
+| misc/serial_timesteps   | 1.94e+06  |
+| misc/time_elapsed       | 1.03e+04  |
+| misc/total_timesteps    | 1.94e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:16:09.638043
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.86e+03 |
+| loss/approxkl           | 0.000157 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 2        |
+| loss/policy_loss        | 5.46e-05 |
+| loss/value_loss         | 2.13     |
+| misc/explained_variance | 5.96e-08 |
+| misc/nupdates           | 950      |
+| misc/serial_timesteps   | 1.95e+06 |
+| misc/time_elapsed       | 1.04e+04 |
+| misc/total_timesteps    | 1.95e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:17:04.199920
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.85e+03  |
+| loss/approxkl           | 0.00164   |
+| loss/clipfrac           | 0.0123    |
+| loss/policy_entropy     | 1.99      |
+| loss/policy_loss        | -0.000847 |
+| loss/value_loss         | 1.66      |
+| misc/explained_variance | 7.45e-08  |
+| misc/nupdates           | 955       |
+| misc/serial_timesteps   | 1.96e+06  |
+| misc/time_elapsed       | 1.04e+04  |
+| misc/total_timesteps    | 1.96e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:17:58.745606
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 9.41e-05 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 1.99     |
+| loss/policy_loss        | 0.000235 |
+| loss/value_loss         | 2.05     |
+| misc/explained_variance | 1.49e-08 |
+| misc/nupdates           | 960      |
+| misc/serial_timesteps   | 1.97e+06 |
+| misc/time_elapsed       | 1.05e+04 |
+| misc/total_timesteps    | 1.97e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:18:53.625213
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.00199   |
+| loss/clipfrac           | 0.011     |
+| loss/policy_entropy     | 1.98      |
+| loss/policy_loss        | -0.000549 |
+| loss/value_loss         | 1.86      |
+| misc/explained_variance | 1.49e-08  |
+| misc/nupdates           | 965       |
+| misc/serial_timesteps   | 1.98e+06  |
+| misc/time_elapsed       | 1.06e+04  |
+| misc/total_timesteps    | 1.98e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:19:48.154378
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.0017   |
+| loss/clipfrac           | 0.0127   |
+| loss/policy_entropy     | 1.98     |
+| loss/policy_loss        | -0.00139 |
+| loss/value_loss         | 1.31     |
+| misc/explained_variance | 0        |
+| misc/nupdates           | 970      |
+| misc/serial_timesteps   | 1.99e+06 |
+| misc/time_elapsed       | 1.06e+04 |
+| misc/total_timesteps    | 1.99e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:20:42.996520
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.00227  |
+| loss/clipfrac           | 0.0194   |
+| loss/policy_entropy     | 1.97     |
+| loss/policy_loss        | -0.00101 |
+| loss/value_loss         | 2.47     |
+| misc/explained_variance | 4.47e-08 |
+| misc/nupdates           | 975      |
+| misc/serial_timesteps   | 2e+06    |
+| misc/time_elapsed       | 1.07e+04 |
+| misc/total_timesteps    | 2e+07    |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:21:36.956958
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.93e+03 |
+| loss/approxkl           | 0.000827 |
+| loss/clipfrac           | 7.02e-05 |
+| loss/policy_entropy     | 1.96     |
+| loss/policy_loss        | 2.57e-05 |
+| loss/value_loss         | 2.02     |
+| misc/explained_variance | 8.94e-08 |
+| misc/nupdates           | 980      |
+| misc/serial_timesteps   | 2.01e+06 |
+| misc/time_elapsed       | 1.07e+04 |
+| misc/total_timesteps    | 2.01e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:22:31.448760
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.000843  |
+| loss/clipfrac           | 0.000143  |
+| loss/policy_entropy     | 1.96      |
+| loss/policy_loss        | 7.81e-06  |
+| loss/value_loss         | 1.32      |
+| misc/explained_variance | -1.49e-08 |
+| misc/nupdates           | 985       |
+| misc/serial_timesteps   | 2.02e+06  |
+| misc/time_elapsed       | 1.08e+04  |
+| misc/total_timesteps    | 2.02e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:23:26.169744
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000202  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 1.95      |
+| loss/policy_loss        | -0.000295 |
+| loss/value_loss         | 1.9       |
+| misc/explained_variance | -8.94e-08 |
+| misc/nupdates           | 990       |
+| misc/serial_timesteps   | 2.03e+06  |
+| misc/time_elapsed       | 1.08e+04  |
+| misc/total_timesteps    | 2.03e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:24:20.866081
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00112   |
+| loss/clipfrac           | 0.00529   |
+| loss/policy_entropy     | 1.95      |
+| loss/policy_loss        | -0.000738 |
+| loss/value_loss         | 1.75      |
+| misc/explained_variance | 2.98e-08  |
+| misc/nupdates           | 995       |
+| misc/serial_timesteps   | 2.04e+06  |
+| misc/time_elapsed       | 1.09e+04  |
+| misc/total_timesteps    | 2.04e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:25:15.814175
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.00327  |
+| loss/clipfrac           | 0.0315   |
+| loss/policy_entropy     | 1.94     |
+| loss/policy_loss        | -0.00112 |
+| loss/value_loss         | 2.45     |
+| misc/explained_variance | 7.45e-08 |
+| misc/nupdates           | 1e+03    |
+| misc/serial_timesteps   | 2.05e+06 |
+| misc/time_elapsed       | 1.09e+04 |
+| misc/total_timesteps    | 2.05e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:26:10.085092
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.00179   |
+| loss/clipfrac           | 0.0138    |
+| loss/policy_entropy     | 1.94      |
+| loss/policy_loss        | -0.00129  |
+| loss/value_loss         | 2.73      |
+| misc/explained_variance | -1.49e-08 |
+| misc/nupdates           | 1.00e+03  |
+| misc/serial_timesteps   | 2.06e+06  |
+| misc/time_elapsed       | 1.1e+04   |
+| misc/total_timesteps    | 2.06e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:27:04.992676
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.00174   |
+| loss/clipfrac           | 0.0118    |
+| loss/policy_entropy     | 1.93      |
+| loss/policy_loss        | -0.000887 |
+| loss/value_loss         | 2.23      |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 1.01e+03  |
+| misc/serial_timesteps   | 2.07e+06  |
+| misc/time_elapsed       | 1.1e+04   |
+| misc/total_timesteps    | 2.07e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:27:59.160560
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.92e+03  |
+| loss/approxkl           | 0.00205   |
+| loss/clipfrac           | 0.0131    |
+| loss/policy_entropy     | 1.92      |
+| loss/policy_loss        | -0.000733 |
+| loss/value_loss         | 1.78      |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 1.02e+03  |
+| misc/serial_timesteps   | 2.08e+06  |
+| misc/time_elapsed       | 1.11e+04  |
+| misc/total_timesteps    | 2.08e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:28:53.138238
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.000924  |
+| loss/clipfrac           | 0.00201   |
+| loss/policy_entropy     | 1.92      |
+| loss/policy_loss        | -0.000456 |
+| loss/value_loss         | 1.83      |
+| misc/explained_variance | 1.49e-08  |
+| misc/nupdates           | 1.02e+03  |
+| misc/serial_timesteps   | 2.09e+06  |
+| misc/time_elapsed       | 1.12e+04  |
+| misc/total_timesteps    | 2.09e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:29:47.890464
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.83e+03  |
+| loss/approxkl           | 0.00165   |
+| loss/clipfrac           | 0.00703   |
+| loss/policy_entropy     | 1.91      |
+| loss/policy_loss        | -0.00042  |
+| loss/value_loss         | 1.97      |
+| misc/explained_variance | -5.96e-08 |
+| misc/nupdates           | 1.02e+03  |
+| misc/serial_timesteps   | 2.1e+06   |
+| misc/time_elapsed       | 1.12e+04  |
+| misc/total_timesteps    | 2.1e+07   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:30:42.715245
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.00181  |
+| loss/clipfrac           | 0.0134   |
+| loss/policy_entropy     | 1.91     |
+| loss/policy_loss        | -0.00113 |
+| loss/value_loss         | 1.78     |
+| misc/explained_variance | 0        |
+| misc/nupdates           | 1.03e+03 |
+| misc/serial_timesteps   | 2.11e+06 |
+| misc/time_elapsed       | 1.13e+04 |
+| misc/total_timesteps    | 2.11e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:31:37.287245
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.91e+03 |
+| loss/approxkl           | 0.00349  |
+| loss/clipfrac           | 0.0402   |
+| loss/policy_entropy     | 1.9      |
+| loss/policy_loss        | -0.00174 |
+| loss/value_loss         | 1.13     |
+| misc/explained_variance | 8.94e-08 |
+| misc/nupdates           | 1.04e+03 |
+| misc/serial_timesteps   | 2.12e+06 |
+| misc/time_elapsed       | 1.13e+04 |
+| misc/total_timesteps    | 2.12e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:32:31.843154
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000739  |
+| loss/clipfrac           | 0.00101   |
+| loss/policy_entropy     | 1.9       |
+| loss/policy_loss        | -0.000753 |
+| loss/value_loss         | 1.7       |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 1.04e+03  |
+| misc/serial_timesteps   | 2.13e+06  |
+| misc/time_elapsed       | 1.14e+04  |
+| misc/total_timesteps    | 2.13e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:33:26.217039
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.91e+03 |
+| loss/approxkl           | 0.000607 |
+| loss/clipfrac           | 1.53e-05 |
+| loss/policy_entropy     | 1.89     |
+| loss/policy_loss        | 1.91e-05 |
+| loss/value_loss         | 1.94     |
+| misc/explained_variance | 7.45e-08 |
+| misc/nupdates           | 1.04e+03 |
+| misc/serial_timesteps   | 2.14e+06 |
+| misc/time_elapsed       | 1.14e+04 |
+| misc/total_timesteps    | 2.14e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:34:20.465188
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.9e+03  |
+| loss/approxkl           | 0.00193  |
+| loss/clipfrac           | 0.0162   |
+| loss/policy_entropy     | 1.9      |
+| loss/policy_loss        | -0.00113 |
+| loss/value_loss         | 1.42     |
+| misc/explained_variance | 2.98e-08 |
+| misc/nupdates           | 1.05e+03 |
+| misc/serial_timesteps   | 2.15e+06 |
+| misc/time_elapsed       | 1.15e+04 |
+| misc/total_timesteps    | 2.15e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:35:14.742998
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000944 |
+| loss/clipfrac           | 0.00216  |
+| loss/policy_entropy     | 1.89     |
+| loss/policy_loss        | -0.00121 |
+| loss/value_loss         | 1.95     |
+| misc/explained_variance | 0        |
+| misc/nupdates           | 1.06e+03 |
+| misc/serial_timesteps   | 2.16e+06 |
+| misc/time_elapsed       | 1.15e+04 |
+| misc/total_timesteps    | 2.16e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:36:09.323601
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00184   |
+| loss/clipfrac           | 0.014     |
+| loss/policy_entropy     | 1.89      |
+| loss/policy_loss        | -0.000875 |
+| loss/value_loss         | 2.34      |
+| misc/explained_variance | -5.96e-08 |
+| misc/nupdates           | 1.06e+03  |
+| misc/serial_timesteps   | 2.17e+06  |
+| misc/time_elapsed       | 1.16e+04  |
+| misc/total_timesteps    | 2.17e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:37:03.704166
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 8.62e-05 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 1.88     |
+| loss/policy_loss        | 0.000103 |
+| loss/value_loss         | 2.09     |
+| misc/explained_variance | 2.98e-08 |
+| misc/nupdates           | 1.06e+03 |
+| misc/serial_timesteps   | 2.18e+06 |
+| misc/time_elapsed       | 1.16e+04 |
+| misc/total_timesteps    | 2.18e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:37:58.208062
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.9e+03  |
+| loss/approxkl           | 0.000682 |
+| loss/clipfrac           | 3.05e-06 |
+| loss/policy_entropy     | 1.88     |
+| loss/policy_loss        | 0.000102 |
+| loss/value_loss         | 1.94     |
+| misc/explained_variance | 8.94e-08 |
+| misc/nupdates           | 1.07e+03 |
+| misc/serial_timesteps   | 2.19e+06 |
+| misc/time_elapsed       | 1.17e+04 |
+| misc/total_timesteps    | 2.19e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:38:52.469453
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000599  |
+| loss/clipfrac           | 4.58e-05  |
+| loss/policy_entropy     | 1.88      |
+| loss/policy_loss        | -8.26e-05 |
+| loss/value_loss         | 2.02      |
+| misc/explained_variance | -1.19e-07 |
+| misc/nupdates           | 1.08e+03  |
+| misc/serial_timesteps   | 2.2e+06   |
+| misc/time_elapsed       | 1.18e+04  |
+| misc/total_timesteps    | 2.2e+07   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:39:46.663134
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.00253   |
+| loss/clipfrac           | 0.0237    |
+| loss/policy_entropy     | 1.87      |
+| loss/policy_loss        | -0.000992 |
+| loss/value_loss         | 2.55      |
+| misc/explained_variance | -5.96e-08 |
+| misc/nupdates           | 1.08e+03  |
+| misc/serial_timesteps   | 2.21e+06  |
+| misc/time_elapsed       | 1.18e+04  |
+| misc/total_timesteps    | 2.21e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:40:40.979812
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.00215   |
+| loss/clipfrac           | 0.0167    |
+| loss/policy_entropy     | 1.87      |
+| loss/policy_loss        | -0.000881 |
+| loss/value_loss         | 2.45      |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 1.08e+03  |
+| misc/serial_timesteps   | 2.22e+06  |
+| misc/time_elapsed       | 1.19e+04  |
+| misc/total_timesteps    | 2.22e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:41:34.845343
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00118   |
+| loss/clipfrac           | 0.00418   |
+| loss/policy_entropy     | 1.86      |
+| loss/policy_loss        | -0.000467 |
+| loss/value_loss         | 1.78      |
+| misc/explained_variance | 0         |
+| misc/nupdates           | 1.09e+03  |
+| misc/serial_timesteps   | 2.23e+06  |
+| misc/time_elapsed       | 1.19e+04  |
+| misc/total_timesteps    | 2.23e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:42:29.496410
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.9e+03  |
+| loss/approxkl           | 0.000452 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 1.85     |
+| loss/policy_loss        | 0.000121 |
+| loss/value_loss         | 1.81     |
+| misc/explained_variance | 0        |
+| misc/nupdates           | 1.1e+03  |
+| misc/serial_timesteps   | 2.24e+06 |
+| misc/time_elapsed       | 1.2e+04  |
+| misc/total_timesteps    | 2.24e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:43:24.137221
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.86e+03 |
+| loss/approxkl           | 0.00173  |
+| loss/clipfrac           | 0.0127   |
+| loss/policy_entropy     | 1.85     |
+| loss/policy_loss        | -0.00118 |
+| loss/value_loss         | 1.37     |
+| misc/explained_variance | 4.47e-08 |
+| misc/nupdates           | 1.1e+03  |
+| misc/serial_timesteps   | 2.25e+06 |
+| misc/time_elapsed       | 1.2e+04  |
+| misc/total_timesteps    | 2.25e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:44:18.649469
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000739  |
+| loss/clipfrac           | 0.00135   |
+| loss/policy_entropy     | 1.84      |
+| loss/policy_loss        | -0.000403 |
+| loss/value_loss         | 2.42      |
+| misc/explained_variance | 5.96e-08  |
+| misc/nupdates           | 1.10e+03  |
+| misc/serial_timesteps   | 2.26e+06  |
+| misc/time_elapsed       | 1.21e+04  |
+| misc/total_timesteps    | 2.26e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:45:13.084932
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.000439  |
+| loss/clipfrac           | 0.000122  |
+| loss/policy_entropy     | 1.84      |
+| loss/policy_loss        | -0.000765 |
+| loss/value_loss         | 1.93      |
+| misc/explained_variance | 0         |
+| misc/nupdates           | 1.11e+03  |
+| misc/serial_timesteps   | 2.27e+06  |
+| misc/time_elapsed       | 1.21e+04  |
+| misc/total_timesteps    | 2.27e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:46:07.469781
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000702  |
+| loss/clipfrac           | 0.000168  |
+| loss/policy_entropy     | 1.84      |
+| loss/policy_loss        | -7.74e-05 |
+| loss/value_loss         | 1.13      |
+| misc/explained_variance | 0         |
+| misc/nupdates           | 1.12e+03  |
+| misc/serial_timesteps   | 2.28e+06  |
+| misc/time_elapsed       | 1.22e+04  |
+| misc/total_timesteps    | 2.28e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:47:02.287442
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000651  |
+| loss/clipfrac           | 0.000455  |
+| loss/policy_entropy     | 1.83      |
+| loss/policy_loss        | -0.000275 |
+| loss/value_loss         | 2.09      |
+| misc/explained_variance | 0         |
+| misc/nupdates           | 1.12e+03  |
+| misc/serial_timesteps   | 2.29e+06  |
+| misc/time_elapsed       | 1.22e+04  |
+| misc/total_timesteps    | 2.29e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:47:56.705948
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.88e+03 |
+| loss/approxkl           | 0.00273  |
+| loss/clipfrac           | 0.027    |
+| loss/policy_entropy     | 1.83     |
+| loss/policy_loss        | -0.00112 |
+| loss/value_loss         | 2.35     |
+| misc/explained_variance | 1.49e-07 |
+| misc/nupdates           | 1.12e+03 |
+| misc/serial_timesteps   | 2.3e+06  |
+| misc/time_elapsed       | 1.23e+04 |
+| misc/total_timesteps    | 2.3e+07  |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:48:50.920859
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.89e+03 |
+| loss/approxkl           | 0.00199  |
+| loss/clipfrac           | 0.0158   |
+| loss/policy_entropy     | 1.82     |
+| loss/policy_loss        | -0.00129 |
+| loss/value_loss         | 2.62     |
+| misc/explained_variance | 7.45e-08 |
+| misc/nupdates           | 1.13e+03 |
+| misc/serial_timesteps   | 2.31e+06 |
+| misc/time_elapsed       | 1.24e+04 |
+| misc/total_timesteps    | 2.31e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:49:45.196709
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.0012    |
+| loss/clipfrac           | 0.0029    |
+| loss/policy_entropy     | 1.82      |
+| loss/policy_loss        | -0.000726 |
+| loss/value_loss         | 1.92      |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 1.14e+03  |
+| misc/serial_timesteps   | 2.32e+06  |
+| misc/time_elapsed       | 1.24e+04  |
+| misc/total_timesteps    | 2.32e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:50:40.168671
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.85e+03 |
+| loss/approxkl           | 0.000106 |
+| loss/clipfrac           | 0        |
+| loss/policy_entropy     | 1.82     |
+| loss/policy_loss        | 6.56e-06 |
+| loss/value_loss         | 1.79     |
+| misc/explained_variance | 2.98e-08 |
+| misc/nupdates           | 1.14e+03 |
+| misc/serial_timesteps   | 2.33e+06 |
+| misc/time_elapsed       | 1.25e+04 |
+| misc/total_timesteps    | 2.33e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:51:34.245691
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.91e+03  |
+| loss/approxkl           | 0.000385  |
+| loss/clipfrac           | 4.58e-05  |
+| loss/policy_entropy     | 1.81      |
+| loss/policy_loss        | -0.000157 |
+| loss/value_loss         | 1.83      |
+| misc/explained_variance | -8.94e-08 |
+| misc/nupdates           | 1.14e+03  |
+| misc/serial_timesteps   | 2.34e+06  |
+| misc/time_elapsed       | 1.25e+04  |
+| misc/total_timesteps    | 2.34e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:52:28.730350
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.000845  |
+| loss/clipfrac           | 0.000797  |
+| loss/policy_entropy     | 1.81      |
+| loss/policy_loss        | -0.000215 |
+| loss/value_loss         | 2.16      |
+| misc/explained_variance | 2.98e-08  |
+| misc/nupdates           | 1.15e+03  |
+| misc/serial_timesteps   | 2.36e+06  |
+| misc/time_elapsed       | 1.26e+04  |
+| misc/total_timesteps    | 2.36e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:53:23.184761
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00139   |
+| loss/clipfrac           | 0.00703   |
+| loss/policy_entropy     | 1.8       |
+| loss/policy_loss        | -0.000589 |
+| loss/value_loss         | 1.9       |
+| misc/explained_variance | 8.94e-08  |
+| misc/nupdates           | 1.16e+03  |
+| misc/serial_timesteps   | 2.37e+06  |
+| misc/time_elapsed       | 1.26e+04  |
+| misc/total_timesteps    | 2.37e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:54:18.380429
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00224   |
+| loss/clipfrac           | 0.0162    |
+| loss/policy_entropy     | 1.79      |
+| loss/policy_loss        | -0.000779 |
+| loss/value_loss         | 1.84      |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 1.16e+03  |
+| misc/serial_timesteps   | 2.38e+06  |
+| misc/time_elapsed       | 1.27e+04  |
+| misc/total_timesteps    | 2.38e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:55:12.920604
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000801 |
+| loss/clipfrac           | 5.49e-05 |
+| loss/policy_entropy     | 1.79     |
+| loss/policy_loss        | 0.000215 |
+| loss/value_loss         | 1.52     |
+| misc/explained_variance | 4.47e-08 |
+| misc/nupdates           | 1.16e+03 |
+| misc/serial_timesteps   | 2.39e+06 |
+| misc/time_elapsed       | 1.27e+04 |
+| misc/total_timesteps    | 2.39e+07 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:56:07.406516
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.00311   |
+| loss/clipfrac           | 0.0315    |
+| loss/policy_entropy     | 1.78      |
+| loss/policy_loss        | -0.00113  |
+| loss/value_loss         | 2.32      |
+| misc/explained_variance | -5.96e-08 |
+| misc/nupdates           | 1.17e+03  |
+| misc/serial_timesteps   | 2.4e+06   |
+| misc/time_elapsed       | 1.28e+04  |
+| misc/total_timesteps    | 2.4e+07   |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:57:01.661454
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.000122  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 1.78      |
+| loss/policy_loss        | 0.00014   |
+| loss/value_loss         | 1.77      |
+| misc/explained_variance | -8.94e-08 |
+| misc/nupdates           | 1.18e+03  |
+| misc/serial_timesteps   | 2.41e+06  |
+| misc/time_elapsed       | 1.28e+04  |
+| misc/total_timesteps    | 2.41e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:57:55.945587
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00129   |
+| loss/clipfrac           | 0.00268   |
+| loss/policy_entropy     | 1.78      |
+| loss/policy_loss        | -0.000347 |
+| loss/value_loss         | 1.41      |
+| misc/explained_variance | 4.47e-08  |
+| misc/nupdates           | 1.18e+03  |
+| misc/serial_timesteps   | 2.42e+06  |
+| misc/time_elapsed       | 1.29e+04  |
+| misc/total_timesteps    | 2.42e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:58:50.266665
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.9e+03   |
+| loss/approxkl           | 0.000221  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 1.77      |
+| loss/policy_loss        | 0.000232  |
+| loss/value_loss         | 2.17      |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 1.18e+03  |
+| misc/serial_timesteps   | 2.43e+06  |
+| misc/time_elapsed       | 1.29e+04  |
+| misc/total_timesteps    | 2.43e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 07:59:44.409891
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.000618  |
+| loss/clipfrac           | 0.000696  |
+| loss/policy_entropy     | 1.77      |
+| loss/policy_loss        | -0.000362 |
+| loss/value_loss         | 1.99      |
+| misc/explained_variance | -2.98e-08 |
+| misc/nupdates           | 1.19e+03  |
+| misc/serial_timesteps   | 2.44e+06  |
+| misc/time_elapsed       | 1.3e+04   |
+| misc/total_timesteps    | 2.44e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 08:00:38.939556
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.00193   |
+| loss/clipfrac           | 0.0151    |
+| loss/policy_entropy     | 1.76      |
+| loss/policy_loss        | -0.000817 |
+| loss/value_loss         | 1.94      |
+| misc/explained_variance | 1.49e-08  |
+| misc/nupdates           | 1.2e+03   |
+| misc/serial_timesteps   | 2.45e+06  |
+| misc/time_elapsed       | 1.31e+04  |
+| misc/total_timesteps    | 2.45e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 08:01:33.842317
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 0.0034    |
+| loss/clipfrac           | 0.0349    |
+| loss/policy_entropy     | 1.76      |
+| loss/policy_loss        | -0.00126  |
+| loss/value_loss         | 2.32      |
+| misc/explained_variance | -1.79e-07 |
+| misc/nupdates           | 1.2e+03   |
+| misc/serial_timesteps   | 2.46e+06  |
+| misc/time_elapsed       | 1.31e+04  |
+| misc/total_timesteps    | 2.46e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 08:02:28.393458
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.87e+03  |
+| loss/approxkl           | 5.91e-05  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 1.75      |
+| loss/policy_loss        | 4.68e-05  |
+| loss/value_loss         | 1.95      |
+| misc/explained_variance | -4.47e-08 |
+| misc/nupdates           | 1.20e+03  |
+| misc/serial_timesteps   | 2.47e+06  |
+| misc/time_elapsed       | 1.32e+04  |
+| misc/total_timesteps    | 2.47e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 08:03:22.798189
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.89e+03  |
+| loss/approxkl           | 0.00178   |
+| loss/clipfrac           | 0.012     |
+| loss/policy_entropy     | 1.74      |
+| loss/policy_loss        | -0.00128  |
+| loss/value_loss         | 2.67      |
+| misc/explained_variance | -5.96e-08 |
+| misc/nupdates           | 1.21e+03  |
+| misc/serial_timesteps   | 2.48e+06  |
+| misc/time_elapsed       | 1.32e+04  |
+| misc/total_timesteps    | 2.48e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 08:04:17.397013
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.88e+03  |
+| loss/approxkl           | 0.000623  |
+| loss/clipfrac           | 3.36e-05  |
+| loss/policy_entropy     | 1.74      |
+| loss/policy_loss        | -3.9e-05  |
+| loss/value_loss         | 2.01      |
+| misc/explained_variance | -1.19e-07 |
+| misc/nupdates           | 1.22e+03  |
+| misc/serial_timesteps   | 2.49e+06  |
+| misc/time_elapsed       | 1.33e+04  |
+| misc/total_timesteps    | 2.49e+07  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-09 08:05:11.913796
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.86e+03  |
+| loss/approxkl           | 0.000274  |
+| loss/clipfrac           | 0         |
+| loss/policy_entropy     | 1.73      |
+| loss/policy_loss        | 4.59e-05  |
+| loss/value_loss         | 2.43      |
+| misc/explained_variance | -5.96e-08 |
+| misc/nupdates           | 1.22e+03  |
+| misc/serial_timesteps   | 2.5e+06   |
+| misc/time_elapsed       | 1.33e+04  |
+| misc/total_timesteps    | 2.5e+07   |
+---------------------------------------
