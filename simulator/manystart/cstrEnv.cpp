@@ -4,6 +4,7 @@
  * Constructor.  Defines initial state, setpoints, etc.  Depends upon reset()
  */
 CSTREnv::CSTREnv():u0(2,0),numsteps(0),x0scale(0.45),x1scale(65) {
+  srand(time(NULL));
   xsp=N_VNew_Serial(2);
   x=N_VNew_Serial(2);
   abstol=N_VNew_Serial(2);
@@ -75,8 +76,8 @@ boost::python::tuple CSTREnv::reset(){
 
   // initialize x in a circle surroudning the region of interestit** 
   // set rad to random number between 0 and 2 pi...would happen in initial set up and when you reset
-  //TODO*rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
-  double rad = 2;
+  //double rad = 2;
+  double rad = ((double)rand()/RAND_MAX) / (2.0 * M_PI);
   NV_Ith_S(x, 0)   = 0.55 + x0scale * cos(rad); // mol/m3
   NV_Ith_S(x, 1)   = 375 + x1scale * sin(rad); // deg K
 
