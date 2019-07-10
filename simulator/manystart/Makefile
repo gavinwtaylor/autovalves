@@ -1,0 +1,32 @@
+ifeq ($(HOSTNAME),mich-gpu-01.academy.usna.edu)
+	BOOST_ROOT := $(HOME)/boost
+	PYTHON_ROOT := $(HOME)/anaconda3
+	CVODE_ROOT := $(HOME)/sundials
+else
+	BOOST_ROOT := $(WORKDIR)/boost
+	PYTHON_ROOT := /gpfs/pkgs/mhpcc/anaconda3-5.0.1
+	CVODE_ROOT := /gpfs/pkgs/mhpcc/sundials-3.1.0
+endif
+
+PYTHON_INC := $(PYTHON_ROOT)/include/python3.6m
+PYTHON_LIB_LOCATION := $(PYTHON_ROOT)/lib
+PYTHON_LIB_FILE := python3.6m
+
+BOOST_INC := $(BOOST_ROOT)/include
+BOOST_LIB_LOCATION := $(BOOST_ROOT)/lib
+BOOST_LIB_FILE := boost_python36
+
+CVODE_INC := $(CVODE_ROOT)/include
+CVODE_LIB_LOCATION := $(CVODE_ROOT)/lib
+CVODE_LIB_FILE := sundials_cvode
+
+CC := gcc
+
+CFLAGS := -fPIC
+
+CLinkFlags = -shared -Wl,-soname,$@ -Wl,-rpath
+
+all: cstrMany.so
+	
+cstrMany.so: cstrEnv.cpp cstrEnv.h
+	$(CC) cstrEnv.cpp $(CFLAGS) $(CInc) -I$(BOOST_INC) -I$(PYTHON_INC) -I$(CVODE_INC) $(CLinkFlags) -L$(PYTHON_LIB_LOCATION) -L$(BOOST_LIB_LOCATION) -L$(CVODE_LIB_LOCATION) -l$(PYTHON_LIB_FILE) -l$(BOOST_LIB_FILE) -l$(CVODE_LIB_FILE) -o cstrMany.so
