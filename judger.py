@@ -2,7 +2,7 @@ import h5py,os,glob,ntpath
 import matplotlib.pyplot as plt
 import numpy as np
 
-sortOn=lambda run: np.average(run['rewards'][:10])
+sortOn=lambda run: np.average(run['rewards'][:])
 
 learnerDir=os.path.dirname(os.path.realpath(__file__))
 learnerDir=learnerDir+'/learner/'
@@ -33,6 +33,7 @@ def readLog(jobid):
   return info
 
 def applyaverage(jobid,func):
+  print(jobid)
   results=[]
   with h5py.File(h5file(jobid)) as f:
     for run in f:
@@ -40,8 +41,10 @@ def applyaverage(jobid,func):
   return sum(results)/len(results)
 
 jobids=[ntpath.basename(fn).split('.')[0] for fn in glob.glob(learnerDir+'hdf5/*.hdf5')]
-jobids.remove('manystarts')
-jobids.remove('onestart')
+if 'manystarts' in jobids:
+  jobids.remove('manystarts')
+if 'onestart' in jobids:
+  jobids.remove('onestart')
 
 info=dict()
 for jobid in jobids:
@@ -52,7 +55,8 @@ for jobid in jobids:
     print('failed to load',jobid)
     del info[jobid]
 info['orig']=dict()
-info['orig']['result']=applyaverage('onestart',sortOn)
+
+info['orig']['result']=applyaverage('manystarts',sortOn)
 
 sortedResults=sorted(info,key=lambda jobid: info[jobid]['result'])
 for result in sortedResults:
