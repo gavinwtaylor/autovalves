@@ -3,8 +3,7 @@
 /* ========================================================================== 
 
    Experiment 1
-   Toy Problem with Linear MPC
-   Initialized a million times in a ring around the desired steady state
+   Toy Problem
    ========================================================================== */
 #include <unistd.h>
 #include <iostream>                                  
