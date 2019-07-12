@@ -1,0 +1,79 @@
+Logging to /gpfs/scratch/gvtaylor/autovalves/learner/logs
+Job Number:  67352
+Learning Rate:  0.0001
+Timestep:  25000000
+Entropy:  1.0
+Value Coefficent:  0.5
+Number of Layers:  3
+Width of Layers:  64
+2019-07-10 06:53:35.405573
+2019-07-10 06:54:33.271477
+---------------------------------------
+| eplenmean               | nan       |
+| eprewmean               | nan       |
+| fps                     | 1.13e+03  |
+| loss/approxkl           | 0.000174  |
+| loss/clipfrac           | 3.05e-06  |
+| loss/policy_entropy     | 2.84      |
+| loss/policy_loss        | -0.000813 |
+| loss/value_loss         | 7.22e+03  |
+| misc/explained_variance | 0.00834   |
+| misc/nupdates           | 1         |
+| misc/serial_timesteps   | 2.05e+03  |
+| misc/time_elapsed       | 18.1      |
+| misc/total_timesteps    | 2.05e+04  |
+---------------------------------------
+Stepping environment...
+Done.
+2019-07-10 06:55:22.206493
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.76e+03 |
+| loss/approxkl           | 0.000442 |
+| loss/clipfrac           | 2.14e-05 |
+| loss/policy_entropy     | 2.85     |
+| loss/policy_loss        | -0.00146 |
+| loss/value_loss         | 2.77e+03 |
+| misc/explained_variance | 0.0122   |
+| misc/nupdates           | 5        |
+| misc/serial_timesteps   | 1.02e+04 |
+| misc/time_elapsed       | 67.1     |
+| misc/total_timesteps    | 1.02e+05 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-10 06:56:18.805457
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.84e+03 |
+| loss/approxkl           | 0.000481 |
+| loss/clipfrac           | 8.24e-05 |
+| loss/policy_entropy     | 2.86     |
+| loss/policy_loss        | -0.00148 |
+| loss/value_loss         | 535      |
+| misc/explained_variance | 0.00447  |
+| misc/nupdates           | 10       |
+| misc/serial_timesteps   | 2.05e+04 |
+| misc/time_elapsed       | 124      |
+| misc/total_timesteps    | 2.05e+05 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-10 06:57:14.201323
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.87e+03 |
+| loss/approxkl           | 0.000741 |
+| loss/clipfrac           | 0.000208 |
+| loss/policy_entropy     | 2.86     |
+| loss/policy_loss        | -0.00225 |
+| loss/value_loss         | 32.8     |
+| misc/explained_variance | 0.00134  |
+| misc/nupdates           | 15       |
+| misc/serial_timesteps   | 3.07e+04 |
+| misc/time_elapsed       | 179      |
+| misc/total_timesteps    | 3.07e+05 |
+--------------------------------------

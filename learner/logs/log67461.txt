@@ -1,0 +1,43 @@
+Logging to /gpfs/scratch/gvtaylor/autovalves/learner/logs
+Job Number:  67461
+Learning Rate:  0.0001
+Timestep:  30000000
+Entropy:  0.0
+Value Coefficent:  0.5
+Number of Layers:  3
+Width of Layers:  64
+2019-07-11 03:08:14.251528
+2019-07-11 03:09:23.366992
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.03e+03 |
+| loss/approxkl           | 0.000268 |
+| loss/clipfrac           | 6.1e-06  |
+| loss/policy_entropy     | 2.84     |
+| loss/policy_loss        | -0.0012  |
+| loss/value_loss         | 3.91e+03 |
+| misc/explained_variance | 0        |
+| misc/nupdates           | 1        |
+| misc/serial_timesteps   | 2.05e+03 |
+| misc/time_elapsed       | 19.9     |
+| misc/total_timesteps    | 2.05e+04 |
+--------------------------------------
+Stepping environment...
+Done.
+2019-07-11 03:10:12.344224
+--------------------------------------
+| eplenmean               | nan      |
+| eprewmean               | nan      |
+| fps                     | 1.75e+03 |
+| loss/approxkl           | 0.0007   |
+| loss/clipfrac           | 0.000259 |
+| loss/policy_entropy     | 2.83     |
+| loss/policy_loss        | -0.0024  |
+| loss/value_loss         | 747      |
+| misc/explained_variance | 5.96e-08 |
+| misc/nupdates           | 5        |
+| misc/serial_timesteps   | 1.02e+04 |
+| misc/time_elapsed       | 68.9     |
+| misc/total_timesteps    | 1.02e+05 |
+--------------------------------------
