@@ -11,7 +11,7 @@ def logfile(jobid):
   return learnerDir+'logs/log'+jobid+'.txt'
 
 def h5file(jobid):
-  return learnerDir+'hdf5/'+jobid+'.hdf5'
+  return learnerDir+'hdf5/manystarts/'+jobid+'.hdf5'
 
 def readLog(jobid):
   info=dict()
@@ -33,7 +33,7 @@ def readLog(jobid):
   return info
 
 def applyaverage(jobid,func):
-  print(jobid)
+  print(h5file(jobid))
   results=[]
   with h5py.File(h5file(jobid)) as f:
     for run in f:
@@ -45,6 +45,10 @@ if 'manystarts' in jobids:
   jobids.remove('manystarts')
 if 'onestart' in jobids:
   jobids.remove('onestart')
+if 'manystartmanytarg' in jobids:
+  jobids.remove('manystartmanytarg')
+if 'pid' in jobids:
+  jobids.remove('pid')
 
 info=dict()
 for jobid in jobids:
@@ -56,7 +60,7 @@ for jobid in jobids:
     del info[jobid]
 info['orig']=dict()
 
-info['orig']['result']=applyaverage('manystarts',sortOn)
+info['orig']['result']=applyaverage('pid',sortOn)
 
 sortedResults=sorted(info,key=lambda jobid: info[jobid]['result'])
 for result in sortedResults:
